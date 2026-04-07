@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background: linear-gradient(180deg, #0d0600 0%, #1a0f02 100%);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d0600;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #8b6914;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .card-medieval {
+    @apply bg-parchment border border-gold rounded-lg shadow-tome text-ink;
+  }
+
+  .card-medieval-dark {
+    @apply bg-ink-light border border-gold/30 rounded-lg shadow-tome text-parchment-light;
+  }
+
+  .btn-primary {
+    @apply bg-gold hover:bg-gold-light text-ink font-cinzel font-bold px-4 py-2 rounded transition-colors;
+  }
+
+  .btn-danger {
+    @apply bg-blood hover:bg-blood-light text-parchment-light font-cinzel font-bold px-4 py-2 rounded transition-colors;
+  }
+
+  .input-medieval {
+    @apply bg-parchment-light border border-gold/50 rounded px-3 py-2 text-ink placeholder:text-ink/40 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold;
+  }
+}
