@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { Users, Swords, ScrollText, StickyNote, ArrowLeft, Trash2, Gem } from "lucide-react";
+import { Users, Swords, ScrollText, StickyNote, ArrowLeft, Trash2, Gem, Map, ChevronLeft, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
@@ -15,9 +15,13 @@ import { EncounterPlanner } from "@/components/master/EncounterPlanner";
 import { RichTextEditor } from "@/components/master/RichTextEditor";
 import { TreasureGenerator } from "@/components/master/TreasureGenerator";
 import { TreasureInventory } from "@/components/master/TreasureInventory";
+import { MapUploader } from "@/components/master/MapUploader";
+import { MapViewer } from "@/components/master/MapViewer";
+import { PinEditor } from "@/components/master/PinEditor";
+import { MapExporter } from "@/components/master/MapExporter";
 import { useCampaignStore } from "@/store/campaignStore";
 import { ALIGNMENTS } from "@/types/dnd5e";
-import type { NPC, EncounterMonster } from "@/types/dnd5e";
+import type { NPC, EncounterMonster, MapPin, MapData } from "@/types/dnd5e";
 
 const TABS = [
   { key: "npcs", label: "NPCs", icon: Users },
@@ -25,6 +29,7 @@ const TABS = [
   { key: "sessions", label: "Sessões", icon: ScrollText },
   { key: "notes", label: "Notas", icon: StickyNote },
   { key: "treasures", label: "Tesouros", icon: Gem },
+  { key: "maps", label: "Mapas", icon: Map },
 ] as const;
 
 type TabKey = (typeof TABS)[number]["key"];
@@ -57,11 +62,20 @@ const DIFFICULTY_LABELS: Record<string, string> = {
 export default function CampaignDetailPage() {
   const params = useParams();
   const campaignId = params.id as string;
-  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateCampaignNotes, addTreasure, deleteTreasure } =
+  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin } =
     useCampaignStore();
 
   const campaign = getCampaign(campaignId);
   const [activeTab, setActiveTab] = useState<TabKey>("npcs");
+
+  // Map state
+  const mapViewerRef = useRef<HTMLDivElement>(null);
+  const [selectedMapId, setSelectedMapId] = useState<string | null>(null);
+  const [showMapUploader, setShowMapUploader] = useState(false);
+  const [editingPin, setEditingPin] = useState<MapPin | null>(null);
+  const [newPinPosition, setNewPinPosition] = useState<{ x: number; y: number } | null>(null);
+  const [showPinEditor, setShowPinEditor] = useState(false);
+  const [playerView, setPlayerView] = useState(false);
 
   // NPC modal state
   const [showNpcModal, setShowNpcModal] = useState(false);
@@ -299,6 +313,156 @@ export default function CampaignDetailPage() {
               onDelete={(id) => deleteTreasure(campaignId, id)}
             />
           </div>
+        </div>
+      )}
+
+      {/* Maps Tab */}
+      {activeTab === "maps" && (
+        <div>
+          {selectedMapId ? (() => {
+            const selectedMap = (campaign.maps ?? []).find((m) => m.id === selectedMapId);
+            if (!selectedMap) return null;
+            return (
+              <div className="space-y-4">
+                {/* Map Controls Bar */}
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => { setSelectedMapId(null); setPlayerView(false); }}
+                    >
+                      <ChevronLeft size={14} className="mr-1" /> Voltar
+                    </Button>
+                    <span className="font-cinzel text-parchment-light text-sm">{selectedMap.name}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant={playerView ? "primary" : "secondary"}
+                      size="sm"
+                      onClick={() => setPlayerView(!playerView)}
+                      title={playerView ? "Modo Mestre" : "Visão do Jogador"}
+                    >
+                      {playerView ? <EyeOff size={14} className="mr-1" /> : <Eye size={14} className="mr-1" />}
+                      {playerView ? "Modo Mestre" : "Visão do Jogador"}
+                    </Button>
+                    <MapExporter mapRef={mapViewerRef} mapName={selectedMap.name} />
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => {
+                        deleteMap(campaignId, selectedMapId);
+                        setSelectedMapId(null);
+                      }}
+                    >
+                      <Trash2 size={14} />
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Map Viewer */}
+                <div className="border border-gold/20 rounded-lg overflow-hidden bg-ink">
+                  <MapViewer
+                    ref={mapViewerRef}
+                    map={selectedMap}
+                    playerView={playerView}
+                    onMapClick={(x, y) => {
+                      setEditingPin(null);
+                      setNewPinPosition({ x, y });
+                      setShowPinEditor(true);
+                    }}
+                    onPinClick={(pin) => {
+                      setEditingPin(pin);
+                      setNewPinPosition(null);
+                      setShowPinEditor(true);
+                    }}
+                  />
+                </div>
+
+                {!playerView && (
+                  <p className="text-xs text-center text-parchment-light/30">
+                    Clique no mapa para adicionar um pino
+                  </p>
+                )}
+              </div>
+            );
+          })() : (
+            <div>
+              <div className="flex justify-end mb-4">
+                <Button size="sm" onClick={() => setShowMapUploader(true)}>
+                  Novo Mapa
+                </Button>
+              </div>
+
+              {(campaign.maps ?? []).length === 0 ? (
+                <p className="text-center text-parchment-light/40 py-12">
+                  Nenhum mapa adicionado ainda.
+                </p>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {(campaign.maps ?? []).map((map) => (
+                    <Card
+                      key={map.id}
+                      className="p-0 overflow-hidden cursor-pointer hover:border-gold/60 transition-colors"
+                      onClick={() => setSelectedMapId(map.id)}
+                    >
+                      <div className="aspect-video bg-ink flex items-center justify-center overflow-hidden">
+                        <img
+                          src={map.imageBase64}
+                          alt={map.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="px-3 py-2">
+                        <p className="font-cinzel text-sm text-parchment-light truncate">{map.name}</p>
+                        <p className="text-xs text-parchment-light/40 mt-0.5">
+                          {map.pins.length} pino{map.pins.length !== 1 ? "s" : ""}
+                        </p>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Map Uploader Modal */}
+          <Modal
+            isOpen={showMapUploader}
+            onClose={() => setShowMapUploader(false)}
+            title="Adicionar Mapa"
+            className="max-w-xl"
+          >
+            <MapUploader
+              onAdd={(name, imageBase64) => {
+                addMap(campaignId, { name, imageBase64, pins: [] });
+                setShowMapUploader(false);
+              }}
+              onCancel={() => setShowMapUploader(false)}
+            />
+          </Modal>
+
+          {/* Pin Editor Modal */}
+          <PinEditor
+            isOpen={showPinEditor}
+            onClose={() => { setShowPinEditor(false); setEditingPin(null); setNewPinPosition(null); }}
+            pin={editingPin}
+            position={newPinPosition}
+            onSave={(pinData) => {
+              if (selectedMapId) {
+                if (editingPin) {
+                  updatePin(campaignId, selectedMapId, editingPin.id, pinData);
+                } else {
+                  addPin(campaignId, selectedMapId, pinData);
+                }
+              }
+            }}
+            onDelete={(pinId) => {
+              if (selectedMapId) {
+                deletePin(campaignId, selectedMapId, pinId);
+              }
+            }}
+          />
         </div>
       )}
 
