@@ -2,6 +2,7 @@ import { create } from "zustand";
 import type { ResourceCounter } from "@/lib/classResources";
 import { rollNotation } from "@/lib/dice";
 import { generateId } from "@/lib/utils";
+import type { AdvantageMode } from "@/lib/rollWithAdvantage";
 
 export interface RollLogEntry {
   id: string;
@@ -19,6 +20,7 @@ interface SessionState {
   resourceCounters: ResourceCounter[];
   rollLog: RollLogEntry[];
   initiativeRoll: number | null;
+  advantageMode: AdvantageMode;
 
   startSession: (characterId: string, counters: ResourceCounter[]) => void;
   endSession: () => void;
@@ -29,6 +31,7 @@ interface SessionState {
   rollInitiative: (dexMod: number) => void;
   addRoll: (entry: Omit<RollLogEntry, "id" | "timestamp">) => void;
   clearLog: () => void;
+  setAdvantageMode: (mode: AdvantageMode) => void;
 }
 
 export const useSessionStore = create<SessionState>()((set, get) => ({
@@ -37,6 +40,7 @@ export const useSessionStore = create<SessionState>()((set, get) => ({
   resourceCounters: [],
   rollLog: [],
   initiativeRoll: null,
+  advantageMode: "normal",
 
   startSession: (characterId, counters) => {
     set({
@@ -45,6 +49,7 @@ export const useSessionStore = create<SessionState>()((set, get) => ({
       resourceCounters: counters.map((c) => ({ ...c, used: 0 })),
       rollLog: [],
       initiativeRoll: null,
+      advantageMode: "normal",
     });
   },
 
@@ -55,6 +60,7 @@ export const useSessionStore = create<SessionState>()((set, get) => ({
       resourceCounters: [],
       rollLog: [],
       initiativeRoll: null,
+      advantageMode: "normal",
     });
   },
 
@@ -117,4 +123,6 @@ export const useSessionStore = create<SessionState>()((set, get) => ({
   },
 
   clearLog: () => set({ rollLog: [] }),
+
+  setAdvantageMode: (mode) => set({ advantageMode: mode }),
 }));
