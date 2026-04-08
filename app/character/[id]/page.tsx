@@ -61,10 +61,18 @@ export default function CharacterSheetPage() {
   const router = useRouter();
   const id = params.id as string;
 
-  const { getCharacter, updateCharacter } = useCharacterStore();
+  const { getCharacter, updateCharacter, isHydrated } = useCharacterStore();
   const character = getCharacter(id);
 
   const [showAttrGen, setShowAttrGen] = useState(false);
+
+  if (!isHydrated) {
+    return (
+      <main className="flex min-h-screen items-center justify-center">
+        <p className="font-cinzel text-gold text-xl animate-pulse">Carregando...</p>
+      </main>
+    );
+  }
 
   if (!character) {
     return (
