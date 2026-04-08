@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { Users, Swords, ScrollText, StickyNote, ArrowLeft, Trash2 } from "lucide-react";
+import { Users, Swords, ScrollText, StickyNote, ArrowLeft, Trash2, Gem } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
@@ -13,6 +13,8 @@ import { Badge } from "@/components/ui/Badge";
 import { NpcCard } from "@/components/master/NpcCard";
 import { EncounterPlanner } from "@/components/master/EncounterPlanner";
 import { RichTextEditor } from "@/components/master/RichTextEditor";
+import { TreasureGenerator } from "@/components/master/TreasureGenerator";
+import { TreasureInventory } from "@/components/master/TreasureInventory";
 import { useCampaignStore } from "@/store/campaignStore";
 import { ALIGNMENTS } from "@/types/dnd5e";
 import type { NPC, EncounterMonster } from "@/types/dnd5e";
@@ -22,6 +24,7 @@ const TABS = [
   { key: "encounters", label: "Encontros", icon: Swords },
   { key: "sessions", label: "Sessões", icon: ScrollText },
   { key: "notes", label: "Notas", icon: StickyNote },
+  { key: "treasures", label: "Tesouros", icon: Gem },
 ] as const;
 
 type TabKey = (typeof TABS)[number]["key"];
@@ -54,7 +57,7 @@ const DIFFICULTY_LABELS: Record<string, string> = {
 export default function CampaignDetailPage() {
   const params = useParams();
   const campaignId = params.id as string;
-  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateCampaignNotes } =
+  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateCampaignNotes, addTreasure, deleteTreasure } =
     useCampaignStore();
 
   const campaign = getCampaign(campaignId);
@@ -281,6 +284,22 @@ export default function CampaignDetailPage() {
           content={campaign.notes}
           onChange={(html) => updateCampaignNotes(campaignId, html)}
         />
+      )}
+
+      {/* Treasures Tab */}
+      {activeTab === "treasures" && (
+        <div className="space-y-8">
+          <TreasureGenerator
+            campaignId={campaignId}
+            onAdd={(treasure) => addTreasure(campaignId, treasure)}
+          />
+          <div className="border-t border-gold/20 pt-6">
+            <TreasureInventory
+              treasures={campaign.treasures ?? []}
+              onDelete={(id) => deleteTreasure(campaignId, id)}
+            />
+          </div>
+        </div>
       )}
 
       {/* New NPC Modal */}

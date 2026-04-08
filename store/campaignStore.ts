@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import type { Campaign, NPC, Encounter, Session, Condition } from "@/types/dnd5e";
+import type { Campaign, NPC, Encounter, Session, Condition, TreasureRecord } from "@/types/dnd5e";
 import { generateId } from "@/lib/utils";
 import { getXpMultiplier, getEncounterDifficulty } from "@/lib/dnd5e";
 
@@ -43,6 +43,10 @@ interface CampaignState {
 
   // Notes
   updateCampaignNotes: (campaignId: string, notes: string) => void;
+
+  // Treasures
+  addTreasure: (campaignId: string, treasure: Omit<TreasureRecord, "id">) => void;
+  deleteTreasure: (campaignId: string, treasureId: string) => void;
 }
 
 async function hashPin(pin: string): Promise<string> {
@@ -84,6 +88,7 @@ export const useCampaignStore = create<CampaignState>()(
           sessions: [],
           npcs: [],
           encounters: [],
+          treasures: [],
           notes: "",
           createdAt: now,
           updatedAt: now,
@@ -244,6 +249,26 @@ export const useCampaignStore = create<CampaignState>()(
           const campaign = state.campaigns.find((c) => c.id === campaignId);
           if (campaign) {
             campaign.notes = notes;
+            campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      addTreasure: (campaignId, treasureData) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            campaign.treasures.push({ ...treasureData, id: generateId() });
+            campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      deleteTreasure: (campaignId, treasureId) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            campaign.treasures = campaign.treasures.filter((t) => t.id !== treasureId);
             campaign.updatedAt = new Date().toISOString();
           }
         });

@@ -201,6 +201,16 @@ export interface Session {
   notes: string;
 }
 
+export interface TreasureRecord {
+  id: string;
+  date: string;
+  description: string;
+  givenTo: string;
+  coins: Record<CoinType, number>;
+  items: { name: string; rarity: string; description: string }[];
+  notes: string;
+}
+
 export interface Campaign {
   id: string;
   name: string;
@@ -210,6 +220,7 @@ export interface Campaign {
   sessions: Session[];
   npcs: NPC[];
   encounters: Encounter[];
+  treasures: TreasureRecord[];
   notes: string;
   createdAt: string;
   updatedAt: string;
