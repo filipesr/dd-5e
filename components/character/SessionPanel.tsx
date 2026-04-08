@@ -4,6 +4,8 @@ import { useSessionStore } from "@/store/sessionStore";
 import { ResourceCounter } from "@/components/character/ResourceCounter";
 import { InitiativeRoller } from "@/components/character/InitiativeRoller";
 import { RollLog } from "@/components/character/RollLog";
+import { AdvantageToggle } from "@/components/character/AdvantageToggle";
+import { CustomRoller } from "@/components/character/CustomRoller";
 import { Button } from "@/components/ui/Button";
 import { Moon, Sun } from "lucide-react";
 
@@ -28,6 +30,9 @@ export function SessionPanel({ dexMod }: SessionPanelProps) {
     <div className="space-y-4">
       {/* Initiative */}
       <InitiativeRoller dexMod={dexMod} currentRoll={initiativeRoll} onRoll={() => rollInitiative(dexMod)} />
+
+      {/* Advantage Toggle */}
+      <AdvantageToggle />
 
       {/* Resource Counters */}
       {resourceCounters.length > 0 && (
@@ -55,6 +60,9 @@ export function SessionPanel({ dexMod }: SessionPanelProps) {
           <Sun size={14} className="mr-1" /> Descanso Longo
         </Button>
       </div>
+
+      {/* Custom Roller */}
+      <CustomRoller />
 
       {/* Roll Log */}
       <RollLog entries={rollLog} onClear={clearLog} />
