@@ -84,9 +84,11 @@ Adicionar `maps: MapData[]` na interface Campaign.
 ### MapViewer
 - Container relativo com imagem como background (100% width)
 - Pinos sobrepostos como position absolute (% based)
+- Pinos: w-9 h-9, icones brancos 18px, fundo 90% opaco por cor de tipo, borda clara, glow 12px colorido
 - Clique no mapa → abre PinEditor no ponto clicado
 - Clique em pino existente → abre PinEditor para edicao
 - Toggle "Visao do Jogador" → oculta pinos com revealed=false
+- Lista de pins abaixo do mapa: nome, tipo (Badge), indicador de visibilidade, clicavel para editar
 - Zoom basico: botoes +/- que alteram scale via CSS transform
 
 ### PinEditor (Modal)

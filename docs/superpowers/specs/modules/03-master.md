@@ -61,7 +61,7 @@ interface NPC {
 ```
 
 - Lista por campanha, card com avatar (iniciais), nome, papel (badge colorido)
-- Modal de criacao: nome, raca, profissao, alinhamento, papel, notas, segredos
+- Modal de criacao: nome, raca (Select com 9 racas SRD), profissao, alinhamento, papel, notas, segredos
 - Modal de detalhe com todas as informacoes + botao excluir
 
 ## Gestao de Encontros
@@ -116,7 +116,8 @@ interface Session {
 ```
 
 - Lista por campanha com titulo, data (PT-BR), resumo
-- Modal de criacao: titulo, resumo
+- Modal de criacao/edicao: titulo, resumo (reutilizado para criar e editar)
+- Botoes editar (Pencil) e excluir (Trash2) em cada sessao
 
 ## Store (store/campaignStore.ts)
 

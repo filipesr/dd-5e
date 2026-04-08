@@ -84,6 +84,7 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 - [x] Notas sumiam ao trocar aba — flush on unmount + content sync no TipTap (`88df7f4`)
 - [x] TypeError treasures undefined — guard para campanhas antigas (`88df7f4`)
 - [x] Map pins pequenos/sem lista — pins w-9 com glow + lista de pins abaixo do mapa (`88df7f4`)
+- [x] Map pins ainda transparentes — opacidade subida de 30% para 90%, icones brancos, glow 12px (`804fc47`)
 
 ---
 
