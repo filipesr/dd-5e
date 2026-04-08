@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Plus, Wand2 } from "lucide-react";
+import { ArrowLeft, Plus, Wand2, Swords } from "lucide-react";
 import { useCharacterStore } from "@/store/characterStore";
+import { useSessionStore } from "@/store/sessionStore";
+import { getClassResources } from "@/lib/classResources";
 import { getModifier, getProficiencyBonus, getCarryCapacity, getXpForNextLevel } from "@/lib/dnd5e";
 import { formatModifier, generateId } from "@/lib/utils";
 import {
@@ -30,6 +32,7 @@ import { AttackRow } from "@/components/character/AttackRow";
 import { InventoryRow } from "@/components/character/InventoryRow";
 import { AttributeGeneration } from "@/components/character/AttributeGeneration";
 import { PdfExportButton } from "@/components/character/PdfExportButton";
+import { SessionPanel } from "@/components/character/SessionPanel";
 
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
@@ -79,6 +82,18 @@ export default function CharacterSheetPage() {
   const xpNext = getXpForNextLevel(character.level);
   const carryCapacity = getCarryCapacity(character.attributes.str);
   const totalWeight = character.inventory.reduce((sum, item) => sum + item.weight * item.quantity, 0);
+
+  const { isActive: sessionActive, startSession, endSession } = useSessionStore();
+  const dexMod = getModifier(character.attributes.dex);
+
+  const toggleSession = () => {
+    if (sessionActive) {
+      endSession();
+    } else {
+      const resources = getClassResources(character.class, character.level, character.attributes);
+      startSession(character.id, resources);
+    }
+  };
 
   const update = (updates: Parameters<typeof updateCharacter>[1]) => {
     updateCharacter(id, updates);
@@ -179,8 +194,20 @@ export default function CharacterSheetPage() {
           </Button>
           <h1 className="font-cinzel text-gold text-lg truncate">{character.name}</h1>
         </div>
-        <PdfExportButton character={character} />
+        <div className="flex gap-2">
+          <Button onClick={toggleSession} variant={sessionActive ? "danger" : "secondary"} size="sm">
+            <Swords size={14} className="mr-1" />
+            {sessionActive ? "Encerrar Sessao" : "Modo Sessao"}
+          </Button>
+          <PdfExportButton character={character} />
+        </div>
       </div>
+
+      {sessionActive && (
+        <ScrollSection title="Modo Sessao" defaultOpen={true}>
+          <SessionPanel dexMod={dexMod} />
+        </ScrollSection>
+      )}
 
       {/* 1. Identidade */}
       <ScrollSection title="Identidade">
