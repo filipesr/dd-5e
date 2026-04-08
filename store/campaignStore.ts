@@ -272,6 +272,7 @@ export const useCampaignStore = create<CampaignState>()(
         set((state) => {
           const campaign = state.campaigns.find((c) => c.id === campaignId);
           if (campaign) {
+            if (!campaign.treasures) campaign.treasures = [];
             campaign.treasures.push({ ...treasureData, id: generateId() });
             campaign.updatedAt = new Date().toISOString();
           }
@@ -282,7 +283,7 @@ export const useCampaignStore = create<CampaignState>()(
         set((state) => {
           const campaign = state.campaigns.find((c) => c.id === campaignId);
           if (campaign) {
-            campaign.treasures = campaign.treasures.filter((t) => t.id !== treasureId);
+            campaign.treasures = (campaign.treasures ?? []).filter((t) => t.id !== treasureId);
             campaign.updatedAt = new Date().toISOString();
           }
         });

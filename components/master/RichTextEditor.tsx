@@ -16,6 +16,8 @@ interface RichTextEditorProps {
 
 export function RichTextEditor({ content, onChange, placeholder = "Escreva suas notas..." }: RichTextEditorProps) {
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -27,7 +29,7 @@ export function RichTextEditor({ content, onChange, placeholder = "Escreva suas 
     content,
     onUpdate: ({ editor }) => {
       clearTimeout(debounceRef.current);
-      debounceRef.current = setTimeout(() => { onChange(editor.getHTML()); }, 3000);
+      debounceRef.current = setTimeout(() => { onChangeRef.current(editor.getHTML()); }, 3000);
     },
     editorProps: {
       attributes: {
@@ -36,9 +38,22 @@ export function RichTextEditor({ content, onChange, placeholder = "Escreva suas 
     },
   });
 
+  // Flush pending changes on unmount
   useEffect(() => {
-    return () => clearTimeout(debounceRef.current);
-  }, []);
+    return () => {
+      clearTimeout(debounceRef.current);
+      if (editor && !editor.isDestroyed) {
+        onChangeRef.current(editor.getHTML());
+      }
+    };
+  }, [editor]);
+
+  // Sync content when prop changes externally (e.g. tab switch remount)
+  useEffect(() => {
+    if (editor && !editor.isDestroyed && content !== editor.getHTML()) {
+      editor.commands.setContent(content);
+    }
+  }, [editor, content]);
 
   if (!editor) return null;
 

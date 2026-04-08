@@ -1,7 +1,8 @@
 "use client";
 
 import { forwardRef, useRef } from "react";
-import { Building2, Castle, Swords, Gem, User, MapPin } from "lucide-react";
+import { Building2, Castle, Swords, Gem, User, MapPin, Eye, EyeOff } from "lucide-react";
+import { Badge } from "@/components/ui/Badge";
 import type { MapData, MapPin as MapPinType, PinType } from "@/types/dnd5e";
 
 const PIN_ICONS: Record<PinType, React.ElementType> = {
@@ -14,12 +15,30 @@ const PIN_ICONS: Record<PinType, React.ElementType> = {
 };
 
 const PIN_COLORS: Record<PinType, string> = {
-  city: "text-blue-400 bg-blue-400/20 border-blue-400/50",
-  dungeon: "text-purple-400 bg-purple-400/20 border-purple-400/50",
-  encounter: "text-red-400 bg-red-400/20 border-red-400/50",
-  treasure: "text-yellow-400 bg-yellow-400/20 border-yellow-400/50",
-  npc: "text-green-400 bg-green-400/20 border-green-400/50",
-  poi: "text-cyan-400 bg-cyan-400/20 border-cyan-400/50",
+  city: "text-blue-300 bg-blue-500/30 border-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.5)]",
+  dungeon: "text-purple-300 bg-purple-500/30 border-purple-400 shadow-[0_0_8px_rgba(192,132,252,0.5)]",
+  encounter: "text-red-300 bg-red-500/30 border-red-400 shadow-[0_0_8px_rgba(252,165,165,0.5)]",
+  treasure: "text-yellow-300 bg-yellow-500/30 border-yellow-400 shadow-[0_0_8px_rgba(253,224,71,0.5)]",
+  npc: "text-green-300 bg-green-500/30 border-green-400 shadow-[0_0_8px_rgba(134,239,172,0.5)]",
+  poi: "text-cyan-300 bg-cyan-500/30 border-cyan-400 shadow-[0_0_8px_rgba(103,232,249,0.5)]",
+};
+
+const PIN_TYPE_LABELS: Record<PinType, string> = {
+  city: "Cidade",
+  dungeon: "Masmorra",
+  encounter: "Encontro",
+  treasure: "Tesouro",
+  npc: "NPC",
+  poi: "Ponto de Interesse",
+};
+
+const PIN_BADGE_COLORS: Record<PinType, "blue" | "purple" | "blood" | "gold" | "green"> = {
+  city: "blue",
+  dungeon: "purple",
+  encounter: "blood",
+  treasure: "gold",
+  npc: "green",
+  poi: "blue",
 };
 
 interface MapViewerProps {
@@ -55,6 +74,7 @@ export const MapViewer = forwardRef<HTMLDivElement, MapViewerProps>(
     };
 
     return (
+      <>
       <div
         ref={(node) => {
           // Set both the forwarded ref and the local ref
@@ -101,8 +121,8 @@ export const MapViewer = forwardRef<HTMLDivElement, MapViewerProps>(
               </div>
 
               <button
-                className={`w-7 h-7 rounded-full border flex items-center justify-center transition-transform hover:scale-125 ${colorClass} ${
-                  !pin.revealed ? "opacity-50 ring-1 ring-white/20" : ""
+                className={`w-9 h-9 rounded-full border-2 flex items-center justify-center transition-transform hover:scale-130 ${colorClass} ${
+                  !pin.revealed ? "opacity-40 ring-2 ring-white/20" : ""
                 }`}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -110,12 +130,41 @@ export const MapViewer = forwardRef<HTMLDivElement, MapViewerProps>(
                 }}
                 title={pin.name}
               >
-                <Icon size={14} />
+                <Icon size={18} strokeWidth={2.5} />
               </button>
             </div>
           );
         })}
       </div>
+
+      {/* Pin List */}
+      {visiblePins.length > 0 && (
+        <div className="mt-4 border border-gold/20 rounded-lg overflow-hidden">
+          <div className="px-3 py-2 bg-ink-light border-b border-gold/10">
+            <span className="font-cinzel text-xs text-gold/60 tracking-wider">
+              Pinos ({visiblePins.length})
+            </span>
+          </div>
+          <div className="divide-y divide-gold/5 max-h-48 overflow-y-auto">
+            {visiblePins.map((pin) => {
+              const Icon = PIN_ICONS[pin.type];
+              return (
+                <button
+                  key={pin.id}
+                  onClick={() => onPinClick(pin)}
+                  className="w-full flex items-center gap-3 px-3 py-2 hover:bg-parchment/5 transition-colors text-left"
+                >
+                  <Icon size={14} className={PIN_COLORS[pin.type].split(" ")[0]} />
+                  <span className="flex-1 text-sm text-parchment-light truncate">{pin.name}</span>
+                  <Badge label={PIN_TYPE_LABELS[pin.type]} color={PIN_BADGE_COLORS[pin.type]} />
+                  {!pin.revealed && <EyeOff size={12} className="text-parchment-light/30" />}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </>
     );
   }
 );

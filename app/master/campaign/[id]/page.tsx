@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { Users, Swords, ScrollText, StickyNote, ArrowLeft, Trash2, Gem, Map, ChevronLeft, Eye, EyeOff } from "lucide-react";
+import { Users, Swords, ScrollText, StickyNote, ArrowLeft, Trash2, Gem, Map, ChevronLeft, Eye, EyeOff, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Modal } from "@/components/ui/Modal";
@@ -23,7 +23,7 @@ import { ProgressClockManager } from "@/components/master/ProgressClockManager";
 import { RandomEventGenerator } from "@/components/master/RandomEventGenerator";
 import { QuickNpcGenerator } from "@/components/master/QuickNpcGenerator";
 import { useCampaignStore } from "@/store/campaignStore";
-import { ALIGNMENTS } from "@/types/dnd5e";
+import { ALIGNMENTS, RACES } from "@/types/dnd5e";
 import type { NPC, EncounterMonster, MapPin, MapData } from "@/types/dnd5e";
 import type { GeneratedNPC } from "@/lib/npcGenerator";
 
@@ -41,6 +41,11 @@ type TabKey = (typeof TABS)[number]["key"];
 const ALIGNMENT_OPTIONS = ALIGNMENTS.map((a) => ({
   value: a,
   label: a.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+}));
+
+const RACE_OPTIONS = RACES.map((r) => ({
+  value: r,
+  label: r.charAt(0).toUpperCase() + r.slice(1).replace("-", " "),
 }));
 
 const ROLE_OPTIONS = [
@@ -66,7 +71,7 @@ const DIFFICULTY_LABELS: Record<string, string> = {
 export default function CampaignDetailPage() {
   const params = useParams();
   const campaignId = params.id as string;
-  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin, addClock, updateClock, deleteClock } =
+  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateSession, deleteSession, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin, addClock, updateClock, deleteClock } =
     useCampaignStore();
 
   const campaign = getCampaign(campaignId);
@@ -85,7 +90,7 @@ export default function CampaignDetailPage() {
   const [showNpcModal, setShowNpcModal] = useState(false);
   const [selectedNpc, setSelectedNpc] = useState<NPC | null>(null);
   const [npcName, setNpcName] = useState("");
-  const [npcRace, setNpcRace] = useState("");
+  const [npcRace, setNpcRace] = useState("human");
   const [npcProfession, setNpcProfession] = useState("");
   const [npcAlignment, setNpcAlignment] = useState<string>(ALIGNMENTS[0]);
   const [npcRole, setNpcRole] = useState<NPC["role"]>("unknown");
@@ -103,6 +108,7 @@ export default function CampaignDetailPage() {
   const [showSessionModal, setShowSessionModal] = useState(false);
   const [sessionTitle, setSessionTitle] = useState("");
   const [sessionSummary, setSessionSummary] = useState("");
+  const [editingSessionId, setEditingSessionId] = useState<string | null>(null);
 
   if (!campaign) {
     return (
@@ -119,7 +125,7 @@ export default function CampaignDetailPage() {
 
   const resetNpcForm = () => {
     setNpcName("");
-    setNpcRace("");
+    setNpcRace("human");
     setNpcProfession("");
     setNpcAlignment(ALIGNMENTS[0]);
     setNpcRole("unknown");
@@ -164,17 +170,25 @@ export default function CampaignDetailPage() {
     setShowEncounterModal(false);
   };
 
-  const handleAddSession = () => {
+  const handleSaveSession = () => {
     if (!sessionTitle.trim()) return;
-    addSession(campaignId, {
-      title: sessionTitle.trim(),
-      summary: sessionSummary.trim(),
-      date: new Date().toISOString(),
-      tags: [],
-      notes: "",
-    });
+    if (editingSessionId) {
+      updateSession(campaignId, editingSessionId, {
+        title: sessionTitle.trim(),
+        summary: sessionSummary.trim(),
+      });
+    } else {
+      addSession(campaignId, {
+        title: sessionTitle.trim(),
+        summary: sessionSummary.trim(),
+        date: new Date().toISOString(),
+        tags: [],
+        notes: "",
+      });
+    }
     setSessionTitle("");
     setSessionSummary("");
+    setEditingSessionId(null);
     setShowSessionModal(false);
   };
 
@@ -288,7 +302,7 @@ export default function CampaignDetailPage() {
       {activeTab === "sessions" && (
         <div>
           <div className="flex justify-end mb-4">
-            <Button size="sm" onClick={() => setShowSessionModal(true)}>
+            <Button size="sm" onClick={() => { setEditingSessionId(null); setSessionTitle(""); setSessionSummary(""); setShowSessionModal(true); }}>
               Nova Sessão
             </Button>
           </div>
@@ -298,17 +312,40 @@ export default function CampaignDetailPage() {
             <div className="space-y-3">
               {campaign.sessions.map((session) => (
                 <Card key={session.id} className="p-4">
-                  <h4 className="font-cinzel text-parchment-light">{session.title}</h4>
-                  <p className="text-xs text-parchment-light/40 mt-1">
-                    {new Date(session.date).toLocaleDateString("pt-BR", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </p>
-                  {session.summary && (
-                    <p className="text-sm text-parchment-light/60 mt-2 line-clamp-3">{session.summary}</p>
-                  )}
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h4 className="font-cinzel text-parchment-light">{session.title}</h4>
+                      <p className="text-xs text-parchment-light/40 mt-1">
+                        {new Date(session.date).toLocaleDateString("pt-BR", {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                        })}
+                      </p>
+                      {session.summary && (
+                        <p className="text-sm text-parchment-light/60 mt-2 line-clamp-3">{session.summary}</p>
+                      )}
+                    </div>
+                    <div className="flex gap-1 ml-2">
+                      <button
+                        onClick={() => {
+                          setEditingSessionId(session.id);
+                          setSessionTitle(session.title);
+                          setSessionSummary(session.summary);
+                          setShowSessionModal(true);
+                        }}
+                        className="text-gold/40 hover:text-gold transition-colors"
+                      >
+                        <Pencil size={14} />
+                      </button>
+                      <button
+                        onClick={() => deleteSession(campaignId, session.id)}
+                        className="text-blood/40 hover:text-blood transition-colors"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
                 </Card>
               ))}
             </div>
@@ -508,7 +545,7 @@ export default function CampaignDetailPage() {
         <div className="space-y-4">
           <Input label="Nome" value={npcName} onChange={(e) => setNpcName(e.target.value)} />
           <div className="grid grid-cols-2 gap-3">
-            <Input label="Raça" value={npcRace} onChange={(e) => setNpcRace(e.target.value)} />
+            <Select label="Raça" options={RACE_OPTIONS} value={npcRace} onChange={(e) => setNpcRace(e.target.value)} />
             <Input label="Profissão" value={npcProfession} onChange={(e) => setNpcProfession(e.target.value)} />
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -627,7 +664,7 @@ export default function CampaignDetailPage() {
       </Modal>
 
       {/* New Session Modal */}
-      <Modal isOpen={showSessionModal} onClose={() => setShowSessionModal(false)} title="Nova Sessão">
+      <Modal isOpen={showSessionModal} onClose={() => { setShowSessionModal(false); setEditingSessionId(null); setSessionTitle(""); setSessionSummary(""); }} title={editingSessionId ? "Editar Sessão" : "Nova Sessão"}>
         <div className="space-y-4">
           <Input
             label="Título"
@@ -646,8 +683,8 @@ export default function CampaignDetailPage() {
             <Button variant="ghost" onClick={() => setShowSessionModal(false)}>
               Cancelar
             </Button>
-            <Button onClick={handleAddSession} disabled={!sessionTitle.trim()}>
-              Salvar
+            <Button onClick={handleSaveSession} disabled={!sessionTitle.trim()}>
+              {editingSessionId ? "Atualizar" : "Salvar"}
             </Button>
           </div>
         </div>
