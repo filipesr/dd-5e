@@ -1,0 +1,383 @@
+[
+  {
+    "slug": "barbarian",
+    "name": "Bárbaro",
+    "hitDie": 12,
+    "primaryAbility": ["str"],
+    "savingThrows": ["str", "con"],
+    "armorProficiencies": ["Armaduras leves", "Armaduras médias", "Escudos"],
+    "weaponProficiencies": ["Armas simples", "Armas marciais"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["animalHandling", "athletics", "intimidation", "nature", "perception", "survival"]
+    },
+    "spellcasting": false,
+    "spellcastingAbility": null,
+    "spellSlots": {},
+    "features": [
+      { "level": 1, "name": "Fúria", "description": "Em combate, você pode entrar em fúria como ação bônus. Em fúria, você tem vantagem em testes e saves de Força, bônus de dano em ataques corpo a corpo com Força (+2 nos níveis 1-8, +3 nos níveis 9-15, +4 nos níveis 16+), e resistência a dano contundente, cortante e perfurante. Dura 1 minuto. Usos: 2 (nv1), 3 (nv3), 4 (nv6), 5 (nv12), 6 (nv17), ilimitado (nv20)." },
+      { "level": 1, "name": "Defesa Sem Armadura", "description": "Enquanto você não estiver usando armadura, sua CA é igual a 10 + seu modificador de Destreza + seu modificador de Constituição. Você pode usar um escudo e ainda ganhar esse benefício." },
+      { "level": 2, "name": "Ataque Descuidado", "description": "Você pode atacar com desvantagem para ganhar vantagem em todos os ataques corpo a corpo com Força nesse turno. Outros também têm vantagem em ataques contra você até o início do seu próximo turno." },
+      { "level": 2, "name": "Sentido de Perigo", "description": "Você tem vantagem em saves de Destreza contra efeitos que você pode ver, como armadilhas e magias, desde que não esteja cego, surdo ou incapacitado." },
+      { "level": 3, "name": "Caminho Primitivo", "description": "Você escolhe um Caminho Primitivo que molda a natureza de sua fúria: Caminho do Berserker ou Caminho do Guerreiro Totêmico (e outros nos livros de expansão)." },
+      { "level": 5, "name": "Ataque Extra", "description": "Você pode atacar duas vezes, em vez de uma, quando usar a ação de Atacar em seu turno." },
+      { "level": 7, "name": "Instinto Feral", "description": "Seu instinto é tão aguçado que você tem vantagem em jogadas de iniciativa. Além disso, se você estiver surpreso no início do combate e não estiver incapacitado, você pode agir normalmente em seu primeiro turno se entrar em fúria antes de fazer qualquer coisa." },
+      { "level": 11, "name": "Fúria Brutal", "description": "Enquanto estiver em fúria, o primeiro ataque corpo a corpo que você faz em cada turno inflige dano extra igual à metade do seu dado de fúria (arredondado para baixo)." },
+      { "level": 20, "name": "Campeão Primitivo", "description": "Sua Força e Constituição aumentam em 4 (máximo 24). Além disso, a duração de sua fúria é ilimitada e o número de fúrias por dia também é ilimitado." }
+    ]
+  },
+  {
+    "slug": "bard",
+    "name": "Bardo",
+    "hitDie": 8,
+    "primaryAbility": ["cha"],
+    "savingThrows": ["dex", "cha"],
+    "armorProficiencies": ["Armaduras leves"],
+    "weaponProficiencies": ["Armas simples", "Bestas de mão", "Espadas longas", "Rapieiras", "Espadas curtas"],
+    "skillChoices": {
+      "count": 3,
+      "options": ["acrobatics", "animalHandling", "arcana", "athletics", "deception", "history", "insight", "intimidation", "investigation", "medicine", "nature", "perception", "performance", "persuasion", "religion", "sleightOfHand", "stealth", "survival"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "cha",
+    "spellSlots": {
+      "1": [2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "2": [0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "3": [0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "4": [0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3],
+      "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
+      "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+      "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+      "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
+    },
+    "features": [
+      { "level": 1, "name": "Conjuração", "description": "Você aprendeu a desvencilhar e remodelar o tecido da realidade em harmonia com seus desejos e música. Sua conjuração é baseada em Carisma." },
+      { "level": 1, "name": "Inspiração Bárdica", "description": "Como ação bônus, você pode inspirar outra criatura com palavras ou música. A criatura ganha um dado de Inspiração Bárdica (d6 no nível 1, aumentando com o nível). Uma vez dentro dos próximos 10 minutos, a criatura pode rolar esse dado e adicionar o resultado a uma jogada de ataque, teste de habilidade ou save. Usos iguais ao seu modificador de Car (mínimo 1) por descanso longo." },
+      { "level": 2, "name": "Versar em Tudo", "description": "Você pode adicionar metade do seu bônus de proficiência (arredondado para baixo) a qualquer teste de habilidade que já não inclua seu bônus de proficiência." },
+      { "level": 2, "name": "Canção de Descanso", "description": "Você pode usar música ou oratória calmante para ajudar a revigorar aliados feridos durante um descanso curto. Criaturas que gastam Dados de Vida podem rolar um dado adicional de recuperação." },
+      { "level": 3, "name": "Colégio Bárdico", "description": "Você se aprofunda na magia bárdica escolhendo um colégio: Colégio do Conhecimento ou Colégio do Valor (e outros em expansões)." },
+      { "level": 5, "name": "Inspiração Bárdica Aumentada", "description": "Seu dado de Inspiração Bárdica aumenta para d8. Além disso, o dado aumenta para d10 no nível 10 e d12 no nível 15." },
+      { "level": 6, "name": "Contramagia", "description": "Você ganha a habilidade de usar notas musicais ou palavras de poder para interromper efeitos mágicos que afetam outros. Como ação, você pode iniciar uma performance que dura até o final de seu próximo turno. Durante esse tempo, qualquer criatura amigável que faça um save contra magia pode adicionar d6 ao resultado do save." },
+      { "level": 10, "name": "Segredos Mágicos", "description": "Você aprendeu magia de uma ampla variedade de disciplinas. Escolha dois feitiços de qualquer classe (incluindo a classe Bardo). Você pode escolher dois feitiços adicionais nos níveis 14 e 18." }
+    ]
+  },
+  {
+    "slug": "cleric",
+    "name": "Clérigo",
+    "hitDie": 8,
+    "primaryAbility": ["wis"],
+    "savingThrows": ["wis", "cha"],
+    "armorProficiencies": ["Armaduras leves", "Armaduras médias", "Escudos"],
+    "weaponProficiencies": ["Armas simples"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["history", "insight", "medicine", "persuasion", "religion"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "wis",
+    "spellSlots": {
+      "1": [2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "2": [0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "3": [0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "4": [0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3],
+      "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
+      "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+      "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+      "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
+    },
+    "features": [
+      { "level": 1, "name": "Conjuração", "description": "Como conduit do poder divino, você pode conjurar feitiços de clérigo. Sabedoria é sua habilidade de conjuração. Você prepara a lista de feitiços de clérigo disponíveis para você. Para fazer isso, escolha um número de feitiços de clérigo igual ao seu modificador de Sab + seu nível de clérigo (mínimo de um feitiço)." },
+      { "level": 1, "name": "Domínio Divino", "description": "Você escolhe um domínio divino relacionado à sua divindade: Conhecimento, Vida, Luz, Natureza, Tempestade, Trickery, Guerra (e outros). Cada domínio oferece feitiços de domínio e outras habilidades." },
+      { "level": 2, "name": "Canalizar Divindade", "description": "Você pode canalizar energia divina diretamente de sua divindade, usando essa energia para alimentar efeitos mágicos. Você começa conhecendo dois efeitos: Expulsar Mortos-Vivos e um efeito determinado por seu domínio. 1 uso por descanso curto no nível 2, 2 usos no nível 6, 3 usos no nível 18." },
+      { "level": 2, "name": "Expulsar Mortos-Vivos", "description": "Como ação, você apresenta seu símbolo sagrado e profere uma oração censurando os mortos-vivos. Cada morto-vivo que puder ver ou ouvir você dentro de 9 metros deve fazer um save de Sab ou ser expulso por 1 minuto ou até sofrer dano." },
+      { "level": 5, "name": "Destruir Mortos-Vivos", "description": "Quando um morto-vivo falha em seu save contra Expulsar Mortos-Vivos, a criatura é instantaneamente destruída se seu ND for menor ou igual a um certo limiar (1/2 no nível 5, 1 no nível 8, 2 no nível 11, 3 no nível 14, 4 no nível 17)." },
+      { "level": 10, "name": "Intervenção Divina", "description": "Você pode implorar ao seu deus por ajuda quando suas necessidades são grandes. Implore ajuda de sua divindade como ação. Descreva a assistência que você está buscando e role percentil. Se você rolar um número igual ou menor que seu nível de clérigo, sua divindade intervém. O DM escolhe a natureza da intervenção." },
+      { "level": 20, "name": "Intervenção Divina Aprimorada", "description": "Sua chamada por intervenção divina tem sempre sucesso, sem necessidade de rolar." }
+    ]
+  },
+  {
+    "slug": "druid",
+    "name": "Druida",
+    "hitDie": 8,
+    "primaryAbility": ["wis"],
+    "savingThrows": ["int", "wis"],
+    "armorProficiencies": ["Armaduras leves", "Armaduras médias", "Escudos (druidas não usam armadura ou escudo de metal)"],
+    "weaponProficiencies": ["Clavas", "Adagas", "Dardos", "Lanças", "Bastões", "Cimitarras", "Foices", "Fundas", "Azagaias"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["arcana", "animalHandling", "insight", "medicine", "nature", "perception", "religion", "survival"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "wis",
+    "spellSlots": {
+      "1": [2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "2": [0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "3": [0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "4": [0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3],
+      "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
+      "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+      "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+      "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
+    },
+    "features": [
+      { "level": 1, "name": "Druídico", "description": "Você conhece o idioma Druídico — a língua secreta dos druidas. Você pode falar o idioma e usá-lo para deixar mensagens ocultas." },
+      { "level": 1, "name": "Conjuração", "description": "Usando a força divina da natureza, você pode conjurar feitiços de druida. Sabedoria é sua habilidade de conjuração." },
+      { "level": 2, "name": "Forma Selvagem", "description": "Você pode usar sua ação para assumir magicamente a forma de uma besta que já viu antes. Você pode usar essa habilidade duas vezes. Você recupera os usos gastos quando termina um descanso curto ou longo. O ND máximo da besta aumenta conforme você avança de nível: ND 1/4 sem natação ou voo (nível 2), ND 1/2 sem voo (nível 4), ND 1 (nível 8)." },
+      { "level": 2, "name": "Círculo Druídico", "description": "Você escolhe se identificar com um círculo de druidas: Círculo da Terra ou Círculo da Lua (e outros em expansões)." },
+      { "level": 4, "name": "Melhoria de Atributo", "description": "Você pode aumentar um atributo em 2, ou dois atributos em 1 cada, ou pode obter um talento. Ocorre nos níveis 4, 8, 12, 16 e 19." },
+      { "level": 10, "name": "Presença da Terra", "description": "Efeito do Círculo; requer ND 3 (nível 9), voo (nível 18). A depender do Círculo, o druida ganha habilidades progressivamente mais poderosas com Forma Selvagem." },
+      { "level": 18, "name": "Imortalidade Atemporal", "description": "O passar do tempo não mais afeta você da mesma forma. Para cada 10 anos que passam, seu corpo envelhece apenas 1 ano." },
+      { "level": 20, "name": "Besta Arquedruídica", "description": "Você pode usar sua Forma Selvagem para se transformar em uma besta de ND 20 sem limite de usos." }
+    ]
+  },
+  {
+    "slug": "fighter",
+    "name": "Guerreiro",
+    "hitDie": 10,
+    "primaryAbility": ["str", "dex"],
+    "savingThrows": ["str", "con"],
+    "armorProficiencies": ["Todas as armaduras", "Escudos"],
+    "weaponProficiencies": ["Armas simples", "Armas marciais"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["acrobatics", "animalHandling", "athletics", "history", "insight", "intimidation", "perception", "survival"]
+    },
+    "spellcasting": false,
+    "spellcastingAbility": null,
+    "spellSlots": {},
+    "features": [
+      { "level": 1, "name": "Estilo de Luta", "description": "Você adota um estilo particular de luta como sua especialidade: Arqueria (+2 em jogadas de ataque com armas de ataque à distância), Luta com Duas Armas, Defesa (+1 CA usando armadura), Duelo (+2 dano com arma de uma mão), Grande Arma, ou Proteção." },
+      { "level": 1, "name": "Segundo Fôlego", "description": "Você pode usar uma ação bônus para recuperar PV iguais a 1d10 + seu nível de guerreiro. Você deve terminar um descanso curto ou longo antes de usar esse habilidade novamente." },
+      { "level": 2, "name": "Surto de Ação", "description": "Você pode ultrapassar seus limites normais por um momento. Em seu turno, você pode realizar uma ação adicional além de sua ação normal e possível ação bônus. Você pode usar essa habilidade uma vez entre descansos, duas vezes no nível 17." },
+      { "level": 3, "name": "Arquétipo Marcial", "description": "Você escolhe um arquétipo que reflete seu estilo e técnicas de treinamento: Campeão, Mestre de Batalha, ou Cavaleiro Arcano (e outros em expansões)." },
+      { "level": 5, "name": "Ataque Extra", "description": "Você pode atacar duas vezes quando usar a ação de Atacar. O número de ataques aumenta para três no nível 11 e quatro no nível 20." },
+      { "level": 9, "name": "Implacável", "description": "A partir do nível 9, você pode usar Segundo Fôlego duas vezes entre descansos (três vezes no nível 13 e quatro vezes no nível 17)." },
+      { "level": 11, "name": "Ataque Extra (3)", "description": "Você pode atacar três vezes quando usar a ação de Atacar." },
+      { "level": 20, "name": "Campeão Eterno", "description": "Você pode atacar quatro vezes quando usar a ação de Atacar." }
+    ]
+  },
+  {
+    "slug": "monk",
+    "name": "Monge",
+    "hitDie": 8,
+    "primaryAbility": ["dex", "wis"],
+    "savingThrows": ["str", "dex"],
+    "armorProficiencies": [],
+    "weaponProficiencies": ["Armas simples", "Espadas curtas"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["acrobatics", "athletics", "history", "insight", "religion", "stealth"]
+    },
+    "spellcasting": false,
+    "spellcastingAbility": null,
+    "spellSlots": {},
+    "features": [
+      { "level": 1, "name": "Defesa Sem Armadura", "description": "Enquanto você não estiver usando armadura ou um escudo, sua CA é igual a 10 + seu modificador de Destreza + seu modificador de Sabedoria." },
+      { "level": 1, "name": "Artes Marciais", "description": "Seu treino marcial permite usar Destreza em vez de Força para ataques e dano de ataques corpo a corpo desarmados e armas de monge. Seu dado de dano desarmado é d4 (muda com o nível: d6 em nv5, d8 em nv11, d10 em nv17). Quando você atacar com uma ação de Atacar e usar apenas armas de monge ou ataques desarmados, pode fazer um ataque desarmado adicional como ação bônus." },
+      { "level": 2, "name": "Ki", "description": "Seu treinamento permite que você canalize a misteriosa energia do ki. Você tem pontos de ki iguais ao seu nível de monge. Você recupera todos os pontos de ki gastos quando termina um descanso curto ou longo. Chuva de Golpes (ação bônus: dois ataques desarmados), Defesa Paciente (ação bônus: Esquivar), Passo do Vento (ação bônus: Correr ou Desengajar)." },
+      { "level": 2, "name": "Movimento Sem Armadura", "description": "Sua velocidade aumenta em 3 metros enquanto não estiver usando armadura ou escudo. Esse bônus aumenta quando você alcança certos níveis de monge (4,5m no nível 6, 6m no nível 10, etc.)." },
+      { "level": 3, "name": "Tradição Monástica", "description": "Você se compromete com uma tradição monástica: Caminho da Mão Aberta, Caminho da Sombra, ou Caminho dos Quatro Elementos (e outros em expansões)." },
+      { "level": 4, "name": "Deflexão de Projéteis", "description": "Você pode usar sua reação para defletir ou pegar o míssil quando é atingido por um ataque com arma de ataque à distância. O dano é reduzido em 1d10 + modificador de Destreza + nível de monge. Se reduzir a zero, pode gastar 1 ponto de ki para arremessar o projétil de volta." },
+      { "level": 5, "name": "Ataque Extra", "description": "Você pode atacar duas vezes quando usar a ação de Atacar." },
+      { "level": 5, "name": "Golpe Atordoante", "description": "Gaste 1 ponto de ki quando acertar com um ataque corpo a corpo para tentar atordoar o inimigo. O alvo deve ter sucesso em um save de Constituição (CD = 8 + bônus de proficiência + mod Sab) ou fica Atordoado até o final do seu próximo turno." },
+      { "level": 18, "name": "Corpo Vazio", "description": "Como ação, você pode gastar 4 pontos de ki para tornar-se invisível por 1 minuto. Durante esse tempo, você tem resistência a todos os danos exceto dano de força." }
+    ]
+  },
+  {
+    "slug": "paladin",
+    "name": "Paladino",
+    "hitDie": 10,
+    "primaryAbility": ["str", "cha"],
+    "savingThrows": ["wis", "cha"],
+    "armorProficiencies": ["Todas as armaduras", "Escudos"],
+    "weaponProficiencies": ["Armas simples", "Armas marciais"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["athletics", "insight", "intimidation", "medicine", "persuasion", "religion"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "cha",
+    "spellSlots": {
+      "1": [0, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "2": [0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "3": [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 3],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2]
+    },
+    "features": [
+      { "level": 1, "name": "Sentido Divino", "description": "A presença de um mal forte registra-se em seus sentidos como um cheiro nocivo, enquanto o bem poderoso soa como música celestial. Como ação, você pode abrir sua consciência para detectar forças. Até o final de seu próximo turno, você sabe a localização de celestiais, infernais e mortos-vivos. Usos = 1 + mod Car por descanso longo." },
+      { "level": 1, "name": "Imposição de Mãos", "description": "Sua toque abençoado pode curar ferimentos. Você tem um pool de pontos de cura igual a 5 x seu nível de paladino. Como ação, você pode tocar uma criatura e curar até o máximo de pontos de cura restante em seu pool. Alternativamente, você pode gastar 5 pontos de cura para curar o alvo de uma doença ou neutralizar um veneno." },
+      { "level": 2, "name": "Estilo de Luta", "description": "Você adota um estilo de luta: Defesa, Duelo, Grande Arma ou Proteção." },
+      { "level": 2, "name": "Conjuração", "description": "A partir do nível 2, você pode conjurar feitiços de paladino. Carisma é sua habilidade de conjuração." },
+      { "level": 2, "name": "Golpe Divino", "description": "Ao acertar uma criatura com um ataque de arma corpo a corpo, você pode gastar um espaço de feitiço para causar dano radiante ao alvo, além do dano da arma. Você rola 2d8 por um espaço de nível 1 +1d8 para cada nível acima do primeiro, máximo 5d8." },
+      { "level": 3, "name": "Saúde Divina", "description": "A magia divina que flui por você torna você imune a doenças." },
+      { "level": 3, "name": "Juramento Sagrado", "description": "Você jura um juramento que vincula você como paladino: Juramento de Devoção, Juramento dos Ancestrais ou Juramento da Vingança (e outros em expansões). O Juramento inclui Tenets, Feitiços de Juramento e opções de Canalizar Divindade." },
+      { "level": 5, "name": "Ataque Extra", "description": "Você pode atacar duas vezes quando usar a ação de Atacar." },
+      { "level": 11, "name": "Aura Aprimorada", "description": "Você e criaturas amigáveis dentro de 9 metros (em vez de 3 metros) se beneficiam de sua aura de proteção, e você pode estender auras adicionais do juramento." },
+      { "level": 20, "name": "Campeão Sagrado", "description": "Como ação, você pode emanar uma aura de luz solar por 1 minuto. Você tem vantagem em saves de Carisma. Criaturas amigáveis dentro de 9 metros não podem ser amedrontadas. Você pode curar a criatura mais ferida dentro de 9 metros no início de cada um de seus turnos." }
+    ]
+  },
+  {
+    "slug": "ranger",
+    "name": "Patrulheiro",
+    "hitDie": 10,
+    "primaryAbility": ["dex", "wis"],
+    "savingThrows": ["str", "dex"],
+    "armorProficiencies": ["Armaduras leves", "Armaduras médias", "Escudos"],
+    "weaponProficiencies": ["Armas simples", "Armas marciais"],
+    "skillChoices": {
+      "count": 3,
+      "options": ["animalHandling", "athletics", "insight", "investigation", "nature", "perception", "stealth", "survival"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "wis",
+    "spellSlots": {
+      "1": [0, 2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "2": [0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "3": [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 3, 3],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2]
+    },
+    "features": [
+      { "level": 1, "name": "Inimigo Favorito", "description": "Você tem experiência significativa estudando, rastreando, caçando e até falando com um certo tipo de inimigo. Escolha um tipo de inimigo favorito: aberrações, bestas, celestiais, construtores, dragões, fadas, feras, gigantes, humanoides, mortos-vivos, oozes, plantas ou undead. Você tem vantagem em testes de Sab (Sobrevivência) para rastrear seus inimigos favoritos, bem como em testes de Int para se lembrar de informações sobre eles." },
+      { "level": 1, "name": "Explorador Natural", "description": "Você é um viajante experiente e naturalista, tornando você especialmente adepto de viajar e sobreviver em terrenos selvagens. Escolha um tipo de terreno favorito: ártico, costa, deserto, floresta, pradaria, montanha, pântano ou Underdark. Quando fizer um teste de Int ou Sab relacionado ao seu terreno favorito, você pode dobrar seu bônus de proficiência." },
+      { "level": 2, "name": "Estilo de Luta", "description": "Você adota um estilo de luta: Arqueria, Defesa, Duelo ou Luta com Duas Armas." },
+      { "level": 2, "name": "Conjuração", "description": "A partir do nível 2, você pode conjurar feitiços de patrulheiro. Sabedoria é sua habilidade de conjuração." },
+      { "level": 3, "name": "Arquétipo de Patrulheiro", "description": "Você escolhe um arquétipo que você aspira a emular: Caçador ou Mestre de Bestas (e outros em expansões)." },
+      { "level": 5, "name": "Ataque Extra", "description": "Você pode atacar duas vezes quando usar a ação de Atacar." },
+      { "level": 8, "name": "Passo das Terras", "description": "Mover-se por terreno difícil não mágico não custa movimento extra. Você também pode passar por vegetação não mágica sem ser retardado por ela e sem sofrer dano se ela tiver espinhos, espinhas ou perigos similares. Além disso, você tem vantagem em saves contra plantas criadas ou manipuladas magicamente." },
+      { "level": 10, "name": "Esconder-se à Vista", "description": "Você pode gastar 1 minuto criando camuflagem para si mesmo. Você deve ter acesso a lama, terra, plantas, fuligem e outros materiais naturais para se camuflar. Uma vez camuflado, você pode tentar se esconder ao tocar uma superfície sólida na área ao seu redor." }
+    ]
+  },
+  {
+    "slug": "rogue",
+    "name": "Ladino",
+    "hitDie": 8,
+    "primaryAbility": ["dex"],
+    "savingThrows": ["dex", "int"],
+    "armorProficiencies": ["Armaduras leves"],
+    "weaponProficiencies": ["Armas simples", "Bestas de mão", "Espadas longas", "Rapieiras", "Espadas curtas"],
+    "skillChoices": {
+      "count": 4,
+      "options": ["acrobatics", "athletics", "deception", "insight", "intimidation", "investigation", "perception", "performance", "persuasion", "sleightOfHand", "stealth"]
+    },
+    "spellcasting": false,
+    "spellcastingAbility": null,
+    "spellSlots": {},
+    "features": [
+      { "level": 1, "name": "Especialização", "description": "Escolha duas das suas proficiências em perícias, ou uma proficiência em perícia e sua proficiência com ferramentas de ladrão. Seu bônus de proficiência dobra para qualquer teste de habilidade que faça usando as proficiências escolhidas." },
+      { "level": 1, "name": "Ataque Furtivo", "description": "Você sabe como atacar sutilmente e explorar as distrações de um inimigo. Uma vez por turno, você pode infligir dano extra a uma criatura que acertar com um ataque se tiver vantagem na jogada de ataque. Esse dano é 1d6 no nível 1 e aumenta à medida que você avança: até 10d6 no nível 19." },
+      { "level": 1, "name": "Jargão dos Ladrões", "description": "Durante seu treinamento, você aprendeu o jargão dos ladrões, um idioma secreto para transmitir mensagens ocultas em aparente conversa normal. Apenas outra criatura que conhece o jargão dos ladrões entende essas mensagens." },
+      { "level": 2, "name": "Ação Ardilosa", "description": "Seus reflexos e agilidade rápidos permitem que você se mova e aja rapidamente. Você pode usar uma ação bônus em cada um de seus turnos em combate para realizar a ação de Correr, Desengajar ou Esconder." },
+      { "level": 3, "name": "Arquétipo de Ladino", "description": "Você escolhe um arquétipo que emula: Ladrão, Assassino, ou Arcano Trickster (e outros em expansões)." },
+      { "level": 5, "name": "Esquiva Incrivelmente Rápida", "description": "Quando um atacante que você pode ver acerta você com um ataque, você pode usar sua reação para reduzir o dano à metade." },
+      { "level": 7, "name": "Evasão", "description": "Você pode esquivar agilmente de certos efeitos em área. Quando você estiver sujeito a um efeito que permita um save de Destreza para sofrer metade do dano, você não sofre dano em caso de sucesso e apenas metade em caso de falha." },
+      { "level": 11, "name": "Talento Confiável", "description": "Você refinou suas habilidades escolhidas até quase a perfeição. Sempre que fizer um teste de habilidade que permite adicionar seu bônus de proficiência, você pode tratar um resultado de 9 ou menos como 10." },
+      { "level": 20, "name": "Golpe da Sorte", "description": "Você tem um talento inexplicável para conseguir o que precisa no momento certo. Se seu ataque não acertar, você pode transformá-lo em um acerto. Se você falhar em um teste de habilidade, você pode tratar o d20 como tendo rolado 20. 1x por descanso curto ou longo." }
+    ]
+  },
+  {
+    "slug": "sorcerer",
+    "name": "Feiticeiro",
+    "hitDie": 6,
+    "primaryAbility": ["cha"],
+    "savingThrows": ["con", "cha"],
+    "armorProficiencies": [],
+    "weaponProficiencies": ["Adagas", "Dardos", "Fundas", "Bastões", "Bestas leves"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["arcana", "deception", "insight", "intimidation", "persuasion", "religion"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "cha",
+    "spellSlots": {
+      "1": [2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "2": [0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "3": [0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "4": [0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3],
+      "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
+      "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+      "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+      "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
+    },
+    "features": [
+      { "level": 1, "name": "Origem de Feiticeiro", "description": "Escolha uma origem de feiticeiro, que descreve a fonte de seu poder mágico inato: Linhagem Dracônica ou Alma Selvagem (e outros em expansões). Sua escolha concede habilidades no nível 1 e de novo nos níveis 6, 14 e 18." },
+      { "level": 1, "name": "Conjuração", "description": "Um evento em seu passado, ou na vida de um pai ou antepassado, deixou uma marca indelével em você, infundindo você com magia arcana. Carisma é sua habilidade de conjuração para seus feitiços de feiticeiro." },
+      { "level": 2, "name": "Fonte de Magia", "description": "Você toca o profundo reservatório de magia dentro de você. Essa fonte é representada por pontos de feitiçaria, que permitem criar outros efeitos mágicos. Você começa com 2 pontos de feitiçaria e ganha mais com o avanço de nível. Você nunca pode ter mais do que o máximo mostrado na tabela de classe." },
+      { "level": 2, "name": "Magia Flexível", "description": "Você pode usar seus pontos de feitiçaria para criar espaços de feitiço ou sacrificar espaços de feitiço para ganhar pontos de feitiçaria adicionais. Criar um espaço de feitiço de nível 1 custa 2 pontos de feitiçaria, nível 2 custa 3, etc." },
+      { "level": 3, "name": "Metamagia", "description": "Você obtém a capacidade de torcer seus feitiços para atender às suas necessidades. Você ganha duas opções de Metamagia de: Feitiço Cuidadoso, Feitiço Distante, Feitiço Empowered, Feitiço Estendido, Feitiço Heightened, Feitiço Quickened, Feitiço Subtil, ou Feitiço Gêmeo. Você ganha mais uma opção nos níveis 10 e 17." },
+      { "level": 6, "name": "Habilidade da Origem", "description": "Dependendo da sua Origem de Feiticeiro (ex: Linhagem Dracônica ganha Asas Elementais, Ataques com Elemento; Alma Selvagem ganha habilidades de magia selvagem)." },
+      { "level": 20, "name": "Restauração de Feitiçaria", "description": "Você recupera 4 pontos de feitiçaria gastos quando termina um descanso curto." }
+    ]
+  },
+  {
+    "slug": "warlock",
+    "name": "Bruxo",
+    "hitDie": 8,
+    "primaryAbility": ["cha"],
+    "savingThrows": ["wis", "cha"],
+    "armorProficiencies": ["Armaduras leves"],
+    "weaponProficiencies": ["Armas simples"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["arcana", "deception", "history", "intimidation", "investigation", "nature", "religion"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "cha",
+    "spellSlots": {
+      "1": [1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "2": [0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "3": [0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "4": [0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4]
+    },
+    "features": [
+      { "level": 1, "name": "Patrono do Além", "description": "Você fez um pacto com um ser de outros mundos de seu patrono: o Arquidemônio, o Célico, o Grande Ancião, o Imortal, o Gótico, ou o Senhor das Lâminas (e outros em expansões). Seu patrono lhe concede habilidades e feitiços baseados no pacto." },
+      { "level": 1, "name": "Magia do Pacto", "description": "Sua pesquisa arcana e a magia concedida a você pelo patrono lhe deram recursos para conjurar feitiços. Carisma é sua habilidade de conjuração. Os espaços de feitiço do bruxo são recuperados com um descanso curto." },
+      { "level": 2, "name": "Invocações Místicas", "description": "Em seu estudo de ocultismo oculto, você desenterrou invocações místicas, fragmentos de conhecimento proibido que infundiram você com uma capacidade mágica duradoura. Você ganha duas invocações místicas de sua escolha. Quando você avança de nível nessa classe, você pode substituir uma invocação que você conhece por outra que você poderia aprender nesse nível." },
+      { "level": 3, "name": "Bênção do Pacto", "description": "Seu patrono lhe dá um presente por seus serviços leais. Você ganha uma das seguintes características: Pacto da Corrente (familiar especial), Pacto da Lâmina (arma de pacto mágica), ou Pacto do Tomo (grimório com truques extras)." },
+      { "level": 5, "name": "Feitiços Mísitcos", "description": "Os feitiços de bruxo são agora do nível 3 (aumentam para nível 4 no nível 7, nível 5 no nível 9). Os espaços aumentam para 3 no nível 11 e 4 no nível 17." },
+      { "level": 11, "name": "Arcana Mística", "description": "Seu patrono lhe concede um segredo mágico chamado arcana. Escolha um feitiço de 6º nível de qualquer lista de feitiços como sua arcana. Você pode conjurar esse feitiço uma vez sem gastar um espaço. Você ganha mais arcanas para feitiços de 7º nível (nível 13), 8º nível (nível 15), e 9º nível (nível 17). Recupera usos no descanso longo." },
+      { "level": 20, "name": "Mestre do Eldritch", "description": "Você pode pedir ao seu patrono para recuperar sua energia arcana gasta. Você pode gastar 1 minuto súplices ao seu patrono para recuperar todos os seus espaços de magia de Pacto. Uma vez que você usa essa habilidade, você não pode usá-la novamente até completar um descanso longo." }
+    ]
+  },
+  {
+    "slug": "wizard",
+    "name": "Mago",
+    "hitDie": 6,
+    "primaryAbility": ["int"],
+    "savingThrows": ["int", "wis"],
+    "armorProficiencies": [],
+    "weaponProficiencies": ["Adagas", "Dardos", "Fundas", "Bastões", "Bestas leves"],
+    "skillChoices": {
+      "count": 2,
+      "options": ["arcana", "history", "insight", "investigation", "medicine", "religion"]
+    },
+    "spellcasting": true,
+    "spellcastingAbility": "int",
+    "spellSlots": {
+      "1": [2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+      "2": [0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "3": [0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "4": [0, 0, 0, 0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+      "5": [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3],
+      "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
+      "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+      "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+      "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1]
+    },
+    "features": [
+      { "level": 1, "name": "Conjuração", "description": "Como estudante de magia arcana, você tem um grimório contendo feitiços que mostram os primeiros lampejões de seu verdadeiro poder. Inteligência é sua habilidade de conjuração para seus feitiços de mago." },
+      { "level": 1, "name": "Grimório", "description": "No nível 1, você tem um grimório contendo seis feitiços de 1° nível de mago de sua escolha. Seu grimório é o repositório dos feitiços de mago que você conhece, exceto seus truques, que estão fixados em sua mente." },
+      { "level": 1, "name": "Recuperação Arcana", "description": "Você aprendeu a recuperar algo de sua energia mágica ao estudar seu grimório. Uma vez por dia durante um descanso curto, você pode escolher recuperar espaços de feitiço gastos. Os espaços recuperados têm um nível total menor ou igual à metade de seu nível de mago (arredondado para cima)." },
+      { "level": 2, "name": "Tradição Arcana", "description": "Você escolhe uma tradição arcana que molda sua prática da magia entre as oito escolas: Abjuração, Conjuração, Adivinhação, Encantamento, Evocação, Ilusão, Necromancia, ou Transmutação (e outros em expansões)." },
+      { "level": 4, "name": "Melhoria de Atributo", "description": "Você pode aumentar um atributo em 2 ou dois atributos em 1 cada, ou pode obter um talento. Ocorre nos níveis 4, 8, 12, 16, e 19." },
+      { "level": 18, "name": "Maestria de Feitiços", "description": "Você atingiu tal domínio sobre certos feitiços que pode conjurá-los à vontade. Escolha um feitiço de 1° nível e um feitiço de 2° nível de mago em seu grimório. Você pode conjurar esses feitiços em seus níveis mais baixos sem gastar um espaço de feitiço." },
+      { "level": 20, "name": "Feitiços Assinados", "description": "Você ganhou domínio total sobre dois poderosos feitiços e pode conjurá-los com facilidade. Escolha dois feitiços de 3° nível de mago de seu grimório como seus feitiços assinados. Você pode conjurar cada feitiço assinado a seu nível normal sem gastar um espaço de feitiço." }
+    ]
+  }
+]

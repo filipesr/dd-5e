@@ -1,0 +1,62 @@
+[
+  {
+    "slug": "blinded",
+    "name": "Cego",
+    "description": "Uma criatura cega não pode ver e falha automaticamente em qualquer teste de habilidade que exija visão. Jogadas de ataque contra a criatura têm vantagem, e as jogadas de ataque da criatura têm desvantagem."
+  },
+  {
+    "slug": "charmed",
+    "name": "Enfeitiçado",
+    "description": "Uma criatura enfeitiçada não pode atacar o encantador ou direcioná-lo com habilidades ou efeitos mágicos prejudiciais. O encantador tem vantagem em qualquer teste de habilidade para interagir socialmente com a criatura."
+  },
+  {
+    "slug": "deafened",
+    "name": "Ensurdecido",
+    "description": "Uma criatura ensurdecida não pode ouvir e falha automaticamente em qualquer teste de habilidade que exija audição."
+  },
+  {
+    "slug": "frightened",
+    "name": "Amedrontado",
+    "description": "Uma criatura amedrontada tem desvantagem em testes de habilidade e jogadas de ataque enquanto a fonte do seu medo estiver no campo de visão. A criatura não pode se mover voluntariamente em direção à fonte de seu medo."
+  },
+  {
+    "slug": "grappled",
+    "name": "Agarrado",
+    "description": "A velocidade de uma criatura agarrada torna-se 0, e ela não pode se beneficiar de bônus de velocidade. A condição termina se o agarrador ficar incapacitado, ou se um efeito remover a criatura agarrada do alcance do agarrador."
+  },
+  {
+    "slug": "incapacitated",
+    "name": "Incapacitado",
+    "description": "Uma criatura incapacitada não pode realizar ações ou reações."
+  },
+  {
+    "slug": "invisible",
+    "name": "Invisível",
+    "description": "Uma criatura invisível é impossível de ser vista sem o auxílio de magia ou sentido especial. Para fins de se esconder, a criatura é considerada em terreno fortemente obscurecido. A localização da criatura pode ser detectada por sons que ela faz ou pelos rastros que deixa. Jogadas de ataque contra a criatura têm desvantagem, e as jogadas de ataque da criatura têm vantagem."
+  },
+  {
+    "slug": "paralyzed",
+    "name": "Paralisado",
+    "description": "Uma criatura paralisada é incapacitada e não pode se mover ou falar. A criatura falha automaticamente em saves de Força e Destreza. Jogadas de ataque contra a criatura têm vantagem. Qualquer ataque que acerte a criatura é um acerto crítico se o atacante estiver a 1,5 metro ou menos da criatura."
+  },
+  {
+    "slug": "petrified",
+    "name": "Petrificado",
+    "description": "Uma criatura petrificada é transformada em uma substância sólida inanimada (geralmente pedra), junto com todos os objetos não mágicos que está usando ou carregando. Seu peso aumenta por um fator de dez, e ela para de envelhecer. A criatura é incapacitada, não pode se mover ou falar, e não está ciente do que acontece ao redor. Jogadas de ataque contra a criatura têm vantagem. A criatura falha automaticamente em saves de Força e Destreza. A criatura tem resistência a todos os danos. A criatura é imune a veneno e doença, embora um veneno ou doença que já a esteja afetando seja suspenso, não neutralizado."
+  },
+  {
+    "slug": "poisoned",
+    "name": "Envenenado",
+    "description": "Uma criatura envenenada tem desvantagem em jogadas de ataque e testes de habilidade."
+  },
+  {
+    "slug": "prone",
+    "name": "Caído",
+    "description": "A única opção de movimento de uma criatura caída é rastejar, a menos que se levante e encerre a condição. A criatura tem desvantagem em jogadas de ataque. Uma jogada de ataque contra a criatura tem vantagem se o atacante estiver a 1,5 metro ou menos. Caso contrário, a jogada de ataque tem desvantagem."
+  },
+  {
+    "slug": "stunned",
+    "name": "Atordoado",
+    "description": "Uma criatura atordoada é incapacitada, não pode se mover, e só pode falar de forma vacilante. A criatura falha automaticamente em saves de Força e Destreza. Jogadas de ataque contra a criatura têm vantagem."
+  }
+]

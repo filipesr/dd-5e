@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "human",
+    "name": "Humano",
+    "traits": [
+      "Versatilidade (aumento +1 em todos os atributos)",
+      "Idioma extra"
+    ],
+    "abilityBonuses": { "str": 1, "dex": 1, "con": 1, "int": 1, "wis": 1, "cha": 1 },
+    "speed": 30,
+    "darkvision": false,
+    "languages": ["Comum", "Um idioma à escolha"],
+    "description": "Os humanos são a raça mais adaptável e ambiciosa entre todas as raças comuns. Seja qual for o objetivo que tenham em mente, eles se esforçam com determinação e realizam feitos impressionantes. Embora os humanos não tenham os sentidos aguçados dos elfos nem a resistência dos anões, nem os poderes místicos dos draconatos, sua versatilidade e ambição os tornaram os mais bem-sucedidos entre todas as raças."
+  },
+  {
+    "slug": "elf",
+    "name": "Elfo",
+    "traits": [
+      "Darkvision (alcance de 18 metros)",
+      "Sentidos Aguçados (proficiência em Percepção)",
+      "Ancestral Feérico (vantagem em saves contra ser enfeitiçado, imune a sono mágico)",
+      "Transe (não precisa dormir, meditação por 4 horas equivale a 8 horas de descanso)"
+    ],
+    "abilityBonuses": { "dex": 2 },
+    "speed": 30,
+    "darkvision": true,
+    "languages": ["Comum", "Élfico"],
+    "description": "Os elfos são um povo mágico de graça etérea, vivendo no mundo mas não totalmente sendo parte dele. Eles vivem em lugares de beleza etérea, no meio de florestas antigas ou em torres prateadas brilhando com luz feérica, onde uma música suave flutua pelo ar e fragrâncias suaves pairam no vento."
+  },
+  {
+    "slug": "dwarf",
+    "name": "Anão",
+    "traits": [
+      "Darkvision (alcance de 18 metros)",
+      "Resiliência Anã (vantagem em saves contra veneno, resistência a dano de veneno)",
+      "Treinamento de Combate Anão (proficiência com machado de batalha, machadinha, martelo de guerra, martelo leve)",
+      "Proficiência com Ferramentas (ferramentas de ferreiro, equipamentos de cervejaria ou ferramentas de pedreiro)",
+      "Sentido de Pedra (conhecimento de construções de pedra)"
+    ],
+    "abilityBonuses": { "con": 2 },
+    "speed": 25,
+    "darkvision": true,
+    "languages": ["Comum", "Anão"],
+    "description": "Ousados e resistentes, os anões são conhecidos como guerreiros habilidosos, mineradores e trabalhadores de pedra e metal. Embora tenham menos de 1,5 metro de altura, os anões são tão largos e compactos que podem pesar tanto quanto um humano 60 centímetros mais alto."
+  },
+  {
+    "slug": "halfling",
+    "name": "Halfling",
+    "traits": [
+      "Sortudo (quando rola 1 no d20 para ataque, teste de habilidade ou save, pode rerrolar e deve usar o novo resultado)",
+      "Bravo (vantagem em saves contra medo)",
+      "Agilidade Halfling (pode se mover pelo espaço de criatura maior)"
+    ],
+    "abilityBonuses": { "dex": 2 },
+    "speed": 25,
+    "darkvision": false,
+    "languages": ["Comum", "Halfling"],
+    "description": "Os halflings são um povo afável e alegre. Eles valorizam o conforto de casa mais que as riquezas e aventuras. Mas quando a necessidade os chama, os halflings revelam uma coragem notável. Eles são práticos, especialmente em relação aos perigos da vida."
+  },
+  {
+    "slug": "gnome",
+    "name": "Gnomo",
+    "traits": [
+      "Darkvision (alcance de 18 metros)",
+      "Astúcia Gnômica (vantagem em saves de Int, Sab e Car contra magia)"
+    ],
+    "abilityBonuses": { "int": 2 },
+    "speed": 25,
+    "darkvision": true,
+    "languages": ["Comum", "Gnômico"],
+    "description": "Um brilho de alegria cintila nos olhos dos gnomos enquanto eles levantam a vista para o mundo ao redor deles. Gnomos encaram a vida como uma grande aventura cheia de pequenas maravilhas. Gnomos passam as décadas de sua longa vida examinando o mundo mágico com deleite e admiração."
+  },
+  {
+    "slug": "half-elf",
+    "name": "Meio-Elfo",
+    "traits": [
+      "Darkvision (alcance de 18 metros)",
+      "Ancestral Feérico (vantagem em saves contra ser enfeitiçado, imune a sono mágico)",
+      "Versatilidade de Habilidades (proficiência em 2 perícias à escolha)"
+    ],
+    "abilityBonuses": { "cha": 2, "bonus2": 1, "bonus3": 1 },
+    "speed": 30,
+    "darkvision": true,
+    "languages": ["Comum", "Élfico", "Um idioma à escolha"],
+    "description": "Caminhando em dois mundos mas verdadeiramente pertencendo a nenhum, os meio-elfos combinam o que alguns dizem serem as melhores qualidades de suas raças parentais humana e élfica: a curiosidade, inventividade e ambição dos humanos, com os sentidos refinados, amor à natureza e gostos artísticos dos elfos."
+  },
+  {
+    "slug": "half-orc",
+    "name": "Meio-Orc",
+    "traits": [
+      "Darkvision (alcance de 18 metros)",
+      "Ameaçador (proficiência em Intimidação)",
+      "Implacável (quando reduzido a 0 PV mas não morto, pode cair a 1 PV, 1x por descanso longo)",
+      "Ataques Selvagens (um crítico com arma corporal adiciona dado de dano extra)"
+    ],
+    "abilityBonuses": { "str": 2, "con": 1 },
+    "speed": 30,
+    "darkvision": true,
+    "languages": ["Comum", "Orc"],
+    "description": "Seja tentando encontrar seu lugar no mundo ou forjando seu próprio caminho, os meio-orcs são movidos por uma força vital e raiva que pode surpreender outros. A herança orca de um meio-orc deixa uma marca indelével em sua aparência e personalidade."
+  },
+  {
+    "slug": "tiefling",
+    "name": "Tiefling",
+    "traits": [
+      "Darkvision (alcance de 18 metros)",
+      "Resistência Infernal (resistência a dano de fogo)",
+      "Legado Infernal (conhece o truque thaumaturgy; no nível 3 conjura hellish rebuke 1x por dia; no nível 5 conjura darkness 1x por dia; CD de magia baseada em Car)"
+    ],
+    "abilityBonuses": { "cha": 2, "int": 1 },
+    "speed": 30,
+    "darkvision": true,
+    "languages": ["Comum", "Infernal"],
+    "description": "Ser recebido com olhares de suspeita e comentários sussurrados, enfrentar a violência nas ruas ou a fuga dos aldeões inocentes — essa é a vida do tiefling. Embora alguns escolham o caminho do mal ao qual muitos esperam que cedam, outros se esforçam por uma vida diferente."
+  },
+  {
+    "slug": "dragonborn",
+    "name": "Draconato",
+    "traits": [
+      "Ancestral Dracônico (escolha um tipo de dragão; determina tipo de dano da arma de sopro e resistência)",
+      "Arma de Sopro (exalação de energia em cone ou linha, CD 8 + mod Con + bônus de proficiência, 1x por descanso curto ou longo)",
+      "Resistência Dracônica (resistência ao tipo de dano do ancestral)"
+    ],
+    "abilityBonuses": { "str": 2, "cha": 1 },
+    "speed": 30,
+    "darkvision": false,
+    "languages": ["Comum", "Dracônico"],
+    "description": "Nascidos de dragões, como literalmente significa seu nome em Dracônico, os draconatos caminham orgulhosamente pelo mundo que os recebe com medo e incompreensão. Moldados por herança dracônica ou pelos poderes de Io, os draconatos frequentemente não se encaixam bem nos mundos dos dragões nem dos humanos."
+  }
+]

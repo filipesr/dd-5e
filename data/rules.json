@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "combat-actions",
+    "name": "Ações de Combate",
+    "category": "Combate",
+    "content": "**Atacar:** Faça uma ou mais jogadas de ataque contra um alvo dentro de alcance.\n\n**Conjurar Feitiço:** Conjure um feitiço com tempo de conjuração de 1 ação.\n\n**Correr:** Ganhe movimento extra igual à sua velocidade neste turno.\n\n**Desengajar:** Seu movimento não provoca ataques de oportunidade pelo resto do turno.\n\n**Esquivar:** Até o início do seu próximo turno, qualquer jogada de ataque contra você tem desvantagem se você puder ver o atacante, e você faz saves de Destreza com vantagem.\n\n**Ajudar:** Você ajuda outro personagem a realizar uma tarefa, concedendo vantagem no próximo teste de habilidade, ou distrai um inimigo para que um aliado tenha vantagem no próximo ataque.\n\n**Esconder:** Faça um teste de Furtividade (Destreza).\n\n**Preparar:** Você se prepara para agir como reação quando um gatilho acontecer.\n\n**Procurar:** Você concentra sua atenção em encontrar algo. Teste de Percepção ou Investigação.\n\n**Usar Objeto:** Interaja com um segundo objeto ou use um item especial.\n\n**Ação Bônus:** Algumas habilidades de classe, feitiços e outras opções permitem uma ação bônus adicional."
+  },
+  {
+    "slug": "rest",
+    "name": "Descanso",
+    "category": "Descanso",
+    "content": "**Descanso Curto:** Período de atividade leve de pelo menos 1 hora. Durante um descanso curto, você pode gastar um ou mais Dados de Vida (até o máximo de dados disponível), rolando cada dado e adicionando seu modificador de Constituição. Você recupera PV iguais ao total. Algumas habilidades de classe se recuperam com descanso curto.\n\n**Descanso Longo:** Período de descanso prolongado de pelo menos 8 horas. Você deve dormir pelo menos 6 horas. Ao final de um descanso longo, você recupera todos os PV perdidos e metade de seus Dados de Vida gastos (mínimo 1). Espaços de feitiço e a maioria das habilidades de classe se recuperam com descanso longo.\n\n**Dados de Vida:** Seu total máximo de Dados de Vida é igual ao seu nível. O tipo do dado é determinado pela sua classe. Durante um descanso curto você pode gastar Dados de Vida para recuperar PV."
+  },
+  {
+    "slug": "cover",
+    "name": "Cobertura",
+    "category": "Combate",
+    "content": "**Meia Cobertura:** Uma criatura tem meia cobertura se um obstáculo bloquear pelo menos metade de seu corpo. Ela ganha +2 de bônus em CA e saves de Destreza. Se um atacante ultrapassar a cobertura, a cobertura não se aplica.\n\n**Três Quartos de Cobertura:** Uma criatura tem três quartos de cobertura se aproximadamente três quartos de sua pessoa estiver coberta por obstáculo. Ela tem +5 de bônus em CA e saves de Destreza.\n\n**Cobertura Total:** Uma criatura tem cobertura total se completamente escondida por um obstáculo. Não pode ser alvo de ataques ou feitiços, embora alguns feitiços possam alcançar a criatura exigindo que o alvo seja incluído em uma área de efeito."
+  },
+  {
+    "slug": "conditions-summary",
+    "name": "Resumo de Condições",
+    "category": "Combate",
+    "content": "**Cego:** Falha em testes que exigem visão. Ataques contra você têm vantagem; seus ataques têm desvantagem.\n\n**Enfeitiçado:** Não pode atacar o encantador. Ele tem vantagem em testes sociais com você.\n\n**Ensurdecido:** Falha em testes que exigem audição.\n\n**Amedrontado:** Desvantagem em testes e ataques com a fonte à vista. Não pode se mover em direção à fonte.\n\n**Agarrado:** Velocidade 0. Termina se o agarrador ficar incapacitado.\n\n**Incapacitado:** Sem ações ou reações.\n\n**Invisível:** Não pode ser visto. Seus ataques têm vantagem; ataques contra você têm desvantagem.\n\n**Paralisado:** Incapacitado, imóvel. Falha em saves de For/Des. Ataques têm vantagem. Crítico automático a 1,5m.\n\n**Petrificado:** Transformado em substância sólida. Incapacitado. Resistência a todos os danos.\n\n**Envenenado:** Desvantagem em ataques e testes de habilidade.\n\n**Caído:** Movimento apenas rastejando. Desvantagem em ataques. Ataques a 1,5m têm vantagem; outros têm desvantagem.\n\n**Atordoado:** Incapacitado, imóvel. Falha em saves de For/Des. Ataques têm vantagem."
+  },
+  {
+    "slug": "travel",
+    "name": "Viagem",
+    "category": "Exploração",
+    "content": "**Ritmo de Viagem:**\n- Lento: 5 km/h (24 km/dia) — Stealth possível; +5 em testes passivos de Percepção.\n- Normal: 6 km/h (30 km/dia) — Sem penalidades especiais.\n- Rápido: 8 km/h (40 km/dia) — -5 em testes passivos de Percepção; Stealth impossível.\n\n**Funções de Viagem:**\n- Navegador: Usa Sobrevivência para guiar o grupo, evitando se perder.\n- Sentinela: Usa Percepção para detectar perigos antes que o grupo seja surpreendido.\n- Rastreador: Usa Sobrevivência para rastrear criaturas ou encontrar recursos.\n- Mapeador: Faz mapas e registra o progresso da exploração.\n\n**Se Perder:** Se o grupo não tiver um navegador, o DM pode determinar que ficaram perdidos. O grupo pode tentar se orientar novamente com um teste de Sobrevivência (CD determinada pelo terreno).\n\n**Encontros Aleatórios:** O DM pode verificar encontros aleatórios a cada hora de viagem, especialmente em áreas perigosas ou desconhecidas."
+  },
+  {
+    "slug": "difficulty-class",
+    "name": "Classes de Dificuldade",
+    "category": "Regras Gerais",
+    "content": "**CD 5:** Muito Fácil — qualquer pessoa comum pode ter sucesso.\n**CD 10:** Fácil — requer algum esforço ou treinamento básico.\n**CD 15:** Médio — requer habilidade e competência acima da média.\n**CD 20:** Difícil — requer especialização e talento significativo.\n**CD 25:** Muito Difícil — apenas os melhores aventureiros têm chance razoável.\n**CD 30:** Quase Impossível — apenas os maiores heróis ou especialistas podem ter sucesso."
+  },
+  {
+    "slug": "ability-checks",
+    "name": "Testes de Habilidade",
+    "category": "Regras Gerais",
+    "content": "**Realizando um Teste:** Role 1d20 + o modificador de atributo relevante + bônus de proficiência (se proficiente). Compare com a CD estabelecida pelo DM. Se igual ou maior, sucesso.\n\n**Contestes:** Quando duas criaturas competem diretamente, ambas rolam testes. O vencedor é quem tirar o resultado mais alto. Em empate, quem iniciou a ação ganha.\n\n**Vantagem e Desvantagem:** Com vantagem, role 2d20 e use o maior. Com desvantagem, role 2d20 e use o menor. Não se acumulam — se tiver ambas, role normalmente.\n\n**Percepção Passiva:** 10 + modificador de Sabedoria + bônus de proficiência (se aplicável). Usada quando o personagem não está ativamente procurando.\n\n**Trabalho em Equipe:** Quando dois ou mais personagens cooperam em uma tarefa, um faz o teste e tem vantagem se o outro for capaz de ajudar."
+  },
+  {
+    "slug": "attack-rolls",
+    "name": "Jogadas de Ataque",
+    "category": "Combate",
+    "content": "**Fazer um Ataque:** Role 1d20 + modificador de atributo (For para corpo a corpo, Des para à distância ou finas) + bônus de proficiência (se proficiente). Se o resultado for maior ou igual à CA do alvo, o ataque acerta.\n\n**Acerto Crítico:** Rolar 20 natural no d20 é sempre um acerto e um crítico. Role todos os dados de dano da arma duas vezes e some junto com qualquer modificador aplicável.\n\n**Erro Crítico:** Rolar 1 natural no d20 é sempre um erro, independentemente de quaisquer modificadores.\n\n**Ataques Desarmados:** Causam 1 + modificador de Força de dano contundente.\n\n**Lutar com Duas Armas:** Quando você atacar com uma arma leve corpo a corpo em uma mão, você pode usar uma ação bônus para atacar com uma arma leve diferente que esteja segurando na outra mão. Não adicione o modificador de atributo no dano do ataque bônus.\n\n**Ataques de Oportunidade:** Quando uma criatura hostil que você pode ver se move para fora do seu alcance, você pode usar sua reação para fazer um ataque corpo a corpo contra ela."
+  }
+]

@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "acrobatics",
+    "name": "Acrobacia",
+    "attribute": "dex",
+    "description": "Tentativas de manter equilíbrio em situações difíceis, realizar acrobacias, manobras acrobáticas no ar, realizar rolamentos para amortecer quedas ou escapar de situações de aperto."
+  },
+  {
+    "slug": "animalHandling",
+    "name": "Adestrar Animais",
+    "attribute": "wis",
+    "description": "Acalmar um animal doméstico, manter um animal de montaria calmo, intuir as intenções de um animal, controlar um animal selvagem ou realizar manobras de montaria arriscadas."
+  },
+  {
+    "slug": "arcana",
+    "name": "Arcanismo",
+    "attribute": "int",
+    "description": "Recordar lore sobre feitiços, itens mágicos, símbolos arcanos, tradições mágicas, planos de existência e os habitantes desses planos."
+  },
+  {
+    "slug": "athletics",
+    "name": "Atletismo",
+    "attribute": "str",
+    "description": "Situações difíceis encontradas durante escaladas, saltos ou natação, incluindo escalar em condições adversas, pular longe ou alto, nadar ou permanecer à tona em correntes fortes."
+  },
+  {
+    "slug": "deception",
+    "name": "Enganação",
+    "attribute": "cha",
+    "description": "Enganar alguém com palavras ou ações, incluindo mentir de forma convincente, disfarçar verdades, realizar blefes, usar disfarces, falsificar documentos ou manter mentiras."
+  },
+  {
+    "slug": "history",
+    "name": "História",
+    "attribute": "int",
+    "description": "Recordar lore histórico sobre eventos, pessoas, lendas, batalhas, guerras, fundações de civilizações, conflitos recentes e rituais antigos."
+  },
+  {
+    "slug": "insight",
+    "name": "Intuição",
+    "attribute": "wis",
+    "description": "Determinar as verdadeiras intenções de uma criatura, prever seu próximo movimento ou detectar que está mentindo, além de compreender o estado emocional de uma pessoa."
+  },
+  {
+    "slug": "intimidation",
+    "name": "Intimidação",
+    "attribute": "cha",
+    "description": "Influenciar alguém através de ameaças, hostilidade e violência física, incluindo arrancar informações à força, convencer um inimigo a recuar ou impor a própria vontade."
+  },
+  {
+    "slug": "investigation",
+    "name": "Investigação",
+    "attribute": "int",
+    "description": "Procurar pistas e tirar conclusões com base nelas, descobrir objetos escondidos, deduzir como algo funciona, encontrar pontos fracos em estruturas ou descobrir segredos."
+  },
+  {
+    "slug": "medicine",
+    "name": "Medicina",
+    "attribute": "wis",
+    "description": "Estabilizar um companheiro moribundo, diagnosticar doenças, identificar venenos, tratar ferimentos e avaliar o estado de saúde de um paciente."
+  },
+  {
+    "slug": "nature",
+    "name": "Natureza",
+    "attribute": "int",
+    "description": "Recordar lore sobre terrenos, plantas, animais, tempo, ciclos naturais e também sobre os planos elementais, criaturas naturais e o mundo selvagem."
+  },
+  {
+    "slug": "perception",
+    "name": "Percepção",
+    "attribute": "wis",
+    "description": "Detectar presença de algo usando qualquer sentido, notar criaturas se aproximando, escutar conversas através de portas, sentir cheiros ou detectar algo fora do lugar em uma cena."
+  },
+  {
+    "slug": "performance",
+    "name": "Atuação",
+    "attribute": "cha",
+    "description": "Entreter uma plateia com música, dança, atuação, conto ou outra forma de arte, bem como a qualidade geral do desempenho artístico."
+  },
+  {
+    "slug": "persuasion",
+    "name": "Persuasão",
+    "attribute": "cha",
+    "description": "Influenciar alguém ou um grupo com tato, charme social ou boa-vontade, incluindo convencer em situações de negociação, diplomacia, pedidos sinceros ou uso de etiqueta social."
+  },
+  {
+    "slug": "religion",
+    "name": "Religião",
+    "attribute": "int",
+    "description": "Recordar lore sobre deuses, rituais, orações, hierarquia religiosa, símbolos sagrados, práticas de cultos e também sobre os planos celestiais e infernais."
+  },
+  {
+    "slug": "sleightOfHand",
+    "name": "Prestidigitação",
+    "attribute": "dex",
+    "description": "Realizar um truque de destreza manual com as mãos, como plantar algo em um bolso alheio, pegar um objeto de outra pessoa, ou realizar manipulações sutis com as mãos sem ser notado."
+  },
+  {
+    "slug": "stealth",
+    "name": "Furtividade",
+    "attribute": "dex",
+    "description": "Esconder-se do inimigo, esgueirar-se em silêncio, se aproximar de alguém sem ser notado, realizar ações sem chamar atenção ou se disfarçar entre multidões."
+  },
+  {
+    "slug": "survival",
+    "name": "Sobrevivência",
+    "attribute": "wis",
+    "description": "Rastrear criaturas, caçar animais selvagens, guiar o grupo por terrenos selvagens, prever o tempo, identificar sinais de que criaturas selvagens habitam a área, ou sobreviver em natureza hostil."
+  }
+]
