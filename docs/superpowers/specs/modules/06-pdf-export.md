@@ -1,6 +1,6 @@
 # Spec: PDF Export da Ficha de Personagem
 
-**Status:** Pendente
+**Status:** ✅ Implementado
 **Prioridade:** Alta (Fase 2)
 **Dependencias:** Modulo 1 completo (✅)
 

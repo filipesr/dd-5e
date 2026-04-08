@@ -76,14 +76,14 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 ---
 
-## Fase 2 — Prioridade Alta (em andamento)
+## Fase 2 — Prioridade Alta (completa)
 
 ### Etapa 6: PDF Export + Modo Sessao
 
 | # | Descricao | Status | Spec | Plano | Arquivos-chave |
 |---|-----------|--------|------|-------|----------------|
-| T19 | PDF Export da ficha (3 paginas WOTC) | ⏳ Pendente | [spec](specs/modules/06-pdf-export.md) | Pendente | `lib/pdfExport.tsx`, `components/character/PdfExportButton.tsx` |
-| T20 | Modo Sessao (contadores, iniciativa, log) | ⏳ Pendente | [spec](specs/modules/07-session-mode.md) | Pendente | `store/sessionStore.ts`, `lib/classResources.ts`, `components/character/SessionPanel.tsx` |
+| T19 | PDF Export da ficha (3 paginas WOTC) | ✅ | [spec](specs/modules/06-pdf-export.md) | [plano](plans/phases/06-pdf-export.md) | `lib/pdfExport.tsx`, `components/character/PdfExportButton.tsx` |
+| T20 | Modo Sessao (contadores, iniciativa, log) | ✅ | [spec](specs/modules/07-session-mode.md) | [plano](plans/phases/07-session-mode.md) | `store/sessionStore.ts`, `lib/classResources.ts`, `components/character/SessionPanel.tsx` |
 
 ---
 

@@ -28,13 +28,13 @@
 - Modify: `package.json`
 - Create: `lib/pdfExport.tsx` (styles + font setup + Page 1 component)
 
-- [ ] **Step 1: Install dependency**
+- [x] **Step 1: Install dependency**
 
 ```bash
 npm install @react-pdf/renderer
 ```
 
-- [ ] **Step 2: Create lib/pdfExport.tsx with styles, font, and Page 1**
+- [x] **Step 2: Create lib/pdfExport.tsx with styles, font, and Page 1**
 
 Create `lib/pdfExport.tsx`:
 
@@ -544,7 +544,7 @@ export async function generateCharacterPdf(character: Character): Promise<Blob> 
 }
 ```
 
-- [ ] **Step 3: Verify types compile**
+- [x] **Step 3: Verify types compile**
 
 ```bash
 npx tsc --noEmit
@@ -552,7 +552,7 @@ npx tsc --noEmit
 
 Note: @react-pdf/renderer may have type issues with strict mode. If there are errors, add `// @ts-nocheck` at the top of `lib/pdfExport.tsx` as a pragmatic workaround (the lib's types lag behind).
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add lib/pdfExport.tsx package.json package-lock.json
@@ -572,7 +572,7 @@ Uses @react-pdf/renderer with EB Garamond font."
 - Create: `components/character/PdfExportButton.tsx`
 - Modify: `app/character/[id]/page.tsx`
 
-- [ ] **Step 1: Create PdfExportButton**
+- [x] **Step 1: Create PdfExportButton**
 
 Create `components/character/PdfExportButton.tsx`:
 
@@ -629,7 +629,7 @@ export function PdfExportButton({ character }: PdfExportButtonProps) {
 }
 ```
 
-- [ ] **Step 2: Add PdfExportButton to character sheet page**
+- [x] **Step 2: Add PdfExportButton to character sheet page**
 
 In `app/character/[id]/page.tsx`, add the import near the top (after other character component imports):
 
@@ -651,7 +651,7 @@ Replace the back button section with:
 </div>
 ```
 
-- [ ] **Step 3: Verify build**
+- [x] **Step 3: Verify build**
 
 ```bash
 npm run build
@@ -659,7 +659,7 @@ npm run build
 
 Expected: Build succeeds. The pdfExport module should be code-split (lazy import).
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add components/character/PdfExportButton.tsx app/character/[id]/page.tsx
@@ -669,7 +669,7 @@ Lazy-loads @react-pdf/renderer on click to keep main bundle small.
 Downloads as <name>_ficha.pdf."
 ```
 
-- [ ] **Step 5: Update docs**
+- [x] **Step 5: Update docs**
 
 Update `docs/superpowers/ROADMAP.md` — change T19 status from "Pendente" to "✅ Completo".
 Update `docs/superpowers/specs/modules/06-pdf-export.md` — change status from "Pendente" to "✅ Implementado".

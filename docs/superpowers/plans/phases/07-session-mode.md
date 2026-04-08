@@ -32,7 +32,7 @@
 **Files:**
 - Create: `lib/classResources.ts`, `lib/__tests__/classResources.test.ts`
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 
 Create `lib/__tests__/classResources.test.ts`:
 
@@ -140,7 +140,7 @@ describe("getClassResources", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 ```bash
 npm test -- lib/__tests__/classResources.test.ts --verbose
@@ -148,7 +148,7 @@ npm test -- lib/__tests__/classResources.test.ts --verbose
 
 Expected: FAIL (module not found).
 
-- [ ] **Step 3: Implement getClassResources**
+- [x] **Step 3: Implement getClassResources**
 
 Create `lib/classResources.ts`:
 
@@ -324,7 +324,7 @@ export function getClassResources(
 }
 ```
 
-- [ ] **Step 4: Run tests**
+- [x] **Step 4: Run tests**
 
 ```bash
 npm test -- lib/__tests__/classResources.test.ts --verbose
@@ -332,7 +332,7 @@ npm test -- lib/__tests__/classResources.test.ts --verbose
 
 Expected: All PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/classResources.ts lib/__tests__/classResources.test.ts
@@ -350,7 +350,7 @@ sorcery points, and pact slots based on class and level."
 **Files:**
 - Create: `store/sessionStore.ts`
 
-- [ ] **Step 1: Create ephemeral session store**
+- [x] **Step 1: Create ephemeral session store**
 
 Create `store/sessionStore.ts`:
 
@@ -477,7 +477,7 @@ export const useSessionStore = create<SessionState>()((set, get) => ({
 }));
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add store/sessionStore.ts
@@ -494,7 +494,7 @@ initiative rolls, roll log, short/long rest recovery."
 **Files:**
 - Create: `components/character/ResourceCounter.tsx`, `components/character/InitiativeRoller.tsx`, `components/character/RollLog.tsx`, `components/character/SessionPanel.tsx`
 
-- [ ] **Step 1: Create ResourceCounter**
+- [x] **Step 1: Create ResourceCounter**
 
 Create `components/character/ResourceCounter.tsx`:
 
@@ -561,7 +561,7 @@ export function ResourceCounter({ counter, onUse, onRestore }: ResourceCounterPr
 }
 ```
 
-- [ ] **Step 2: Create InitiativeRoller**
+- [x] **Step 2: Create InitiativeRoller**
 
 Create `components/character/InitiativeRoller.tsx`:
 
@@ -624,7 +624,7 @@ export function InitiativeRoller({ dexMod, currentRoll, onRoll }: InitiativeRoll
 }
 ```
 
-- [ ] **Step 3: Create RollLog**
+- [x] **Step 3: Create RollLog**
 
 Create `components/character/RollLog.tsx`:
 
@@ -693,7 +693,7 @@ export function RollLog({ entries, onClear }: RollLogProps) {
 }
 ```
 
-- [ ] **Step 4: Create SessionPanel**
+- [x] **Step 4: Create SessionPanel**
 
 Create `components/character/SessionPanel.tsx`:
 
@@ -763,7 +763,7 @@ export function SessionPanel({ dexMod }: SessionPanelProps) {
 }
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add components/character/ResourceCounter.tsx components/character/InitiativeRoller.tsx components/character/RollLog.tsx components/character/SessionPanel.tsx
@@ -780,7 +780,7 @@ RollLog (timestamped entries), SessionPanel (composes all session controls)."
 **Files:**
 - Modify: `app/character/[id]/page.tsx`
 
-- [ ] **Step 1: Add session toggle and panel to character sheet**
+- [x] **Step 1: Add session toggle and panel to character sheet**
 
 In `app/character/[id]/page.tsx`, add imports:
 
@@ -831,13 +831,13 @@ Then add the SessionPanel as a ScrollSection right after the header, before the 
 )}
 ```
 
-- [ ] **Step 2: Verify build**
+- [x] **Step 2: Verify build**
 
 ```bash
 npm run build
 ```
 
-- [ ] **Step 3: Run tests**
+- [x] **Step 3: Run tests**
 
 ```bash
 npm test -- --verbose
@@ -845,7 +845,7 @@ npm test -- --verbose
 
 All existing + new tests should pass.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add app/character/[id]/page.tsx
@@ -855,7 +855,7 @@ Toggle button in header, SessionPanel with class resource counters,
 initiative roller, and roll log. Ephemeral — clears on page exit."
 ```
 
-- [ ] **Step 5: Update docs**
+- [x] **Step 5: Update docs**
 
 Update `docs/superpowers/ROADMAP.md` — change T20 status from "Pendente" to "✅ Completo".
 Update `docs/superpowers/specs/modules/07-session-mode.md` — change status from "Pendente" to "✅ Implementado".
