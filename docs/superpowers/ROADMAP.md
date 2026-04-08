@@ -76,14 +76,20 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 ---
 
-## Fase 2 — Futuro
+## Fase 2 — Prioridade Alta (em andamento)
+
+### Etapa 6: PDF Export + Modo Sessao
+
+| # | Descricao | Status | Spec | Plano | Arquivos-chave |
+|---|-----------|--------|------|-------|----------------|
+| T19 | PDF Export da ficha (3 paginas WOTC) | ⏳ Pendente | [spec](specs/modules/06-pdf-export.md) | Pendente | `lib/pdfExport.tsx`, `components/character/PdfExportButton.tsx` |
+| T20 | Modo Sessao (contadores, iniciativa, log) | ⏳ Pendente | [spec](specs/modules/07-session-mode.md) | Pendente | `store/sessionStore.ts`, `lib/classResources.ts`, `components/character/SessionPanel.tsx` |
+
+---
+
+## Fase 2 — Futuro (prioridade media/baixa)
 
 Funcionalidades adiadas. Spec completa: [`specs/modules/05-fase2-futuro.md`](specs/modules/05-fase2-futuro.md)
-
-| Feature | Prioridade | Complexidade |
-|---------|-----------|--------------|
-| Exportar ficha como PDF (`@react-pdf/renderer`) | Alta | Media |
-| Modo Sessao (HP rapido, rolls, contadores por classe) | Alta | Alta |
 | Gestao de Mapas (upload + editor de pinos + export PNG) | Media | Alta |
 | Gestao de Tesouros (gerador de loot por CR) | Media | Media |
 | Autenticacao Supabase + sync realtime | Media | Alta |
