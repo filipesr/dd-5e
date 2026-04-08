@@ -93,16 +93,28 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 ---
 
-## Fase 2 — Futuro (prioridade media/baixa)
+## Fase 2 — Prioridade Media (em andamento)
 
-Funcionalidades adiadas. Spec completa: [`specs/modules/05-fase2-futuro.md`](specs/modules/05-fase2-futuro.md)
-| Gestao de Mapas (upload + editor de pinos + export PNG) | Media | Alta |
-| Gestao de Tesouros (gerador de loot por CR) | Media | Media |
-| Autenticacao Supabase + sync realtime | Media | Alta |
-| Timeline de eventos de sessao | Baixa | Media |
-| Upload de avatar de NPC | Baixa | Baixa |
-| Rolador de dados 3D (Three.js) | Baixa | Alta |
-| PWA offline | Baixa | Media |
-| Gerador de NPCs com IA (Anthropic API) | Baixa | Media |
-| Importar/exportar fichas JSON (D&D Beyond compat) | Media | Media |
-| VTT basico com fog of war | Baixa | Muito Alta |
+### Etapa 7: Tesouros, Mapas e Import/Export JSON
+
+| # | Descricao | Status | Spec | Plano | Arquivos-chave |
+|---|-----------|--------|------|-------|----------------|
+| T21 | Gestao de Tesouros (loot por CR, inventario) | ⏳ Pendente | [spec](specs/modules/08-treasure-management.md) | Pendente | `lib/lootTables.ts`, `components/master/Treasure*.tsx` |
+| T22 | Gestao de Mapas (upload base64, pinos, export PNG) | ⏳ Pendente | [spec](specs/modules/09-map-management.md) | Pendente | `components/master/Map*.tsx`, `react-dropzone`, `html2canvas` |
+| T23 | Import/Export fichas JSON | ⏳ Pendente | [spec](specs/modules/10-json-import-export.md) | Pendente | `lib/jsonImportExport.ts`, `components/character/Json*.tsx` |
+
+---
+
+## Fase 2 — Futuro (prioridade baixa / adiado)
+
+Funcionalidades adiadas. Spec geral: [`specs/modules/05-fase2-futuro.md`](specs/modules/05-fase2-futuro.md)
+
+| Feature | Prioridade | Notas |
+|---------|------------|-------|
+| Autenticacao Supabase + sync realtime | Adiado | Ultima etapa (decisao do usuario) |
+| Upload de avatar de NPC | Adiado | Junto com Supabase (cloud persistence) |
+| Timeline de eventos de sessao | Baixa | — |
+| Rolador de dados 3D (Three.js) | Baixa | — |
+| PWA offline | Baixa | — |
+| Gerador de NPCs com IA (Anthropic API) | Baixa | — |
+| VTT basico com fog of war | Baixa | — |
