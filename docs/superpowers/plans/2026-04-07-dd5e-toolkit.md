@@ -12,15 +12,48 @@
 
 ---
 
+## Implementation Status (Updated 2026-04-08)
+
+| Task | Description | Status | Commit |
+|------|-------------|--------|--------|
+| T1 | Project Scaffold and Configuration | ✅ Done | `48bc3ab` |
+| T2 | Domain Types | ✅ Done | `0ba9381` |
+| T3 | Static JSON Data Files | ✅ Done | `d2adc83` |
+| T4 | Core Calculation Library (TDD) | ✅ Done | `26d02b2` |
+| T5 | Dice Roller Library (TDD) | ✅ Done | `26d02b2` |
+| T6 | Open5e API Client | ✅ Done | `6760692` |
+| T7 | Character Zustand Store | ✅ Done | `6760692` |
+| T8 | Campaign Zustand Store | ✅ Done | `6760692` |
+| T9 | Shared UI Components | ✅ Done | `04d2607` |
+| T10 | Layout Components and Navigation | ✅ Done | `04d2607` |
+| T11 | Character Sheet Components | ✅ Done | `5d63f79` |
+| T12 | Compendium Components | ✅ Done | `884f2f1` |
+| T13 | Master Area Components | ✅ Done | `bf8e412` |
+| T14 | Character Pages | ✅ Done | `b92ebcf` |
+| T15 | Compendium Pages | ✅ Done | `7f74c81` |
+| T16 | Master Pages | ✅ Done | `8223c64` |
+| T17 | Visual Polish and Responsiveness | ⏳ Pending | — |
+| T18 | Build Verification and Deploy | ⏳ Partial | Build passes, deploy pending |
+
+**Summary:** 16/18 tasks complete. Build passes (`npm run build` ✓). 46 tests passing (`npm test` ✓). Tasks 17 (polish) and 18 (deploy) remaining.
+
+**Known items to address:**
+- Task 17: Page transitions (framer-motion), hover effects polish, responsive audit
+- Task 18: Vercel deployment, Lighthouse audit
+- `data/classes.json`: Half-elf abilityBonuses use placeholder keys for player-choice bonuses
+- `master/campaign/[id]` page: First Load JS is 270kB (TipTap bundle) — consider dynamic import
+
+---
+
 ## Parallelization Map
 
 ```
-Sequential:  T1 (scaffold)
-Parallel:    T2, T3, T4, T5          (types, data, libs — independent)
-Parallel:    T6, T7, T8, T9, T10     (stores, API client, UI — independent)
-Parallel:    T11, T12, T13           (feature components — per module)
-Parallel:    T14, T15, T16           (pages — per module)
-Sequential:  T17 → T18              (polish, deploy)
+Sequential:  T1 (scaffold)              ✅
+Parallel:    T2, T3, T4, T5             ✅ (types, data, libs — independent)
+Parallel:    T6, T7, T8, T9, T10        ✅ (stores, API client, UI — independent)
+Parallel:    T11, T12, T13              ✅ (feature components — per module)
+Parallel:    T14, T15, T16              ✅ (pages — per module)
+Sequential:  T17 → T18                  ⏳ (polish, deploy)
 ```
 
 ---
@@ -30,7 +63,7 @@ Sequential:  T17 → T18              (polish, deploy)
 **Files:**
 - Create: `package.json`, `tsconfig.json`, `next.config.mjs`, `tailwind.config.ts`, `app/layout.tsx`, `app/page.tsx`, `app/globals.css`
 
-- [ ] **Step 1: Create Next.js 14 project**
+- [x] **Step 1: Create Next.js 14 project**
 
 ```bash
 cd /Users/fsrezende/Documents/algorithm/dd-5e
@@ -39,14 +72,14 @@ npx create-next-app@14 . --typescript --tailwind --eslint --app --src-dir=false 
 
 Select defaults. This scaffolds the project with App Router and Tailwind.
 
-- [ ] **Step 2: Install all dependencies**
+- [x] **Step 2: Install all dependencies**
 
 ```bash
 npm install zustand immer framer-motion lucide-react @tiptap/react @tiptap/starter-kit @tiptap/extension-link @tiptap/extension-placeholder uuid
 npm install -D @types/uuid
 ```
 
-- [ ] **Step 3: Configure Tailwind theme**
+- [x] **Step 3: Configure Tailwind theme**
 
 Replace `tailwind.config.ts` with:
 
@@ -100,7 +133,7 @@ const config: Config = {
 export default config;
 ```
 
-- [ ] **Step 4: Configure root layout with fonts**
+- [x] **Step 4: Configure root layout with fonts**
 
 Replace `app/layout.tsx` with:
 
@@ -143,7 +176,7 @@ export default function RootLayout({
 }
 ```
 
-- [ ] **Step 5: Configure globals.css**
+- [x] **Step 5: Configure globals.css**
 
 Replace `app/globals.css` with:
 
@@ -194,7 +227,7 @@ Replace `app/globals.css` with:
 }
 ```
 
-- [ ] **Step 6: Create placeholder landing page**
+- [x] **Step 6: Create placeholder landing page**
 
 Replace `app/page.tsx` with:
 
@@ -227,14 +260,14 @@ export default function HomePage() {
 }
 ```
 
-- [ ] **Step 7: Create folder structure**
+- [x] **Step 7: Create folder structure**
 
 ```bash
 mkdir -p components/ui components/character components/compendium components/master components/layout
 mkdir -p data lib store types
 ```
 
-- [ ] **Step 8: Verify build and commit**
+- [x] **Step 8: Verify build and commit**
 
 ```bash
 npm run build
@@ -257,7 +290,7 @@ base CSS components, and folder structure for all 3 modules."
 **Files:**
 - Create: `types/dnd5e.ts`
 
-- [ ] **Step 1: Create all domain types**
+- [x] **Step 1: Create all domain types**
 
 Create `types/dnd5e.ts`:
 
@@ -585,7 +618,7 @@ export interface Open5ePaginatedResponse<T> {
 }
 ```
 
-- [ ] **Step 2: Verify types compile**
+- [x] **Step 2: Verify types compile**
 
 ```bash
 npx tsc --noEmit
@@ -593,7 +626,7 @@ npx tsc --noEmit
 
 Expected: No errors.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add types/dnd5e.ts
@@ -610,7 +643,7 @@ Open5e API response shapes, and all union types/enums."
 **Files:**
 - Create: `data/races.json`, `data/classes.json`, `data/conditions.json`, `data/rules.json`, `data/skills.json`
 
-- [ ] **Step 1: Create races.json**
+- [x] **Step 1: Create races.json**
 
 Create `data/races.json` with all 9 SRD races. Structure per race:
 
@@ -709,7 +742,7 @@ Create `data/races.json` with all 9 SRD races. Structure per race:
 ]
 ```
 
-- [ ] **Step 2: Create skills.json**
+- [x] **Step 2: Create skills.json**
 
 Create `data/skills.json`:
 
@@ -736,7 +769,7 @@ Create `data/skills.json`:
 ]
 ```
 
-- [ ] **Step 3: Create conditions.json**
+- [x] **Step 3: Create conditions.json**
 
 Create `data/conditions.json`:
 
@@ -757,7 +790,7 @@ Create `data/conditions.json`:
 ]
 ```
 
-- [ ] **Step 4: Create classes.json**
+- [x] **Step 4: Create classes.json**
 
 Create `data/classes.json` with all 12 SRD classes. Each includes hitDie, primaryAbility, savingThrows, proficiencies, spellcasting flag, features array, and spellSlots table. Example structure for the first 3 classes (implement all 12):
 
@@ -830,7 +863,7 @@ Create `data/classes.json` with all 12 SRD classes. Each includes hitDie, primar
 
 Continue with all remaining 10 classes (cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard) following the same structure. Include hit die, saving throws, proficiencies, key features per level, and spell slot progression where applicable.
 
-- [ ] **Step 5: Create rules.json**
+- [x] **Step 5: Create rules.json**
 
 Create `data/rules.json` with quick-reference rules:
 
@@ -875,7 +908,7 @@ Create `data/rules.json` with quick-reference rules:
 ]
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add data/
@@ -892,7 +925,7 @@ and quick reference rules — all in PT-BR with D&D terms in English."
 **Files:**
 - Create: `lib/dnd5e.ts`, `lib/__tests__/dnd5e.test.ts`
 
-- [ ] **Step 1: Install testing dependencies**
+- [x] **Step 1: Install testing dependencies**
 
 ```bash
 npm install -D jest @types/jest ts-jest @jest/globals
@@ -916,7 +949,7 @@ export default config;
 
 Add to `package.json` scripts: `"test": "jest"`
 
-- [ ] **Step 2: Write failing tests for all calculation functions**
+- [x] **Step 2: Write failing tests for all calculation functions**
 
 Create `lib/__tests__/dnd5e.test.ts`:
 
@@ -1101,7 +1134,7 @@ describe("getStandardArray", () => {
 });
 ```
 
-- [ ] **Step 3: Run tests to verify they fail**
+- [x] **Step 3: Run tests to verify they fail**
 
 ```bash
 npm test -- --verbose
@@ -1109,7 +1142,7 @@ npm test -- --verbose
 
 Expected: All tests FAIL (functions not defined).
 
-- [ ] **Step 4: Implement all calculation functions**
+- [x] **Step 4: Implement all calculation functions**
 
 Create `lib/dnd5e.ts`:
 
@@ -1212,7 +1245,7 @@ export function getStandardArray(): number[] {
 }
 ```
 
-- [ ] **Step 5: Run tests to verify they pass**
+- [x] **Step 5: Run tests to verify they pass**
 
 ```bash
 npm test -- --verbose
@@ -1220,7 +1253,7 @@ npm test -- --verbose
 
 Expected: All tests PASS.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add lib/dnd5e.ts lib/__tests__/dnd5e.test.ts jest.config.ts
@@ -1237,7 +1270,7 @@ encounter difficulty, point buy costs, and standard array."
 **Files:**
 - Create: `lib/dice.ts`, `lib/__tests__/dice.test.ts`
 
-- [ ] **Step 1: Write failing tests**
+- [x] **Step 1: Write failing tests**
 
 Create `lib/__tests__/dice.test.ts`:
 
@@ -1318,7 +1351,7 @@ describe("roll4d6DropLowest", () => {
 });
 ```
 
-- [ ] **Step 2: Run tests to verify they fail**
+- [x] **Step 2: Run tests to verify they fail**
 
 ```bash
 npm test -- lib/__tests__/dice.test.ts --verbose
@@ -1326,7 +1359,7 @@ npm test -- lib/__tests__/dice.test.ts --verbose
 
 Expected: FAIL.
 
-- [ ] **Step 3: Implement dice roller**
+- [x] **Step 3: Implement dice roller**
 
 Create `lib/dice.ts`:
 
@@ -1403,7 +1436,7 @@ export function roll4d6DropLowest(): Drop4d6Result {
 }
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 ```bash
 npm test -- lib/__tests__/dice.test.ts --verbose
@@ -1411,7 +1444,7 @@ npm test -- lib/__tests__/dice.test.ts --verbose
 
 Expected: All PASS.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add lib/dice.ts lib/__tests__/dice.test.ts
@@ -1428,7 +1461,7 @@ Uses crypto.getRandomValues for secure randomness."
 **Files:**
 - Create: `lib/open5e.ts`
 
-- [ ] **Step 1: Create Open5e API wrapper**
+- [x] **Step 1: Create Open5e API wrapper**
 
 Create `lib/open5e.ts`:
 
@@ -1498,7 +1531,7 @@ export async function fetchMagicItemBySlug(slug: string): Promise<Open5eMagicIte
 }
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add lib/open5e.ts
@@ -1515,7 +1548,7 @@ Uses Next.js fetch revalidate for server-side caching."
 **Files:**
 - Create: `store/characterStore.ts`, `lib/utils.ts`
 
-- [ ] **Step 1: Create utils**
+- [x] **Step 1: Create utils**
 
 Create `lib/utils.ts`:
 
@@ -1562,7 +1595,7 @@ export function formatModifier(mod: number): string {
 }
 ```
 
-- [ ] **Step 2: Create character store**
+- [x] **Step 2: Create character store**
 
 Create `store/characterStore.ts`:
 
@@ -1665,7 +1698,7 @@ export const useCharacterStore = create<CharacterState>()(
 );
 ```
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add lib/utils.ts store/characterStore.ts
@@ -1682,7 +1715,7 @@ to prevent SSR/client mismatch. Default character template included."
 **Files:**
 - Create: `store/campaignStore.ts`
 
-- [ ] **Step 1: Create campaign store**
+- [x] **Step 1: Create campaign store**
 
 Create `store/campaignStore.ts`:
 
@@ -1954,7 +1987,7 @@ export const useCampaignStore = create<CampaignState>()(
 );
 ```
 
-- [ ] **Step 2: Commit**
+- [x] **Step 2: Commit**
 
 ```bash
 git add store/campaignStore.ts
@@ -1971,7 +2004,7 @@ SHA-256 PIN hashing via Web Crypto API. Auto-calculates encounter difficulty."
 **Files:**
 - Create: `components/ui/Button.tsx`, `components/ui/Card.tsx`, `components/ui/Modal.tsx`, `components/ui/Input.tsx`, `components/ui/ScrollSection.tsx`, `components/ui/SectionHeader.tsx`, `components/ui/Badge.tsx`
 
-- [ ] **Step 1: Create Button component**
+- [x] **Step 1: Create Button component**
 
 Create `components/ui/Button.tsx`:
 
@@ -2016,7 +2049,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 ```
 
-- [ ] **Step 2: Create Card component**
+- [x] **Step 2: Create Card component**
 
 Create `components/ui/Card.tsx`:
 
@@ -2045,7 +2078,7 @@ export function Card({ className, variant = "dark", children, ...props }: CardPr
 }
 ```
 
-- [ ] **Step 3: Create Modal component**
+- [x] **Step 3: Create Modal component**
 
 Create `components/ui/Modal.tsx`:
 
@@ -2113,7 +2146,7 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
 }
 ```
 
-- [ ] **Step 4: Create Input component**
+- [x] **Step 4: Create Input component**
 
 Create `components/ui/Input.tsx`:
 
@@ -2212,7 +2245,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 Select.displayName = "Select";
 ```
 
-- [ ] **Step 5: Create ScrollSection (accordion) component**
+- [x] **Step 5: Create ScrollSection (accordion) component**
 
 Create `components/ui/ScrollSection.tsx`:
 
@@ -2262,7 +2295,7 @@ export function ScrollSection({ title, defaultOpen = true, children, className }
 }
 ```
 
-- [ ] **Step 6: Create SectionHeader and Badge**
+- [x] **Step 6: Create SectionHeader and Badge**
 
 Create `components/ui/SectionHeader.tsx`:
 
@@ -2334,7 +2367,7 @@ export function Badge({ label, active = false, onClick, color = "gold", classNam
 }
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add components/ui/
@@ -2351,7 +2384,7 @@ SectionHeader, and Badge. All styled with parchment/gold/ink palette."
 **Files:**
 - Create: `components/layout/Navbar.tsx`, `app/layout.tsx` (update)
 
-- [ ] **Step 1: Create Navbar**
+- [x] **Step 1: Create Navbar**
 
 Create `components/layout/Navbar.tsx`:
 
@@ -2436,7 +2469,7 @@ export function Navbar() {
 }
 ```
 
-- [ ] **Step 2: Update root layout to include Navbar**
+- [x] **Step 2: Update root layout to include Navbar**
 
 Update `app/layout.tsx` — add Navbar import and render it inside `<body>`:
 
@@ -2481,7 +2514,7 @@ export default function RootLayout({
 }
 ```
 
-- [ ] **Step 3: Verify dev server runs**
+- [x] **Step 3: Verify dev server runs**
 
 ```bash
 npm run dev
@@ -2489,7 +2522,7 @@ npm run dev
 
 Open `http://localhost:3000`. Expected: landing page with Navbar, 3 module cards, medieval theme visible.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add components/layout/ app/layout.tsx
@@ -2503,7 +2536,7 @@ git commit -m "feat: add Navbar with responsive mobile menu and active link high
 **Files:**
 - Create all files in `components/character/`
 
-- [ ] **Step 1: Create StatBox component**
+- [x] **Step 1: Create StatBox component**
 
 Create `components/character/StatBox.tsx`:
 
@@ -2542,7 +2575,7 @@ export function StatBox({ attribute, value, onChange }: StatBoxProps) {
 }
 ```
 
-- [ ] **Step 2: Create SkillRow component**
+- [x] **Step 2: Create SkillRow component**
 
 Create `components/character/SkillRow.tsx`:
 
@@ -2592,7 +2625,7 @@ export function SkillRow({ skill, skillName, attributeScore, level, proficiency,
 }
 ```
 
-- [ ] **Step 3: Create HpTracker component**
+- [x] **Step 3: Create HpTracker component**
 
 Create `components/character/HpTracker.tsx`:
 
@@ -2709,7 +2742,7 @@ export function HpTracker({ hp, ac, onChange, onAcChange }: HpTrackerProps) {
 }
 ```
 
-- [ ] **Step 4: Create SpellSlotTracker component**
+- [x] **Step 4: Create SpellSlotTracker component**
 
 Create `components/character/SpellSlotTracker.tsx`:
 
@@ -2748,7 +2781,7 @@ export function SpellSlotTracker({ level, max, used, onChange }: SpellSlotTracke
 }
 ```
 
-- [ ] **Step 5: Create ConditionBadge, DeathSaves, AttackRow, InventoryRow**
+- [x] **Step 5: Create ConditionBadge, DeathSaves, AttackRow, InventoryRow**
 
 Create `components/character/ConditionBadge.tsx`:
 
@@ -2925,7 +2958,7 @@ export function InventoryRow({ item, onChange, onDelete }: InventoryRowProps) {
 }
 ```
 
-- [ ] **Step 6: Create AttributeGeneration modal component**
+- [x] **Step 6: Create AttributeGeneration modal component**
 
 Create `components/character/AttributeGeneration.tsx`:
 
@@ -3059,7 +3092,7 @@ export function AttributeGeneration({ isOpen, onClose, onApply }: Props) {
 }
 ```
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add components/character/
@@ -3076,7 +3109,7 @@ DeathSaves, AttackRow, InventoryRow, and AttributeGeneration modal."
 **Files:**
 - Create: `components/compendium/SearchBar.tsx`, `components/compendium/FilterPanel.tsx`, `components/compendium/CompendiumCard.tsx`, `components/compendium/CategoryHub.tsx`
 
-- [ ] **Step 1: Create SearchBar**
+- [x] **Step 1: Create SearchBar**
 
 Create `components/compendium/SearchBar.tsx`:
 
@@ -3122,7 +3155,7 @@ export function SearchBar({ onSearch, placeholder = "Buscar..." }: SearchBarProp
 }
 ```
 
-- [ ] **Step 2: Create FilterPanel**
+- [x] **Step 2: Create FilterPanel**
 
 Create `components/compendium/FilterPanel.tsx`:
 
@@ -3180,7 +3213,7 @@ export function FilterPanel({ groups, activeFilters, onFilterChange }: FilterPan
 }
 ```
 
-- [ ] **Step 3: Create CompendiumCard**
+- [x] **Step 3: Create CompendiumCard**
 
 Create `components/compendium/CompendiumCard.tsx`:
 
@@ -3224,7 +3257,7 @@ export function CompendiumCard({ href, name, subtitle, description, icon: Icon, 
 }
 ```
 
-- [ ] **Step 4: Create CategoryHub**
+- [x] **Step 4: Create CategoryHub**
 
 Create `components/compendium/CategoryHub.tsx`:
 
@@ -3265,7 +3298,7 @@ export function CategoryHub() {
 }
 ```
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add components/compendium/
@@ -3282,7 +3315,7 @@ CompendiumCard (parchment style), and CategoryHub (7 categories)."
 **Files:**
 - Create: `components/master/PinGuard.tsx`, `components/master/CampaignCard.tsx`, `components/master/NpcCard.tsx`, `components/master/EncounterTracker.tsx`, `components/master/EncounterPlanner.tsx`, `components/master/RichTextEditor.tsx`
 
-- [ ] **Step 1: Create PinGuard**
+- [x] **Step 1: Create PinGuard**
 
 Create `components/master/PinGuard.tsx`:
 
@@ -3360,7 +3393,7 @@ export function PinGuard({ children }: { children: React.ReactNode }) {
 }
 ```
 
-- [ ] **Step 2: Create CampaignCard and NpcCard**
+- [x] **Step 2: Create CampaignCard and NpcCard**
 
 Create `components/master/CampaignCard.tsx`:
 
@@ -3441,7 +3474,7 @@ export function NpcCard({ npc, onClick }: NpcCardProps) {
 }
 ```
 
-- [ ] **Step 3: Create EncounterPlanner**
+- [x] **Step 3: Create EncounterPlanner**
 
 Create `components/master/EncounterPlanner.tsx`:
 
@@ -3553,7 +3586,7 @@ export function EncounterPlanner({ partyLevel, partySize, onPartyChange, monster
 }
 ```
 
-- [ ] **Step 4: Create EncounterTracker**
+- [x] **Step 4: Create EncounterTracker**
 
 Create `components/master/EncounterTracker.tsx`:
 
@@ -3700,7 +3733,7 @@ export function EncounterTracker({ encounter, onUpdate }: EncounterTrackerProps)
 }
 ```
 
-- [ ] **Step 5: Create RichTextEditor (TipTap wrapper)**
+- [x] **Step 5: Create RichTextEditor (TipTap wrapper)**
 
 Create `components/master/RichTextEditor.tsx`:
 
@@ -3791,7 +3824,7 @@ export function RichTextEditor({ content, onChange, placeholder = "Escreva suas 
 }
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add components/master/
@@ -3809,7 +3842,7 @@ and RichTextEditor (TipTap with auto-save)."
 **Files:**
 - Create: `app/character/page.tsx`, `app/character/[id]/page.tsx`
 
-- [ ] **Step 1: Create character list page**
+- [x] **Step 1: Create character list page**
 
 Create `app/character/page.tsx`:
 
@@ -3895,7 +3928,7 @@ export default function CharacterListPage() {
 }
 ```
 
-- [ ] **Step 2: Create character sheet page**
+- [x] **Step 2: Create character sheet page**
 
 Create `app/character/[id]/page.tsx`. This is the largest page — it renders all 10 sections as collapsible accordions using the character components. The page reads the character from the store and auto-saves on every change.
 
@@ -4232,7 +4265,7 @@ export default function CharacterSheetPage() {
 }
 ```
 
-- [ ] **Step 3: Verify pages load**
+- [x] **Step 3: Verify pages load**
 
 ```bash
 npm run dev
@@ -4240,7 +4273,7 @@ npm run dev
 
 Navigate to `/character` — should show empty state. Click "Novo Personagem" — should navigate to sheet. Fill in fields — should auto-save.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add app/character/
@@ -4258,7 +4291,7 @@ spells, conditions, inventory, and traits/notes. Auto-saves to localStorage."
 **Files:**
 - Create: `app/compendium/page.tsx`, `app/compendium/[category]/page.tsx`, `app/compendium/[category]/[slug]/page.tsx`
 
-- [ ] **Step 1: Create compendium hub page**
+- [x] **Step 1: Create compendium hub page**
 
 Create `app/compendium/page.tsx`:
 
@@ -4279,7 +4312,7 @@ export default function CompendiumPage() {
 }
 ```
 
-- [ ] **Step 2: Create category list page**
+- [x] **Step 2: Create category list page**
 
 Create `app/compendium/[category]/page.tsx`:
 
@@ -4428,7 +4461,7 @@ export function CompendiumListClient({ category, label, items }: Props) {
 }
 ```
 
-- [ ] **Step 3: Create detail page**
+- [x] **Step 3: Create detail page**
 
 Create `app/compendium/[category]/[slug]/page.tsx`:
 
@@ -4605,7 +4638,7 @@ export default async function CompendiumDetailPage({ params }: PageProps) {
 }
 ```
 
-- [ ] **Step 4: Verify compendium navigation**
+- [x] **Step 4: Verify compendium navigation**
 
 ```bash
 npm run dev
@@ -4613,7 +4646,7 @@ npm run dev
 
 Navigate to `/compendium` — should show category hub. Click "Raças" — should show 9 races. Click a race — should show detail. Check that `/compendium/spells` loads from Open5e (may take a moment).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add app/compendium/
@@ -4631,7 +4664,7 @@ monsters, items) fetched from Open5e with 24h cache."
 **Files:**
 - Create: `app/master/page.tsx`, `app/master/layout.tsx`, `app/master/campaign/[id]/page.tsx`, `app/master/encounter/[id]/page.tsx`
 
-- [ ] **Step 1: Create master layout with PinGuard**
+- [x] **Step 1: Create master layout with PinGuard**
 
 Create `app/master/layout.tsx`:
 
@@ -4643,7 +4676,7 @@ export default function MasterLayout({ children }: { children: React.ReactNode }
 }
 ```
 
-- [ ] **Step 2: Create master dashboard page**
+- [x] **Step 2: Create master dashboard page**
 
 Create `app/master/page.tsx`:
 
@@ -4711,7 +4744,7 @@ export default function MasterPage() {
 }
 ```
 
-- [ ] **Step 3: Create campaign detail page with tabs**
+- [x] **Step 3: Create campaign detail page with tabs**
 
 Create `app/master/campaign/[id]/page.tsx`:
 
@@ -4987,7 +5020,7 @@ export default function CampaignPage() {
 }
 ```
 
-- [ ] **Step 4: Create encounter tracker page**
+- [x] **Step 4: Create encounter tracker page**
 
 Create `app/master/encounter/[id]/page.tsx`:
 
@@ -5039,7 +5072,7 @@ export default function EncounterTrackerPage() {
 }
 ```
 
-- [ ] **Step 5: Verify master area**
+- [x] **Step 5: Verify master area**
 
 ```bash
 npm run dev
@@ -5047,7 +5080,7 @@ npm run dev
 
 Navigate to `/master` — should prompt for PIN. Create PIN → see dashboard. Create campaign → navigate → add NPC, encounter, session, notes.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add app/master/
