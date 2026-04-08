@@ -128,6 +128,8 @@ export interface Character {
   hitDice: { dieType: number; total: number; used: number };
   deathSaves: { successes: number; failures: number };
 
+  inspiration: boolean;
+
   inventory: InventoryItem[];
   coins: Record<CoinType, number>;
 
@@ -234,6 +236,13 @@ export interface MapData {
   createdAt: string;
 }
 
+export interface ProgressClock {
+  id: string;
+  name: string;
+  segments: number;
+  filled: number;
+}
+
 export interface Campaign {
   id: string;
   name: string;
@@ -245,6 +254,7 @@ export interface Campaign {
   encounters: Encounter[];
   treasures: TreasureRecord[];
   maps: MapData[];
+  clocks: ProgressClock[];
   notes: string;
   createdAt: string;
   updatedAt: string;
