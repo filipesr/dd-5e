@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { JsonImportButton } from "@/components/character/JsonImportButton";
 
 export default function CharacterListPage() {
   const router = useRouter();
@@ -40,10 +41,13 @@ export default function CharacterListPage() {
     <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <SectionHeader title="Personagens" className="flex-1 mb-0" />
-        <Button onClick={handleCreate} className="flex items-center gap-2 ml-6">
-          <Plus size={16} />
-          Novo Personagem
-        </Button>
+        <div className="flex items-center gap-2 ml-6">
+          <JsonImportButton />
+          <Button onClick={handleCreate} className="flex items-center gap-2">
+            <Plus size={16} />
+            Novo Personagem
+          </Button>
+        </div>
       </div>
 
       {characters.length === 0 ? (

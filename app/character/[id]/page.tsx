@@ -32,6 +32,7 @@ import { AttackRow } from "@/components/character/AttackRow";
 import { InventoryRow } from "@/components/character/InventoryRow";
 import { AttributeGeneration } from "@/components/character/AttributeGeneration";
 import { PdfExportButton } from "@/components/character/PdfExportButton";
+import { JsonExportButton } from "@/components/character/JsonExportButton";
 import { SessionPanel } from "@/components/character/SessionPanel";
 
 import { Button } from "@/components/ui/Button";
@@ -208,6 +209,7 @@ export default function CharacterSheetPage() {
             {sessionActive ? "Encerrar Sessao" : "Modo Sessao"}
           </Button>
           <PdfExportButton character={character} />
+          <JsonExportButton character={character} />
         </div>
       </div>
 
