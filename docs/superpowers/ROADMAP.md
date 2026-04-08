@@ -79,6 +79,11 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 - [x] Hydration mismatch em `/character/[id]` — adicionado `isHydrated` guard (`748d6d5`)
 - [x] "Rendered more hooks" em `/character/[id]` — `useSessionStore` movido antes dos early returns (`257e971`)
 - [x] TipTap SSR error em `RichTextEditor` — adicionado `immediatelyRender: false` (`7ee7b74`)
+- [x] NPC raca era Input livre — trocado para Select com 9 racas SRD (`88df7f4`)
+- [x] Sessoes sem editar/excluir — adicionado botoes edit/delete com modal (`88df7f4`)
+- [x] Notas sumiam ao trocar aba — flush on unmount + content sync no TipTap (`88df7f4`)
+- [x] TypeError treasures undefined — guard para campanhas antigas (`88df7f4`)
+- [x] Map pins pequenos/sem lista — pins w-9 com glow + lista de pins abaixo do mapa (`88df7f4`)
 
 ---
 
