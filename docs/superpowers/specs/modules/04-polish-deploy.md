@@ -45,12 +45,12 @@ Breakpoints: 375px (mobile), 768px (tablet), 1280px+ (desktop)
 - [x] `npx tsc --noEmit` — zero erros
 - [x] `npm test` — 46 testes passando
 - [x] `npm run build` — build completo sem erros
-- [ ] Testar app local: `npm run start`
+- [x] Testar app local: `npm run start`
 - [x] Verificar localStorage persistence (criar personagem, recarregar)
-- [ ] Verificar Open5e integration (compendio de magias/monstros/itens)
+- [x] Verificar Open5e integration (compendio de magias/monstros/itens)
 - [ ] Verificar encounter difficulty calculation
 - [ ] Lighthouse audit: target > 90 para paginas SSG do compendio
-- [ ] Deploy: `npx vercel --prod` ou push para repo conectado
+- [x] Deploy: `npx vercel --prod` ou push para repo conectado
 
 ### Hydration issues conhecidos
 

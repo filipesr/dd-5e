@@ -1,6 +1,6 @@
 # Spec: Import/Export de Fichas em JSON
 
-**Status:** Pendente
+**Status:** ✅ Implementado
 **Prioridade:** Media (Fase 2)
 **Dependencias:** Modulo 1 completo (✅)
 

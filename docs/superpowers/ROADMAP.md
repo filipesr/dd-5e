@@ -93,15 +93,15 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 ---
 
-## Fase 2 — Prioridade Media (em andamento)
+## Fase 2 — Prioridade Media (completa)
 
 ### Etapa 7: Tesouros, Mapas e Import/Export JSON
 
 | # | Descricao | Status | Spec | Plano | Arquivos-chave |
 |---|-----------|--------|------|-------|----------------|
-| T21 | Gestao de Tesouros (loot por CR, inventario) | ⏳ Pendente | [spec](specs/modules/08-treasure-management.md) | Pendente | `lib/lootTables.ts`, `components/master/Treasure*.tsx` |
-| T22 | Gestao de Mapas (upload base64, pinos, export PNG) | ⏳ Pendente | [spec](specs/modules/09-map-management.md) | Pendente | `components/master/Map*.tsx`, `react-dropzone`, `html2canvas` |
-| T23 | Import/Export fichas JSON | ⏳ Pendente | [spec](specs/modules/10-json-import-export.md) | Pendente | `lib/jsonImportExport.ts`, `components/character/Json*.tsx` |
+| T21 | Gestao de Tesouros (loot por CR, inventario) | ✅ | [spec](specs/modules/08-treasure-management.md) | [plano](plans/phases/08-treasure-management.md) | `lib/lootTables.ts`, `components/master/Treasure*.tsx` |
+| T22 | Gestao de Mapas (upload base64, pinos, export PNG) | ✅ | [spec](specs/modules/09-map-management.md) | [plano](plans/phases/09-map-management.md) | `components/master/Map*.tsx`, `react-dropzone`, `html2canvas` |
+| T23 | Import/Export fichas JSON | ✅ | [spec](specs/modules/10-json-import-export.md) | [plano](plans/phases/10-json-import-export.md) | `lib/jsonImportExport.ts`, `components/character/Json*.tsx` |
 
 ---
 
