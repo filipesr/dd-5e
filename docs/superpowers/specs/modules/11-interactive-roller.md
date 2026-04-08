@@ -1,6 +1,6 @@
 # Spec: Rolador Interativo (Etapa 8)
 
-**Status:** Pendente
+**Status:** ✅ Implementado
 **Prioridade:** Critica
 **Dependencias:** Session Mode (T20) completo (✅)
 
