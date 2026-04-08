@@ -18,6 +18,7 @@ export function RichTextEditor({ content, onChange, placeholder = "Escreva suas 
   const debounceRef = useRef<ReturnType<typeof setTimeout>>();
 
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit,
       Link.configure({ openOnClick: false }),
