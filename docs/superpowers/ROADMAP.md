@@ -105,6 +105,22 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 ---
 
+## Fase 2 — Jogabilidade (em andamento)
+
+### Etapa 8: Rolador Interativo
+
+| # | Descricao | Status | Spec | Plano | Arquivos-chave |
+|---|-----------|--------|------|-------|----------------|
+| T24 | Rolador interativo (skills, saves, ataques, vantagem) | ⏳ Pendente | [spec](specs/modules/11-interactive-roller.md) | Pendente | `lib/rollWithAdvantage.ts`, `components/character/Rollable*.tsx` |
+
+### Etapa 9: Ferramentas de Sessao do Mestre
+
+| # | Descricao | Status | Spec | Plano | Arquivos-chave |
+|---|-----------|--------|------|-------|----------------|
+| T25 | Progress Clocks, eventos aleatorios, inspiracao, NPC rapido | ⏳ Pendente | [spec](specs/modules/12-dm-session-tools.md) | Pendente | `lib/randomTables.ts`, `components/master/ProgressClock*.tsx` |
+
+---
+
 ## Fase 2 — Futuro (prioridade baixa / adiado)
 
 Funcionalidades adiadas. Spec geral: [`specs/modules/05-fase2-futuro.md`](specs/modules/05-fase2-futuro.md)
