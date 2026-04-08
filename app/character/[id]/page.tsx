@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ArrowLeft, Plus, Wand2, Swords } from "lucide-react";
+import { ArrowLeft, Plus, Wand2, Swords, Dices } from "lucide-react";
 import { useCharacterStore } from "@/store/characterStore";
 import { useSessionStore } from "@/store/sessionStore";
 import { getClassResources } from "@/lib/classResources";
 import { getModifier, getProficiencyBonus, getCarryCapacity, getXpForNextLevel } from "@/lib/dnd5e";
 import { formatModifier, generateId } from "@/lib/utils";
+import { rollD20WithAdvantage } from "@/lib/rollWithAdvantage";
+import { rollNotation } from "@/lib/dice";
 import {
   ATTRIBUTES,
   SKILLS,
@@ -63,7 +65,7 @@ export default function CharacterSheetPage() {
   const id = params.id as string;
 
   const { getCharacter, updateCharacter, isHydrated } = useCharacterStore();
-  const { isActive: sessionActive, startSession, endSession } = useSessionStore();
+  const { isActive: sessionActive, startSession, endSession, addRoll, advantageMode } = useSessionStore();
   const character = getCharacter(id);
 
   const [showAttrGen, setShowAttrGen] = useState(false);
@@ -365,7 +367,7 @@ export default function CharacterSheetPage() {
         <div className="space-y-1">
           {ATTRIBUTES.map((attr) => {
             const isProficient = character.savingThrowProficiencies.includes(attr);
-            const mod = getModifier(character.attributes[attr]) + (isProficient ? profBonus : 0);
+            const val = getModifier(character.attributes[attr]) + (isProficient ? profBonus : 0);
             return (
               <div key={attr} className="flex items-center gap-3 py-1 text-sm">
                 <button
@@ -377,8 +379,22 @@ export default function CharacterSheetPage() {
                 </button>
                 <span className="flex-1 text-parchment-light/80">{ATTR_LABELS[attr]}</span>
                 <span className="font-cinzel text-parchment-light w-8 text-right">
-                  {formatModifier(mod)}
+                  {formatModifier(val)}
                 </span>
+                {sessionActive && (
+                  <button onClick={() => {
+                    const result = rollD20WithAdvantage(val, advantageMode);
+                    addRoll({
+                      type: "save",
+                      notation: `1d20${val >= 0 ? "+" : ""}${val}`,
+                      rolls: result.rolls,
+                      total: result.total,
+                      description: `${ATTR_LABELS[attr]} Save`,
+                    });
+                  }} className="ml-1 text-gold/40 hover:text-gold transition-colors" title="Rolar Save">
+                    <Dices size={14} />
+                  </button>
+                )}
               </div>
             );
           })}
@@ -399,6 +415,16 @@ export default function CharacterSheetPage() {
                 level={character.level}
                 proficiency={character.skillProficiencies[skill] ?? "none"}
                 onToggle={() => cycleSkillProficiency(skill)}
+                onRoll={sessionActive ? (value) => {
+                  const result = rollD20WithAdvantage(value, advantageMode);
+                  addRoll({
+                    type: "ability",
+                    notation: `1d20${value >= 0 ? "+" : ""}${value}`,
+                    rolls: result.rolls,
+                    total: result.total,
+                    description: SKILL_NAMES[skill] || skill,
+                  });
+                } : undefined}
               />
             );
           })}
@@ -417,6 +443,28 @@ export default function CharacterSheetPage() {
               attack={attack}
               onChange={(updated) => updateAttack(attack.id, updated)}
               onDelete={() => deleteAttack(attack.id)}
+              onRollAttack={sessionActive ? () => {
+                const result = rollD20WithAdvantage(attack.attackBonus, advantageMode);
+                addRoll({
+                  type: "attack",
+                  notation: `1d20${attack.attackBonus >= 0 ? "+" : ""}${attack.attackBonus}`,
+                  rolls: result.rolls,
+                  total: result.total,
+                  description: `${attack.name} (ataque)`,
+                });
+              } : undefined}
+              onRollDamage={sessionActive ? () => {
+                try {
+                  const result = rollNotation(attack.damage);
+                  addRoll({
+                    type: "damage",
+                    notation: attack.damage,
+                    rolls: result.rolls,
+                    total: result.total,
+                    description: `${attack.name} (dano)`,
+                  });
+                } catch {}
+              } : undefined}
             />
           ))}
         </div>

@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import type { Campaign, NPC, Encounter, Session, Condition, TreasureRecord, MapData, MapPin } from "@/types/dnd5e";
+import type { Campaign, NPC, Encounter, Session, Condition, TreasureRecord, MapData, MapPin, ProgressClock } from "@/types/dnd5e";
 import { generateId } from "@/lib/utils";
 import { getXpMultiplier, getEncounterDifficulty } from "@/lib/dnd5e";
 
@@ -54,6 +54,11 @@ interface CampaignState {
   addPin: (campaignId: string, mapId: string, pin: Omit<MapPin, "id">) => void;
   updatePin: (campaignId: string, mapId: string, pinId: string, updates: Partial<MapPin>) => void;
   deletePin: (campaignId: string, mapId: string, pinId: string) => void;
+
+  // Progress Clocks
+  addClock: (campaignId: string, clock: Omit<ProgressClock, "id">) => void;
+  updateClock: (campaignId: string, clockId: string, filled: number) => void;
+  deleteClock: (campaignId: string, clockId: string) => void;
 }
 
 async function hashPin(pin: string): Promise<string> {
@@ -97,6 +102,7 @@ export const useCampaignStore = create<CampaignState>()(
           encounters: [],
           treasures: [],
           maps: [],
+          clocks: [],
           notes: "",
           createdAt: now,
           updatedAt: now,
@@ -339,6 +345,38 @@ export const useCampaignStore = create<CampaignState>()(
               map.pins = map.pins.filter((p) => p.id !== pinId);
               campaign.updatedAt = new Date().toISOString();
             }
+          }
+        });
+      },
+
+      addClock: (campaignId, clockData) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            if (!campaign.clocks) campaign.clocks = [];
+            campaign.clocks.push({ ...clockData, id: generateId() });
+            campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      updateClock: (campaignId, clockId, filled) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            const clock = (campaign.clocks ?? []).find((cl) => cl.id === clockId);
+            if (clock) clock.filled = filled;
+            campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      deleteClock: (campaignId, clockId) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            campaign.clocks = (campaign.clocks ?? []).filter((cl) => cl.id !== clockId);
+            campaign.updatedAt = new Date().toISOString();
           }
         });
       },

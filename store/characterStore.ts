@@ -12,6 +12,7 @@ interface CharacterState {
   updateCharacter: (id: string, updates: Partial<Character>) => void;
   deleteCharacter: (id: string) => void;
   getCharacter: (id: string) => Character | undefined;
+  toggleInspiration: (id: string) => void;
 }
 
 const DEFAULT_CHARACTER: Omit<Character, "id" | "createdAt" | "updatedAt"> = {
@@ -36,6 +37,7 @@ const DEFAULT_CHARACTER: Omit<Character, "id" | "createdAt" | "updatedAt"> = {
   conditions: [],
   hitDice: { dieType: 10, total: 1, used: 0 },
   deathSaves: { successes: 0, failures: 0 },
+  inspiration: false,
   inventory: [],
   coins: { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 },
   traits: { personality: "", ideals: "", bonds: "", flaws: "" },
@@ -84,6 +86,16 @@ export const useCharacterStore = create<CharacterState>()(
 
       getCharacter: (id) => {
         return get().characters.find((c) => c.id === id);
+      },
+
+      toggleInspiration: (id) => {
+        set((state) => {
+          const character = state.characters.find((c) => c.id === id);
+          if (character) {
+            character.inspiration = !character.inspiration;
+            character.updatedAt = new Date().toISOString();
+          }
+        });
       },
     })),
     {
