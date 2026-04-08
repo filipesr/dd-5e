@@ -29,6 +29,7 @@ import { DeathSaves } from "@/components/character/DeathSaves";
 import { AttackRow } from "@/components/character/AttackRow";
 import { InventoryRow } from "@/components/character/InventoryRow";
 import { AttributeGeneration } from "@/components/character/AttributeGeneration";
+import { PdfExportButton } from "@/components/character/PdfExportButton";
 
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
@@ -170,12 +171,15 @@ export default function CharacterSheetPage() {
   return (
     <main className="min-h-screen p-4 max-w-3xl mx-auto space-y-3 pb-16">
       {/* Back button */}
-      <div className="flex items-center gap-3 mb-4">
-        <Button variant="ghost" size="sm" onClick={() => router.push("/character")} className="flex items-center gap-2">
-          <ArrowLeft size={16} />
-          Voltar
-        </Button>
-        <h1 className="font-cinzel text-gold text-lg truncate">{character.name}</h1>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" size="sm" onClick={() => router.push("/character")} className="flex items-center gap-2">
+            <ArrowLeft size={16} />
+            Voltar
+          </Button>
+          <h1 className="font-cinzel text-gold text-lg truncate">{character.name}</h1>
+        </div>
+        <PdfExportButton character={character} />
       </div>
 
       {/* 1. Identidade */}
