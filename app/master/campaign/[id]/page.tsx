@@ -19,9 +19,13 @@ import { MapUploader } from "@/components/master/MapUploader";
 import { MapViewer } from "@/components/master/MapViewer";
 import { PinEditor } from "@/components/master/PinEditor";
 import { MapExporter } from "@/components/master/MapExporter";
+import { ProgressClockManager } from "@/components/master/ProgressClockManager";
+import { RandomEventGenerator } from "@/components/master/RandomEventGenerator";
+import { QuickNpcGenerator } from "@/components/master/QuickNpcGenerator";
 import { useCampaignStore } from "@/store/campaignStore";
 import { ALIGNMENTS } from "@/types/dnd5e";
 import type { NPC, EncounterMonster, MapPin, MapData } from "@/types/dnd5e";
+import type { GeneratedNPC } from "@/lib/npcGenerator";
 
 const TABS = [
   { key: "npcs", label: "NPCs", icon: Users },
@@ -62,7 +66,7 @@ const DIFFICULTY_LABELS: Record<string, string> = {
 export default function CampaignDetailPage() {
   const params = useParams();
   const campaignId = params.id as string;
-  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin } =
+  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin, addClock, updateClock, deleteClock } =
     useCampaignStore();
 
   const campaign = getCampaign(campaignId);
@@ -174,6 +178,23 @@ export default function CampaignDetailPage() {
     setShowSessionModal(false);
   };
 
+  const addQuickNpc = (generated: GeneratedNPC) => {
+    addNpc(campaignId, {
+      name: generated.name,
+      race: generated.race,
+      profession: generated.profession,
+      alignment: "true-neutral" as const,
+      hp: { max: 10, current: 10 },
+      ac: 10,
+      attributes: { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 },
+      role: "neutral" as const,
+      relationships: "",
+      secrets: generated.secret,
+      avatar: generated.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase(),
+      notes: `Motivacao: ${generated.motivation}\nTraco: ${generated.trait}`,
+    });
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       {/* Back link */}
@@ -206,7 +227,7 @@ export default function CampaignDetailPage() {
 
       {/* NPCs Tab */}
       {activeTab === "npcs" && (
-        <div>
+        <div className="space-y-6">
           <div className="flex justify-end mb-4">
             <Button size="sm" onClick={() => setShowNpcModal(true)}>
               Novo NPC
@@ -221,6 +242,9 @@ export default function CampaignDetailPage() {
               ))}
             </div>
           )}
+          <div className="border-t border-gold/20 pt-6">
+            <QuickNpcGenerator onAddToCampaign={addQuickNpc} />
+          </div>
         </div>
       )}
 
@@ -294,10 +318,23 @@ export default function CampaignDetailPage() {
 
       {/* Notes Tab */}
       {activeTab === "notes" && (
-        <RichTextEditor
-          content={campaign.notes}
-          onChange={(html) => updateCampaignNotes(campaignId, html)}
-        />
+        <div className="space-y-6">
+          <ProgressClockManager
+            clocks={campaign.clocks ?? []}
+            onAdd={(name, segments) => addClock(campaignId, { name, segments, filled: 0 })}
+            onUpdate={(clockId, filled) => updateClock(campaignId, clockId, filled)}
+            onDelete={(clockId) => deleteClock(campaignId, clockId)}
+          />
+          <div className="border-t border-gold/20 pt-4">
+            <RichTextEditor
+              content={campaign.notes}
+              onChange={(html) => updateCampaignNotes(campaignId, html)}
+            />
+          </div>
+          <div className="border-t border-gold/20 pt-4">
+            <RandomEventGenerator />
+          </div>
+        </div>
       )}
 
       {/* Treasures Tab */}
