@@ -138,7 +138,7 @@ interface Session {
 | NpcCard | Avatar iniciais, nome, raca-profissao, badge de papel |
 | EncounterPlanner | Inputs de grupo + lista de monstros + calculo dificuldade |
 | EncounterTracker | Lista de iniciativa com HP bars, dano rapido, controle de turno |
-| RichTextEditor | Wrapper TipTap com toolbar e auto-save |
+| RichTextEditor | Wrapper TipTap com toolbar e auto-save. Requer `immediatelyRender: false` para SSR. |
 
 ## Pendencias (Fase 2)
 

@@ -54,11 +54,17 @@ Breakpoints: 375px (mobile), 768px (tablet), 1280px+ (desktop)
 
 ### Hydration issues conhecidos
 
-Zustand persist com localStorage causa mismatch SSR/client. Todas as pages que usam stores ja tem hydration guard (`isHydrated` check), mas verificar:
+Zustand persist com localStorage causa mismatch SSR/client. Todas as pages que usam stores ja tem hydration guard (`isHydrated` check):
 
-- `app/character/page.tsx` — mostra "Carregando..." ate hydrate
-- `app/character/[id]/page.tsx` — mostra "Carregando..." ate hydrate
-- `app/master/page.tsx` — PinGuard mostra "Carregando..." ate hydrate
+- [x] `app/character/page.tsx` — mostra "Carregando..." ate hydrate
+- [x] `app/character/[id]/page.tsx` — mostra "Carregando..." ate hydrate (fix: `748d6d5`)
+- [x] `app/master/page.tsx` — PinGuard mostra "Carregando..." ate hydrate
+
+Hooks do React devem ser chamados antes de qualquer early return:
+- [x] `app/character/[id]/page.tsx` — `useSessionStore` movido antes dos guards (fix: `257e971`)
+
+TipTap requer `immediatelyRender: false` em Next.js SSR:
+- [x] `components/master/RichTextEditor.tsx` — adicionado `immediatelyRender: false` (fix: `7ee7b74`)
 
 ### Performance
 

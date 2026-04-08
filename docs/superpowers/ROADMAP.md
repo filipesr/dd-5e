@@ -74,6 +74,12 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 - `data/classes.json`: Half-elf abilityBonuses usa placeholders para bonus a escolha do jogador
 - Filtros avancados do compendio (por escola de magia, CR, raridade) nao implementados ainda
 
+### Bugfixes aplicados pos-MVP
+
+- [x] Hydration mismatch em `/character/[id]` — adicionado `isHydrated` guard (`748d6d5`)
+- [x] "Rendered more hooks" em `/character/[id]` — `useSessionStore` movido antes dos early returns (`257e971`)
+- [x] TipTap SSR error em `RichTextEditor` — adicionado `immediatelyRender: false` (`7ee7b74`)
+
 ---
 
 ## Fase 2 — Prioridade Alta (completa)
