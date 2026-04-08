@@ -15,12 +15,12 @@ const PIN_ICONS: Record<PinType, React.ElementType> = {
 };
 
 const PIN_COLORS: Record<PinType, string> = {
-  city: "text-blue-300 bg-blue-500/30 border-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.5)]",
-  dungeon: "text-purple-300 bg-purple-500/30 border-purple-400 shadow-[0_0_8px_rgba(192,132,252,0.5)]",
-  encounter: "text-red-300 bg-red-500/30 border-red-400 shadow-[0_0_8px_rgba(252,165,165,0.5)]",
-  treasure: "text-yellow-300 bg-yellow-500/30 border-yellow-400 shadow-[0_0_8px_rgba(253,224,71,0.5)]",
-  npc: "text-green-300 bg-green-500/30 border-green-400 shadow-[0_0_8px_rgba(134,239,172,0.5)]",
-  poi: "text-cyan-300 bg-cyan-500/30 border-cyan-400 shadow-[0_0_8px_rgba(103,232,249,0.5)]",
+  city: "text-white bg-blue-600/90 border-blue-300 shadow-[0_0_12px_rgba(96,165,250,0.7)]",
+  dungeon: "text-white bg-purple-600/90 border-purple-300 shadow-[0_0_12px_rgba(192,132,252,0.7)]",
+  encounter: "text-white bg-red-600/90 border-red-300 shadow-[0_0_12px_rgba(252,165,165,0.7)]",
+  treasure: "text-white bg-yellow-600/90 border-yellow-300 shadow-[0_0_12px_rgba(253,224,71,0.7)]",
+  npc: "text-white bg-green-600/90 border-green-300 shadow-[0_0_12px_rgba(134,239,172,0.7)]",
+  poi: "text-white bg-cyan-600/90 border-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.7)]",
 };
 
 const PIN_TYPE_LABELS: Record<PinType, string> = {
