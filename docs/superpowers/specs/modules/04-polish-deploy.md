@@ -46,7 +46,7 @@ Breakpoints: 375px (mobile), 768px (tablet), 1280px+ (desktop)
 - [x] `npm test` — 46 testes passando
 - [x] `npm run build` — build completo sem erros
 - [ ] Testar app local: `npm run start`
-- [ ] Verificar localStorage persistence (criar personagem, recarregar)
+- [x] Verificar localStorage persistence (criar personagem, recarregar)
 - [ ] Verificar Open5e integration (compendio de magias/monstros/itens)
 - [ ] Verificar encounter difficulty calculation
 - [ ] Lighthouse audit: target > 90 para paginas SSG do compendio
