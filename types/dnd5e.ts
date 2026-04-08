@@ -211,6 +211,29 @@ export interface TreasureRecord {
   notes: string;
 }
 
+export const PIN_TYPES = [
+  "city", "dungeon", "encounter", "treasure", "npc", "poi",
+] as const;
+export type PinType = (typeof PIN_TYPES)[number];
+
+export interface MapPin {
+  id: string;
+  x: number;
+  y: number;
+  type: PinType;
+  name: string;
+  description: string;
+  revealed: boolean;
+}
+
+export interface MapData {
+  id: string;
+  name: string;
+  imageBase64: string;
+  pins: MapPin[];
+  createdAt: string;
+}
+
 export interface Campaign {
   id: string;
   name: string;
@@ -221,6 +244,7 @@ export interface Campaign {
   npcs: NPC[];
   encounters: Encounter[];
   treasures: TreasureRecord[];
+  maps: MapData[];
   notes: string;
   createdAt: string;
   updatedAt: string;

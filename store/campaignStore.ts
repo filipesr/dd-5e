@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import type { Campaign, NPC, Encounter, Session, Condition, TreasureRecord } from "@/types/dnd5e";
+import type { Campaign, NPC, Encounter, Session, Condition, TreasureRecord, MapData, MapPin } from "@/types/dnd5e";
 import { generateId } from "@/lib/utils";
 import { getXpMultiplier, getEncounterDifficulty } from "@/lib/dnd5e";
 
@@ -47,6 +47,13 @@ interface CampaignState {
   // Treasures
   addTreasure: (campaignId: string, treasure: Omit<TreasureRecord, "id">) => void;
   deleteTreasure: (campaignId: string, treasureId: string) => void;
+
+  // Maps
+  addMap: (campaignId: string, map: Omit<MapData, "id" | "createdAt">) => void;
+  deleteMap: (campaignId: string, mapId: string) => void;
+  addPin: (campaignId: string, mapId: string, pin: Omit<MapPin, "id">) => void;
+  updatePin: (campaignId: string, mapId: string, pinId: string, updates: Partial<MapPin>) => void;
+  deletePin: (campaignId: string, mapId: string, pinId: string) => void;
 }
 
 async function hashPin(pin: string): Promise<string> {
@@ -89,6 +96,7 @@ export const useCampaignStore = create<CampaignState>()(
           npcs: [],
           encounters: [],
           treasures: [],
+          maps: [],
           notes: "",
           createdAt: now,
           updatedAt: now,
@@ -270,6 +278,67 @@ export const useCampaignStore = create<CampaignState>()(
           if (campaign) {
             campaign.treasures = campaign.treasures.filter((t) => t.id !== treasureId);
             campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      addMap: (campaignId, mapData) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            if (!campaign.maps) campaign.maps = [];
+            campaign.maps.push({ ...mapData, id: generateId(), createdAt: new Date().toISOString() });
+            campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      deleteMap: (campaignId, mapId) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            campaign.maps = (campaign.maps ?? []).filter((m) => m.id !== mapId);
+            campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      addPin: (campaignId, mapId, pinData) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            const map = (campaign.maps ?? []).find((m) => m.id === mapId);
+            if (map) {
+              map.pins.push({ ...pinData, id: generateId() });
+              campaign.updatedAt = new Date().toISOString();
+            }
+          }
+        });
+      },
+
+      updatePin: (campaignId, mapId, pinId, updates) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            const map = (campaign.maps ?? []).find((m) => m.id === mapId);
+            if (map) {
+              const pin = map.pins.find((p) => p.id === pinId);
+              if (pin) Object.assign(pin, updates);
+              campaign.updatedAt = new Date().toISOString();
+            }
+          }
+        });
+      },
+
+      deletePin: (campaignId, mapId, pinId) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            const map = (campaign.maps ?? []).find((m) => m.id === mapId);
+            if (map) {
+              map.pins = map.pins.filter((p) => p.id !== pinId);
+              campaign.updatedAt = new Date().toISOString();
+            }
           }
         });
       },
