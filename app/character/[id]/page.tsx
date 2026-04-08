@@ -62,6 +62,7 @@ export default function CharacterSheetPage() {
   const id = params.id as string;
 
   const { getCharacter, updateCharacter, isHydrated } = useCharacterStore();
+  const { isActive: sessionActive, startSession, endSession } = useSessionStore();
   const character = getCharacter(id);
 
   const [showAttrGen, setShowAttrGen] = useState(false);
@@ -91,7 +92,6 @@ export default function CharacterSheetPage() {
   const carryCapacity = getCarryCapacity(character.attributes.str);
   const totalWeight = character.inventory.reduce((sum, item) => sum + item.weight * item.quantity, 0);
 
-  const { isActive: sessionActive, startSession, endSession } = useSessionStore();
   const dexMod = getModifier(character.attributes.dex);
 
   const toggleSession = () => {
