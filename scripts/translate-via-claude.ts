@@ -150,13 +150,10 @@ async function translateBatch(
 // ── Process file ──
 
 async function processFile(
-  sourceFile: string,
   targetFile: string,
   fieldExtractor: (entry: Record<string, unknown>) => Record<string, string | object>,
   context: string,
 ) {
-  const source = loadJSON(sourceFile);
-  const sourceMap = new Map(source.map((s) => [s.slug as string, s]));
   const target = loadJSON(targetFile);
 
   // Work from TARGET — it's our source of truth for what needs translating
@@ -198,12 +195,10 @@ async function processFile(
     const batch = entries.slice(i, i + BATCH_SIZE);
     const batchNum = Math.floor(i / BATCH_SIZE) + 1;
 
-    const requests: TranslateEntry[] = batch.map(entry => {
-      const slug = entry.slug as string;
-      // Use ORIGINAL English source for the API prompt
-      const original = sourceMap.get(slug) || entry;
-      return { slug, fields: fieldExtractor(original) };
-    }).filter(r => Object.keys(r.fields).length > 0);
+    const requests: TranslateEntry[] = batch.map(entry => ({
+      slug: entry.slug as string,
+      fields: fieldExtractor(entry),
+    })).filter(r => Object.keys(r.fields).length > 0);
 
     if (requests.length === 0) continue;
 
@@ -300,13 +295,13 @@ async function main() {
   console.log(`  Batch:    ${BATCH_SIZE}`);
 
   if (dataType === "spells" || dataType === "all") {
-    await processFile("spells.json", `spells-${sfx}.json`, spellFields, "spell descriptions");
+    await processFile(`spells-${sfx}.json`, spellFields, "spell descriptions");
   }
   if (dataType === "monsters" || dataType === "all") {
-    await processFile("monsters.json", `monsters-${sfx}.json`, monsterFields, "monster descriptions and abilities");
+    await processFile(`monsters-${sfx}.json`, monsterFields, "monster descriptions and abilities");
   }
   if (dataType === "items" || dataType === "all") {
-    await processFile("items.json", `items-${sfx}.json`, itemFields, "magic item descriptions");
+    await processFile(`items-${sfx}.json`, itemFields, "magic item descriptions");
   }
 
   console.log("All done!\n");
