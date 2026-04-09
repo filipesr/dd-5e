@@ -42,9 +42,9 @@ export function HpTracker({ hp, ac, onChange, onAcChange }: HpTrackerProps) {
             <span className="font-cinzel text-sm text-gold/70">Hit Points</span>
           </div>
           <div className="flex items-center gap-2">
-            <input type="number" value={hp.current} onChange={(e) => onChange({ ...hp, current: Math.max(0, parseInt(e.target.value) || 0) })} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1 text-parchment-light focus:outline-none focus:border-gold" />
+            <input type="number" value={hp.current} onChange={(e) => onChange({ ...hp, current: Math.max(0, parseInt(e.target.value) || 0) })} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1.5 text-parchment-light focus:outline-none focus:border-gold" />
             <span className="text-gold/50">/</span>
-            <input type="number" value={hp.max} onChange={(e) => onChange({ ...hp, max: Math.max(1, parseInt(e.target.value) || 1) })} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1 text-parchment-light focus:outline-none focus:border-gold" />
+            <input type="number" value={hp.max} onChange={(e) => onChange({ ...hp, max: Math.max(1, parseInt(e.target.value) || 1) })} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1.5 text-parchment-light focus:outline-none focus:border-gold" />
           </div>
           <div className="h-2 bg-ink rounded-full mt-2 overflow-hidden">
             <div className={`h-full ${barColor} transition-all duration-300`} style={{ width: `${pct}%` }} />
@@ -55,19 +55,19 @@ export function HpTracker({ hp, ac, onChange, onAcChange }: HpTrackerProps) {
             <Shield size={16} className="text-gold" />
             <span className="font-cinzel text-sm text-gold/70">AC</span>
           </div>
-          <input type="number" value={ac} onChange={(e) => onAcChange(parseInt(e.target.value) || 10)} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1 text-parchment-light text-xl font-cinzel focus:outline-none focus:border-gold" />
+          <input type="number" value={ac} onChange={(e) => onAcChange(parseInt(e.target.value) || 10)} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1.5 text-parchment-light text-xl font-cinzel focus:outline-none focus:border-gold" />
         </div>
         <div className="text-center">
           <span className="font-cinzel text-sm text-gold/70 block mb-1">Temp HP</span>
-          <input type="number" value={hp.temporary} onChange={(e) => onChange({ ...hp, temporary: Math.max(0, parseInt(e.target.value) || 0) })} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1 text-parchment-light focus:outline-none focus:border-gold" />
+          <input type="number" value={hp.temporary} onChange={(e) => onChange({ ...hp, temporary: Math.max(0, parseInt(e.target.value) || 0) })} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1.5 text-parchment-light focus:outline-none focus:border-gold" />
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <button onClick={applyDamage} className="flex items-center gap-1 px-2 py-1 bg-blood/20 border border-blood/40 rounded text-sm text-red-300 hover:bg-blood/30 transition-colors">
+        <button onClick={applyDamage} className="flex items-center gap-1 px-2 py-1.5 bg-blood/20 border border-blood/40 rounded text-sm text-red-300 hover:bg-blood/30 transition-colors">
           <Minus size={14} /> Dano
         </button>
-        <input type="number" value={quickValue} onChange={(e) => setQuickValue(Math.max(1, parseInt(e.target.value) || 1))} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1 text-parchment-light text-sm focus:outline-none focus:border-gold" />
-        <button onClick={applyHeal} className="flex items-center gap-1 px-2 py-1 bg-green-900/20 border border-green-700/40 rounded text-sm text-green-300 hover:bg-green-900/30 transition-colors">
+        <input type="number" value={quickValue} onChange={(e) => setQuickValue(Math.max(1, parseInt(e.target.value) || 1))} className="w-16 text-center bg-parchment/10 border border-gold/20 rounded py-1.5 text-parchment-light text-sm focus:outline-none focus:border-gold" />
+        <button onClick={applyHeal} className="flex items-center gap-1 px-2 py-1.5 bg-green-900/20 border border-green-700/40 rounded text-sm text-green-300 hover:bg-green-900/30 transition-colors">
           <Plus size={14} /> Cura
         </button>
       </div>

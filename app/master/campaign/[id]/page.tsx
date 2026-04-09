@@ -225,7 +225,7 @@ export default function CampaignDetailPage() {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-6 border-b border-gold/20 overflow-x-auto">
+      <div className="flex flex-wrap gap-1 mb-6 border-b border-gold/20">
         {TABS.map(({ key, label, icon: Icon }) => (
           <button
             key={key}

@@ -93,11 +93,12 @@ export function TreasureInventory({ treasures, onDelete }: TreasureInventoryProp
                   {treasure.items.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-1">
                       {treasure.items.map((item, i) => (
-                        <Badge
-                          key={i}
-                          label={item.name}
-                          color={RARITY_COLORS[item.rarity] ?? "gold"}
-                        />
+                        <span key={i} title={`${item.name} (${item.rarity})\n${item.description}`} className="cursor-help">
+                          <Badge
+                            label={item.name}
+                            color={RARITY_COLORS[item.rarity] ?? "gold"}
+                          />
+                        </span>
                       ))}
                     </div>
                   )}

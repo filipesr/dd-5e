@@ -433,6 +433,15 @@ export default function CharacterSheetPage() {
 
       {/* 6. Ataques */}
       <ScrollSection title="Ataques">
+        {character.attacks.length > 0 && (
+          <div className="flex items-center gap-2 py-1 mb-1 text-xs text-parchment-light/40 font-cinzel border-b border-gold/10">
+            <span className="flex-1">Nome</span>
+            <span className="w-16 text-center">+Atq</span>
+            <span className="w-20">Dano</span>
+            {sessionActive && <span className="w-14" />}
+            <span className="w-4" />
+          </div>
+        )}
         <div className="space-y-1">
           {character.attacks.length === 0 && (
             <p className="text-parchment-light/40 text-sm py-2">Nenhum ataque cadastrado.</p>
@@ -561,6 +570,15 @@ export default function CharacterSheetPage() {
                 Peso: {totalWeight.toFixed(1)} / {carryCapacity.toFixed(1)} kg
               </span>
             </div>
+            {character.inventory.length > 0 && (
+              <div className="flex items-center gap-2 py-1 mb-1 text-xs text-parchment-light/40 font-cinzel border-b border-gold/10">
+                <span className="flex-1">Item</span>
+                <span className="w-12 text-center">Qtd</span>
+                <span className="w-16 text-center">Peso</span>
+                <span className="w-16 text-center">PO</span>
+                <span className="w-4" />
+              </div>
+            )}
             {character.inventory.length === 0 && (
               <p className="text-parchment-light/40 text-sm py-2">Nenhum item no inventário.</p>
             )}

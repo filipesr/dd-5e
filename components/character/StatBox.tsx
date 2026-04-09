@@ -25,7 +25,7 @@ export function StatBox({ attribute, value, onChange }: StatBoxProps) {
         type="number"
         value={value}
         onChange={(e) => onChange(Math.max(1, Math.min(30, parseInt(e.target.value) || 1)))}
-        className="w-12 text-center bg-parchment/10 border border-gold/20 rounded text-sm text-parchment-light mt-1 py-0.5 focus:outline-none focus:border-gold"
+        className="w-12 text-center bg-parchment/10 border border-gold/20 rounded text-sm text-parchment-light mt-1 py-1 focus:outline-none focus:border-gold"
       />
     </div>
   );
