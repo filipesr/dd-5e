@@ -156,38 +156,33 @@ async function processFile(
   context: string,
 ) {
   const source = loadJSON(sourceFile);
+  const sourceMap = new Map(source.map((s) => [s.slug as string, s]));
   const target = loadJSON(targetFile);
-  const targetMap = new Map(target.map((t, i) => [t.slug as string, i]));
 
-  // Filter by scope
-  let entries = source;
-  if (srdOnly) {
-    entries = entries.filter(e => e.document__slug === "wotc-srd");
-  }
+  // Work from TARGET — it's our source of truth for what needs translating
+  let entries = target.filter(e => {
+    // Scope filter: SRD only?
+    if (srdOnly && e.document__slug !== "wotc-srd") return false;
+    // Already translated? Skip (unless --force)
+    if (!force && e._translated) return false;
+    return true;
+  });
 
-  // Skip already translated entries (unless --force)
-  if (!force) {
-    entries = entries.filter(e => {
-      const idx = targetMap.get(e.slug as string);
-      if (idx === undefined) return true;
-      return !(target[idx] as Record<string, unknown>)._translated;
-    });
-  }
-
-  const beforeFilter = entries.length;
-  const alreadyDone = beforeFilter - entries.length; // after _translated filter below this was set
   const total = entries.length;
   const batches = Math.ceil(total / BATCH_SIZE);
 
-  // Count stats
-  const totalInTarget = target.length;
-  const translatedInTarget = target.filter(t => (t as Record<string, unknown>)._translated).length;
+  // Stats
+  const totalInScope = srdOnly
+    ? target.filter(e => e.document__slug === "wotc-srd").length
+    : target.length;
+  const translatedInScope = srdOnly
+    ? target.filter(e => e.document__slug === "wotc-srd" && e._translated).length
+    : target.filter(e => e._translated).length;
 
   console.log(`\n${"=".repeat(60)}`);
-  console.log(`Translating: ${sourceFile} → ${targetFile}`);
-  console.log(`Source: ${source.length} total${srdOnly ? " (SRD filter active)" : ""}`);
-  console.log(`Target: ${translatedInTarget}/${totalInTarget} already translated`);
-  console.log(`Pending: ${total} entries | ${batches} batches`);
+  console.log(`File: ${targetFile}${srdOnly ? " (SRD only)" : ""}`);
+  console.log(`Scope: ${totalInScope} entries | ${translatedInScope} done | ${total} pending`);
+  console.log(`Batches: ${batches} (${BATCH_SIZE} per batch)`);
   console.log(`${"=".repeat(60)}\n`);
 
   if (total === 0) {
@@ -203,10 +198,12 @@ async function processFile(
     const batch = entries.slice(i, i + BATCH_SIZE);
     const batchNum = Math.floor(i / BATCH_SIZE) + 1;
 
-    const requests: TranslateEntry[] = batch.map(entry => ({
-      slug: entry.slug as string,
-      fields: fieldExtractor(entry),
-    })).filter(r => Object.keys(r.fields).length > 0);
+    const requests: TranslateEntry[] = batch.map(entry => {
+      const slug = entry.slug as string;
+      // Use ORIGINAL English source for the API prompt
+      const original = sourceMap.get(slug) || entry;
+      return { slug, fields: fieldExtractor(original) };
+    }).filter(r => Object.keys(r.fields).length > 0);
 
     if (requests.length === 0) continue;
 
@@ -220,8 +217,9 @@ async function processFile(
     try {
       const results = await translateBatch(requests, locale, context);
 
+      const targetIdx = new Map(target.map((t, i) => [t.slug as string, i]));
       for (const [slug, fields] of Object.entries(results)) {
-        const idx = targetMap.get(slug);
+        const idx = targetIdx.get(slug);
         if (idx === undefined) continue;
 
         const targetEntry = target[idx] as Record<string, unknown>;
