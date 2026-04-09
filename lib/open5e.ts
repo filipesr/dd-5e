@@ -39,9 +39,7 @@ function loadJSON<T>(filename: string, locale: Locale = "en"): T[] {
 
   const path = join(DATA_DIR, filename);
   if (!existsSync(path)) {
-    console.warn(
-      `[open5e] Cache not found: ${path}. Run "npm run fetch-data" to download.`
-    );
+    console.warn(`[open5e] Data file not found: ${path}`);
     return [];
   }
   const data = JSON.parse(readFileSync(path, "utf-8")) as T[];
