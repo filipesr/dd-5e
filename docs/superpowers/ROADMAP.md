@@ -85,6 +85,7 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 - [x] TypeError treasures undefined — guard para campanhas antigas (`88df7f4`)
 - [x] Map pins pequenos/sem lista — pins w-9 com glow + lista de pins abaixo do mapa (`88df7f4`)
 - [x] Map pins ainda transparentes — opacidade subida de 30% para 90%, icones brancos, glow 12px (`804fc47`)
+- [x] UI/UX polish: spinners ocultos, alturas padronizadas, headers em ataques/inventario, tabs wrap, treasure tooltips (`4f4e357`)
 
 ---
 
