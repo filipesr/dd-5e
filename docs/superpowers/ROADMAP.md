@@ -89,7 +89,7 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 - [x] Compendio: cache local Open5e + SSG completo (6300+ paginas estaticas, zero API runtime) (`ab6c462`)
 - [x] i18n: PT-BR, EN, ES com ~450 strings cada, seletor de idioma no Navbar, todos os modulos integrados (`c5ab86d`)
-- [x] Open5e data traduzido: 10 JSONs com traducao completa — desc, actions, senses, languages, damage types, conditions, 200+ termos D&D por idioma (`3593288`)
+- [x] Open5e data traduzido: 10 JSONs com 500+ termos D&D por idioma (mecanica, combate, condicoes, sentidos, idiomas). Script API para traducao narrativa completa via Claude (`2c9a3b8`)
 
 ---
 
