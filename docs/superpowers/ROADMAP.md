@@ -89,7 +89,8 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 - [x] Compendio: cache local Open5e + SSG completo (6300+ paginas estaticas, zero API runtime) (`ab6c462`)
 - [x] i18n: PT-BR, EN, ES com ~450 strings cada, seletor de idioma no Navbar, todos os modulos integrados (`c5ab86d`)
-- [x] Open5e data traduzido: 10 JSONs (PT-BR + ES) com dados finais. Traducoes finalizadas externamente. Scripts de traducao removidos (`acbe757`)
+- [x] Open5e data traduzido: 10 JSONs (PT-BR + ES) com dados finais (`acbe757`)
+- [x] Migracao SSG por locale: /[locale]/ routing, middleware, 18900+ paginas estaticas, LanguageSelector via URL (`d61e16b`)
 
 ---
 
