@@ -1,6 +1,6 @@
 # Spec: Polimento Visual e Deploy
 
-**Status:** ⏳ Pendente (T17, T18)
+**Status:** ✅ Implementado (T17, T18)
 
 ---
 

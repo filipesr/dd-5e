@@ -65,12 +65,12 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 
 | # | Descricao | Status | Spec | Plano | Arquivos-chave |
 |---|-----------|--------|------|-------|----------------|
-| T17 | Polish visual e responsividade | ⏳ Pendente | [spec](specs/modules/04-polish-deploy.md) | [plano](plans/phases/05-polish-deploy.md) | CSS, animacoes framer-motion |
-| T18 | Build, verificacao e deploy Vercel | ⏳ Parcial | [spec](specs/modules/04-polish-deploy.md) | [plano](plans/phases/05-polish-deploy.md) | `vercel --prod` |
+| T17 | Polish visual e responsividade | ✅ | [spec](specs/modules/04-polish-deploy.md) | [plano](plans/phases/05-polish-deploy.md) | `PageTransition.tsx`, `globals.css` |
+| T18 | Build, verificacao, README, .env | ✅ | [spec](specs/modules/04-polish-deploy.md) | [plano](plans/phases/05-polish-deploy.md) | `README.md`, `.env.example` |
 
 ### Problemas Conhecidos (MVP)
 
-- `master/campaign/[id]`: First Load JS = 270kB (bundle TipTap) — considerar dynamic import
+- ~~`master/campaign/[id]`: First Load JS = 270kB (bundle TipTap)~~ → **Resolvido:** dynamic import reduziu para 185kB
 - `data/classes.json`: Half-elf abilityBonuses usa placeholders para bonus a escolha do jogador
 - Filtros avancados do compendio (por escola de magia, CR, raridade) nao implementados ainda
 
@@ -135,7 +135,7 @@ Funcionalidades adiadas. Spec geral: [`specs/modules/05-fase2-futuro.md`](specs/
 |---------|------------|-------|
 | Autenticacao Supabase + sync realtime | Adiado | Ultima etapa (decisao do usuario) |
 | Upload de avatar de NPC | Adiado | Junto com Supabase (cloud persistence) |
-| Timeline de eventos de sessao | Baixa | — |
+| ~~Timeline de eventos de sessao~~ | ~~Baixa~~ | ✅ Implementado (`SessionTimeline.tsx`) |
 | Rolador de dados 3D (Three.js) | Baixa | — |
 | PWA offline | Baixa | — |
 | Gerador de NPCs com IA (Anthropic API) | Baixa | — |
