@@ -1,14 +1,8 @@
 "use client";
 
+import { useI18n } from "@/lib/i18n";
 import { Badge } from "@/components/ui/Badge";
 import type { Condition } from "@/types/dnd5e";
-
-const CONDITION_LABELS: Record<Condition, string> = {
-  blinded: "Cego", charmed: "Enfeitiçado", deafened: "Surdo",
-  frightened: "Amedrontado", grappled: "Agarrado", incapacitated: "Incapacitado",
-  invisible: "Invisível", paralyzed: "Paralisado", petrified: "Petrificado",
-  poisoned: "Envenenado", prone: "Prostrado", stunned: "Atordoado",
-};
 
 interface ConditionBadgeProps {
   condition: Condition;
@@ -17,5 +11,6 @@ interface ConditionBadgeProps {
 }
 
 export function ConditionBadge({ condition, active, onToggle }: ConditionBadgeProps) {
-  return <Badge label={CONDITION_LABELS[condition]} active={active} onClick={onToggle} color="blood" />;
+  const { t } = useI18n();
+  return <Badge label={t.conditions[condition] ?? condition} active={active} onClick={onToggle} color="blood" />;
 }

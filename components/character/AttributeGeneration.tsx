@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/lib/i18n";
 import { roll4d6DropLowest } from "@/lib/dice";
 import { getPointBuyCost, getStandardArray, getModifier } from "@/lib/dnd5e";
 import { formatModifier } from "@/lib/utils";
@@ -11,11 +12,6 @@ import { ATTRIBUTES } from "@/types/dnd5e";
 
 type Method = "roll" | "pointBuy" | "standard";
 
-const ATTR_LABELS: Record<Attribute, string> = {
-  str: "Força", dex: "Destreza", con: "Constituição",
-  int: "Inteligência", wis: "Sabedoria", cha: "Carisma",
-};
-
 interface Props {
   isOpen: boolean;
   onClose: () => void;
@@ -23,10 +19,20 @@ interface Props {
 }
 
 export function AttributeGeneration({ isOpen, onClose, onApply }: Props) {
+  const { t } = useI18n();
   const [method, setMethod] = useState<Method>("roll");
   const [values, setValues] = useState<Record<Attribute, number>>({
     str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10,
   });
+
+  const ATTR_LABELS: Record<Attribute, string> = {
+    str: t.attributes.strFull,
+    dex: t.attributes.dexFull,
+    con: t.attributes.conFull,
+    int: t.attributes.intFull,
+    wis: t.attributes.wisFull,
+    cha: t.attributes.chaFull,
+  };
 
   const rollAll = () => {
     const newValues = {} as Record<Attribute, number>;
@@ -44,7 +50,7 @@ export function AttributeGeneration({ isOpen, onClose, onApply }: Props) {
   const totalPointBuyCost = ATTRIBUTES.reduce((sum, attr) => sum + getPointBuyCost(values[attr]), 0);
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Gerar Atributos" className="max-w-md">
+    <Modal isOpen={isOpen} onClose={onClose} title={t.character.actions.generateAttrs} className="max-w-md">
       <div className="space-y-4">
         <div className="flex gap-2">
           {([["roll", "4d6 Drop Lowest"], ["pointBuy", "Point Buy (27)"], ["standard", "Standard Array"]] as [Method, string][]).map(([m, label]) => (
@@ -54,10 +60,10 @@ export function AttributeGeneration({ isOpen, onClose, onApply }: Props) {
             </button>
           ))}
         </div>
-        {method === "roll" && <Button onClick={rollAll} variant="secondary" size="sm" className="w-full">Rolar Todos</Button>}
+        {method === "roll" && <Button onClick={rollAll} variant="secondary" size="sm" className="w-full">{t.character.actions.rollAll}</Button>}
         {method === "pointBuy" && (
           <div className="text-center text-sm">
-            <span className={totalPointBuyCost > 27 ? "text-blood" : "text-gold"}>Pontos: {totalPointBuyCost}/27</span>
+            <span className={totalPointBuyCost > 27 ? "text-blood" : "text-gold"}>{t.character.points} {totalPointBuyCost}/27</span>
           </div>
         )}
         <div className="space-y-2">
@@ -77,7 +83,7 @@ export function AttributeGeneration({ isOpen, onClose, onApply }: Props) {
             </div>
           ))}
         </div>
-        <Button onClick={() => { onApply(values); onClose(); }} className="w-full">Aplicar</Button>
+        <Button onClick={() => { onApply(values); onClose(); }} className="w-full">{t.character.actions.apply}</Button>
       </div>
     </Modal>
   );

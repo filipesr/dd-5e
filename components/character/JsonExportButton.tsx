@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/lib/i18n";
 import { Download } from "lucide-react";
 import type { Character } from "@/types/dnd5e";
 
@@ -9,6 +10,8 @@ interface Props {
 }
 
 export function JsonExportButton({ character }: Props) {
+  const { t } = useI18n();
+
   const handleExport = async () => {
     const { exportCharacterToJSON } = await import("@/lib/jsonImportExport");
     const blob = exportCharacterToJSON(character);
@@ -24,7 +27,7 @@ export function JsonExportButton({ character }: Props) {
 
   return (
     <Button onClick={handleExport} variant="ghost" size="sm">
-      <Download size={14} className="mr-1" /> JSON
+      <Download size={14} className="mr-1" /> {t.character.actions.exportJson}
     </Button>
   );
 }

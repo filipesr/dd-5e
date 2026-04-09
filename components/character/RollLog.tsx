@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import type { RollLogEntry } from "@/store/sessionStore";
+import { useI18n } from "@/lib/i18n";
 import { Trash2 } from "lucide-react";
 
 interface RollLogProps {
@@ -24,20 +25,22 @@ const TYPE_COLORS: Record<string, string> = {
 };
 
 export function RollLog({ entries, onClear }: RollLogProps) {
+  const { t } = useI18n();
+
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <span className="font-cinzel text-xs text-gold/60">Log de Rolagens</span>
+        <span className="font-cinzel text-xs text-gold/60">{t.character.rollLog}</span>
         {entries.length > 0 && (
           <button onClick={onClear} className="text-xs text-parchment-light/30 hover:text-parchment-light flex items-center gap-1">
-            <Trash2 size={12} /> Limpar
+            <Trash2 size={12} /> {t.character.clear}
           </button>
         )}
       </div>
       <div className="max-h-48 overflow-y-auto space-y-1">
         <AnimatePresence initial={false}>
           {entries.length === 0 ? (
-            <p className="text-xs text-parchment-light/30 text-center py-4">Nenhuma rolagem ainda</p>
+            <p className="text-xs text-parchment-light/30 text-center py-4">{t.character.noRolls}</p>
           ) : (
             entries.map((entry) => (
               <motion.div

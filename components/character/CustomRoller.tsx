@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { useSessionStore } from "@/store/sessionStore";
+import { useI18n } from "@/lib/i18n";
 import { rollNotation } from "@/lib/dice";
 import { Button } from "@/components/ui/Button";
 import { Dices } from "lucide-react";
 
 export function CustomRoller() {
+  const { t } = useI18n();
   const [notation, setNotation] = useState("1d20");
   const { addRoll } = useSessionStore();
 
@@ -35,7 +37,7 @@ export function CustomRoller() {
         onKeyDown={(e) => e.key === "Enter" && handleRoll()}
       />
       <Button onClick={handleRoll} variant="ghost" size="sm">
-        <Dices size={14} className="mr-1" /> Rolar
+        <Dices size={14} className="mr-1" /> {t.character.actions.roll}
       </Button>
     </div>
   );

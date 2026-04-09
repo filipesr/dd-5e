@@ -3,10 +3,12 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/lib/i18n";
 import { Upload } from "lucide-react";
 import { useCharacterStore } from "@/store/characterStore";
 
 export function JsonImportButton() {
+  const { t } = useI18n();
   const fileRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const { createCharacter } = useCharacterStore();
@@ -21,7 +23,7 @@ export function JsonImportButton() {
       const created = createCharacter(character);
       router.push(`/character/${created.id}`);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Erro ao importar");
+      setError(err instanceof Error ? err.message : t.character.actions.importError);
       setTimeout(() => setError(null), 3000);
     }
     // Reset input
@@ -31,7 +33,7 @@ export function JsonImportButton() {
   return (
     <div className="relative">
       <Button onClick={() => fileRef.current?.click()} variant="ghost" size="sm">
-        <Upload size={14} className="mr-1" /> Importar JSON
+        <Upload size={14} className="mr-1" /> {t.character.actions.importJson}
       </Button>
       <input ref={fileRef} type="file" accept=".json" onChange={handleFile} className="hidden" />
       {error && (

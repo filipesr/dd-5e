@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/lib/i18n";
 import { FileDown, Loader2 } from "lucide-react";
 import type { Character } from "@/types/dnd5e";
 
@@ -10,6 +11,7 @@ interface PdfExportButtonProps {
 }
 
 export function PdfExportButton({ character }: PdfExportButtonProps) {
+  const { t } = useI18n();
   const [loading, setLoading] = useState(false);
 
   const handleExport = async () => {
@@ -41,9 +43,9 @@ export function PdfExportButton({ character }: PdfExportButtonProps) {
       disabled={loading}
     >
       {loading ? (
-        <><Loader2 size={14} className="mr-1 animate-spin" /> Exportando...</>
+        <><Loader2 size={14} className="mr-1 animate-spin" /> {t.character.actions.exporting}</>
       ) : (
-        <><FileDown size={14} className="mr-1" /> Exportar PDF</>
+        <><FileDown size={14} className="mr-1" /> {t.character.actions.exportPdf}</>
       )}
     </Button>
   );

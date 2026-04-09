@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Trash2 } from "lucide-react";
 import { useCharacterStore } from "@/store/characterStore";
+import { useI18n } from "@/lib/i18n";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
@@ -12,13 +13,14 @@ import { JsonImportButton } from "@/components/character/JsonImportButton";
 
 export default function CharacterListPage() {
   const router = useRouter();
+  const { t } = useI18n();
   const { characters, isHydrated, createCharacter, deleteCharacter } = useCharacterStore();
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   if (!isHydrated) {
     return (
       <main className="flex min-h-screen items-center justify-center">
-        <p className="font-cinzel text-gold text-xl animate-pulse">Carregando...</p>
+        <p className="font-cinzel text-gold text-xl animate-pulse">{t.common.loading}</p>
       </main>
     );
   }
@@ -40,25 +42,25 @@ export default function CharacterListPage() {
   return (
     <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
-        <SectionHeader title="Personagens" className="flex-1 mb-0" />
+        <SectionHeader title={t.character.title} className="flex-1 mb-0" />
         <div className="flex items-center gap-2 ml-6">
           <JsonImportButton />
           <Button onClick={handleCreate} className="flex items-center gap-2">
             <Plus size={16} />
-            Novo Personagem
+            {t.character.newCharacter}
           </Button>
         </div>
       </div>
 
       {characters.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 text-center">
-          <p className="font-cinzel text-parchment-light/50 text-lg mb-2">Nenhum personagem encontrado</p>
+          <p className="font-cinzel text-parchment-light/50 text-lg mb-2">{t.character.noCharacters}</p>
           <p className="text-parchment-light/30 text-sm mb-8">
-            Crie seu primeiro personagem para começar sua aventura
+            {t.character.noCharactersDesc}
           </p>
           <Button onClick={handleCreate} size="lg" className="flex items-center gap-2">
             <Plus size={18} />
-            Criar Primeiro Personagem
+            {t.character.createFirst}
           </Button>
         </div>
       ) : (
@@ -84,7 +86,7 @@ export default function CharacterListPage() {
                 {character.race} — {character.class}
               </p>
               <p className="text-parchment-light/40 text-xs mt-1 font-cinzel">
-                Nível {character.level}
+                {t.common.level} {character.level}
               </p>
             </Card>
           ))}
@@ -94,19 +96,19 @@ export default function CharacterListPage() {
       <Modal
         isOpen={deleteId !== null}
         onClose={() => setDeleteId(null)}
-        title="Excluir Personagem"
+        title={t.character.deleteConfirmTitle}
       >
         <p className="text-parchment-light/80 mb-6">
-          Tem certeza que deseja excluir{" "}
+          {t.character.deleteConfirmText}{" "}
           <span className="text-gold font-cinzel">{deleteTarget?.name}</span>? Esta ação não pode ser desfeita.
         </p>
         <div className="flex gap-3 justify-end">
           <Button variant="ghost" onClick={() => setDeleteId(null)}>
-            Cancelar
+            {t.common.cancel}
           </Button>
           <Button variant="danger" onClick={handleDeleteConfirm} className="flex items-center gap-2">
             <Trash2 size={14} />
-            Excluir
+            {t.common.delete}
           </Button>
         </div>
       </Modal>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useSessionStore } from "@/store/sessionStore";
+import { useI18n } from "@/lib/i18n";
 import { ResourceCounter } from "@/components/character/ResourceCounter";
 import { InitiativeRoller } from "@/components/character/InitiativeRoller";
 import { RollLog } from "@/components/character/RollLog";
@@ -14,6 +15,7 @@ interface SessionPanelProps {
 }
 
 export function SessionPanel({ dexMod }: SessionPanelProps) {
+  const { t } = useI18n();
   const {
     resourceCounters,
     rollLog,
@@ -37,7 +39,7 @@ export function SessionPanel({ dexMod }: SessionPanelProps) {
       {/* Resource Counters */}
       {resourceCounters.length > 0 && (
         <div>
-          <span className="font-cinzel text-xs text-gold/60">Recursos</span>
+          <span className="font-cinzel text-xs text-gold/60">{t.master.session.title}</span>
           <div className="divide-y divide-gold/10">
             {resourceCounters.map((counter) => (
               <ResourceCounter
@@ -54,10 +56,10 @@ export function SessionPanel({ dexMod }: SessionPanelProps) {
       {/* Rest Buttons */}
       <div className="flex gap-2">
         <Button variant="ghost" size="sm" onClick={shortRest}>
-          <Moon size={14} className="mr-1" /> Descanso Curto
+          <Moon size={14} className="mr-1" /> {t.character.shortRest}
         </Button>
         <Button variant="ghost" size="sm" onClick={longRest}>
-          <Sun size={14} className="mr-1" /> Descanso Longo
+          <Sun size={14} className="mr-1" /> {t.character.longRest}
         </Button>
       </div>
 

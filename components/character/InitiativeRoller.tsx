@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Dices } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/lib/i18n";
 import { formatModifier } from "@/lib/utils";
 
 interface InitiativeRollerProps {
@@ -13,6 +14,7 @@ interface InitiativeRollerProps {
 }
 
 export function InitiativeRoller({ dexMod, currentRoll, onRoll }: InitiativeRollerProps) {
+  const { t } = useI18n();
   const [isRolling, setIsRolling] = useState(false);
 
   const handleRoll = () => {
@@ -33,7 +35,7 @@ export function InitiativeRoller({ dexMod, currentRoll, onRoll }: InitiativeRoll
         >
           <Dices size={16} />
         </motion.div>
-        Rolar Iniciativa
+        {t.character.actions.rollInitiative}
       </Button>
       <AnimatePresence mode="wait">
         {currentRoll !== null && (
