@@ -1,7 +1,13 @@
 "use client";
 
 import { I18nProvider } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n/types";
 
-export function Providers({ children }: { children: React.ReactNode }) {
-  return <I18nProvider>{children}</I18nProvider>;
+interface ProvidersProps {
+  children: React.ReactNode;
+  forcedLocale?: Locale;
+}
+
+export function Providers({ children, forcedLocale }: ProvidersProps) {
+  return <I18nProvider forcedLocale={forcedLocale}>{children}</I18nProvider>;
 }

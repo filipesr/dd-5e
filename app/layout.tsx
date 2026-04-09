@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Cinzel, Crimson_Text } from "next/font/google";
-import { Navbar } from "@/components/layout/Navbar";
-import { PageTransition } from "@/components/layout/PageTransition";
-import { Providers } from "@/components/layout/Providers";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -20,8 +17,7 @@ const crimsonText = Crimson_Text({
 
 export const metadata: Metadata = {
   title: "D&D 5e Toolkit",
-  description:
-    "Ferramenta completa para jogadores e mestres de Dungeons & Dragons 5a Edição",
+  description: "Complete toolkit for D&D 5e players and DMs",
 };
 
 export default function RootLayout({
@@ -30,12 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${cinzel.variable} ${crimsonText.variable}`}>
+    <html className={`${cinzel.variable} ${crimsonText.variable}`}>
       <body className="bg-ink font-crimson text-parchment-light min-h-screen">
-        <Providers>
-          <Navbar />
-          <main className="max-w-7xl mx-auto px-4 py-6"><PageTransition>{children}</PageTransition></main>
-        </Providers>
+        {children}
       </body>
     </html>
   );

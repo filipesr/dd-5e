@@ -8,21 +8,26 @@ import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 import { LanguageSelector } from "./LanguageSelector";
 
-export function Navbar() {
+interface NavbarProps {
+  locale?: string;
+}
+
+export function Navbar({ locale: localeProp }: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { t } = useI18n();
+  const { t, locale: ctxLocale } = useI18n();
+  const locale = localeProp || ctxLocale;
 
   const NAV_LINKS = [
-    { href: "/character", label: t.nav.characters, icon: Sword },
-    { href: "/compendium", label: t.nav.compendium, icon: BookOpen },
-    { href: "/master", label: t.nav.master, icon: Crown },
+    { href: `/${locale}/character`, label: t.nav.characters, icon: Sword },
+    { href: `/${locale}/compendium`, label: t.nav.compendium, icon: BookOpen },
+    { href: `/${locale}/master`, label: t.nav.master, icon: Crown },
   ];
 
   return (
     <nav className="sticky top-0 z-40 bg-ink/95 backdrop-blur border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors">
+        <Link href={`/${locale}`} className="flex items-center gap-2 text-gold hover:text-gold-light transition-colors">
           <Scroll size={24} />
           <span className="font-cinzel font-bold text-lg hidden sm:inline">D&D 5e Toolkit</span>
         </Link>
