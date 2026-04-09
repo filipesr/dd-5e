@@ -5,9 +5,9 @@ import classesData from "@/data/classes.json";
 import conditionsData from "@/data/conditions.json";
 import rulesData from "@/data/rules.json";
 import {
-  fetchSpells,
-  fetchMonsters,
-  fetchMagicItems,
+  getSpells,
+  getMonsters,
+  getMagicItems,
 } from "@/lib/open5e";
 
 const VALID_CATEGORIES = [
@@ -33,19 +33,14 @@ const CATEGORY_LABELS: Record<Category, string> = {
 };
 
 export function generateStaticParams() {
-  return [
-    { category: "races" },
-    { category: "classes" },
-    { category: "conditions" },
-    { category: "rules" },
-  ];
+  return VALID_CATEGORIES.map((category) => ({ category }));
 }
 
 interface PageProps {
   params: { category: string };
 }
 
-export default async function CategoryPage({ params }: PageProps) {
+export default function CategoryPage({ params }: PageProps) {
   const { category } = params;
 
   if (!VALID_CATEGORIES.includes(category as Category)) {
@@ -92,7 +87,7 @@ export default async function CategoryPage({ params }: PageProps) {
       break;
 
     case "spells": {
-      const spells = await fetchSpells();
+      const spells = getSpells();
       items = spells.map((s) => ({
         slug: s.slug,
         name: s.name,
@@ -107,7 +102,7 @@ export default async function CategoryPage({ params }: PageProps) {
     }
 
     case "monsters": {
-      const monsters = await fetchMonsters();
+      const monsters = getMonsters();
       items = monsters.map((m) => ({
         slug: m.slug,
         name: m.name,
@@ -124,7 +119,7 @@ export default async function CategoryPage({ params }: PageProps) {
     }
 
     case "items": {
-      const magicItems = await fetchMagicItems();
+      const magicItems = getMagicItems();
       items = magicItems.map((i) => ({
         slug: i.slug,
         name: i.name,

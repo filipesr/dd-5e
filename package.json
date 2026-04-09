@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "fetch-data": "npx tsx scripts/fetch-open5e.ts"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.4.0",
@@ -39,6 +40,7 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "ts-jest": "^29.4.9",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

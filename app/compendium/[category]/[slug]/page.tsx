@@ -8,9 +8,12 @@ import classesData from "@/data/classes.json";
 import conditionsData from "@/data/conditions.json";
 import rulesData from "@/data/rules.json";
 import {
-  fetchSpellBySlug,
-  fetchMonsterBySlug,
-  fetchMagicItemBySlug,
+  getSpells,
+  getSpellBySlug,
+  getMonsters,
+  getMonsterBySlug,
+  getMagicItems,
+  getMagicItemBySlug,
 } from "@/lib/open5e";
 
 const VALID_CATEGORIES = [
@@ -58,7 +61,24 @@ function AbilityScore({ label, value }: { label: string; value: number }) {
   );
 }
 
-export default async function SlugPage({ params }: PageProps) {
+export function generateStaticParams() {
+  const params: { category: string; slug: string }[] = [];
+
+  // Static categories
+  for (const r of racesData) params.push({ category: "races", slug: r.slug });
+  for (const c of classesData) params.push({ category: "classes", slug: c.slug });
+  for (const c of conditionsData) params.push({ category: "conditions", slug: c.slug });
+  for (const r of rulesData) params.push({ category: "rules", slug: r.slug });
+
+  // Open5e cached data
+  for (const s of getSpells()) params.push({ category: "spells", slug: s.slug });
+  for (const m of getMonsters()) params.push({ category: "monsters", slug: m.slug });
+  for (const i of getMagicItems()) params.push({ category: "items", slug: i.slug });
+
+  return params;
+}
+
+export default function SlugPage({ params }: PageProps) {
   const { category, slug } = params;
 
   if (!VALID_CATEGORIES.includes(category as Category)) {
@@ -196,7 +216,7 @@ export default async function SlugPage({ params }: PageProps) {
 
   // ── Spells ──────────────────────────────────────────────────────────────────
   if (cat === "spells") {
-    const spell = await fetchSpellBySlug(slug);
+    const spell = getSpellBySlug(slug);
     if (!spell) notFound();
 
     return (
@@ -236,7 +256,7 @@ export default async function SlugPage({ params }: PageProps) {
 
   // ── Monsters ─────────────────────────────────────────────────────────────────
   if (cat === "monsters") {
-    const monster = await fetchMonsterBySlug(slug);
+    const monster = getMonsterBySlug(slug);
     if (!monster) notFound();
 
     return (
@@ -288,7 +308,7 @@ export default async function SlugPage({ params }: PageProps) {
 
   // ── Magic Items ──────────────────────────────────────────────────────────────
   if (cat === "items") {
-    const item = await fetchMagicItemBySlug(slug);
+    const item = getMagicItemBySlug(slug);
     if (!item) notFound();
 
     return (

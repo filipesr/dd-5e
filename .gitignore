@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# open5e cached data (large files, regenerate with: npm run fetch-data)
+/data/open5e/*.json
