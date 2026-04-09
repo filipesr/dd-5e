@@ -3,6 +3,7 @@ import type {
   Open5eMonster,
   Open5eMagicItem,
 } from "@/types/dnd5e";
+import type { Locale } from "@/lib/i18n/types";
 import { existsSync, readFileSync } from "fs";
 import { join } from "path";
 
@@ -10,58 +11,77 @@ import { join } from "path";
 
 const DATA_DIR = join(process.cwd(), "data", "open5e");
 
-function loadJSON<T>(filename: string): T[] {
+const LOCALE_SUFFIX: Record<Locale, string> = {
+  "pt-BR": "-pt",
+  en: "",
+  es: "-es",
+};
+
+// Per-locale cache keyed by "<baseName><suffix>"
+const _cache: Record<string, unknown[]> = {};
+
+function loadJSON<T>(filename: string, locale: Locale = "en"): T[] {
+  const suffix = LOCALE_SUFFIX[locale];
+  const baseName = filename.replace(".json", "");
+  const key = `${baseName}${suffix}`;
+
+  if (_cache[key]) return _cache[key] as T[];
+
+  // Try locale-specific file first, fallback to base English file
+  if (suffix) {
+    const localePath = join(DATA_DIR, `${baseName}${suffix}.json`);
+    if (existsSync(localePath)) {
+      const data = JSON.parse(readFileSync(localePath, "utf-8")) as T[];
+      _cache[key] = data;
+      return data;
+    }
+  }
+
   const path = join(DATA_DIR, filename);
   if (!existsSync(path)) {
-    console.warn(`[open5e] Cache not found: ${path}. Run "npm run fetch-data" to download.`);
+    console.warn(
+      `[open5e] Cache not found: ${path}. Run "npm run fetch-data" to download.`
+    );
     return [];
   }
-  return JSON.parse(readFileSync(path, "utf-8"));
-}
-
-let _spells: Open5eSpell[] | null = null;
-let _monsters: Open5eMonster[] | null = null;
-let _items: Open5eMagicItem[] | null = null;
-
-function getSpellsCache(): Open5eSpell[] {
-  if (!_spells) _spells = loadJSON<Open5eSpell>("spells.json");
-  return _spells;
-}
-
-function getMonstersCache(): Open5eMonster[] {
-  if (!_monsters) _monsters = loadJSON<Open5eMonster>("monsters.json");
-  return _monsters;
-}
-
-function getItemsCache(): Open5eMagicItem[] {
-  if (!_items) _items = loadJSON<Open5eMagicItem>("items.json");
-  return _items;
+  const data = JSON.parse(readFileSync(path, "utf-8")) as T[];
+  _cache[key] = data;
+  return data;
 }
 
 // ── Public API (sync, reads from local cache) ──
 
-export function getSpells(): Open5eSpell[] {
-  return getSpellsCache();
+export function getSpells(locale?: Locale): Open5eSpell[] {
+  return loadJSON<Open5eSpell>("spells.json", locale);
 }
 
-export function getSpellBySlug(slug: string): Open5eSpell | null {
-  return getSpellsCache().find((s) => s.slug === slug) ?? null;
+export function getSpellBySlug(
+  slug: string,
+  locale?: Locale
+): Open5eSpell | null {
+  return getSpells(locale).find((s) => s.slug === slug) ?? null;
 }
 
-export function getMonsters(): Open5eMonster[] {
-  return getMonstersCache();
+export function getMonsters(locale?: Locale): Open5eMonster[] {
+  return loadJSON<Open5eMonster>("monsters.json", locale);
 }
 
-export function getMonsterBySlug(slug: string): Open5eMonster | null {
-  return getMonstersCache().find((m) => m.slug === slug) ?? null;
+export function getMonsterBySlug(
+  slug: string,
+  locale?: Locale
+): Open5eMonster | null {
+  return getMonsters(locale).find((m) => m.slug === slug) ?? null;
 }
 
-export function getMagicItems(): Open5eMagicItem[] {
-  return getItemsCache();
+export function getMagicItems(locale?: Locale): Open5eMagicItem[] {
+  return loadJSON<Open5eMagicItem>("items.json", locale);
 }
 
-export function getMagicItemBySlug(slug: string): Open5eMagicItem | null {
-  return getItemsCache().find((i) => i.slug === slug) ?? null;
+export function getMagicItemBySlug(
+  slug: string,
+  locale?: Locale
+): Open5eMagicItem | null {
+  return getMagicItems(locale).find((i) => i.slug === slug) ?? null;
 }
 
 // ── Legacy async wrappers (backward compat) ──
@@ -70,7 +90,9 @@ export async function fetchSpells(): Promise<Open5eSpell[]> {
   return getSpells();
 }
 
-export async function fetchSpellBySlug(slug: string): Promise<Open5eSpell | null> {
+export async function fetchSpellBySlug(
+  slug: string
+): Promise<Open5eSpell | null> {
   return getSpellBySlug(slug);
 }
 
@@ -78,7 +100,9 @@ export async function fetchMonsters(): Promise<Open5eMonster[]> {
   return getMonsters();
 }
 
-export async function fetchMonsterBySlug(slug: string): Promise<Open5eMonster | null> {
+export async function fetchMonsterBySlug(
+  slug: string
+): Promise<Open5eMonster | null> {
   return getMonsterBySlug(slug);
 }
 
@@ -86,6 +110,8 @@ export async function fetchMagicItems(): Promise<Open5eMagicItem[]> {
   return getMagicItems();
 }
 
-export async function fetchMagicItemBySlug(slug: string): Promise<Open5eMagicItem | null> {
+export async function fetchMagicItemBySlug(
+  slug: string
+): Promise<Open5eMagicItem | null> {
   return getMagicItemBySlug(slug);
 }

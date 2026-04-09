@@ -15,6 +15,11 @@ import {
   getMagicItems,
   getMagicItemBySlug,
 } from "@/lib/open5e";
+import {
+  SpellMetaRows,
+  MonsterMetaRows,
+  ItemMetaRows,
+} from "./MetaTranslator";
 
 const VALID_CATEGORIES = [
   "races",
@@ -229,16 +234,16 @@ export default function SlugPage({ params }: PageProps) {
         </Link>
         <Card variant="parchment" className="p-6 space-y-4">
           <SectionHeader title={spell.name} />
-          <div className="space-y-2">
-            <DetailRow label="Nível" value={spell.level} />
-            <DetailRow label="Escola" value={spell.school} />
-            <DetailRow label="Tempo de Conjuração" value={spell.casting_time} />
-            <DetailRow label="Alcance" value={spell.range} />
-            <DetailRow label="Componentes" value={spell.components} />
-            <DetailRow label="Duração" value={spell.duration} />
-            <DetailRow label="Concentração" value={spell.concentration === "yes" ? "Sim" : "Não"} />
-            <DetailRow label="Classe(s)" value={spell.dnd_class} />
-          </div>
+          <SpellMetaRows
+            level={spell.level}
+            school={spell.school}
+            casting_time={spell.casting_time}
+            range={spell.range}
+            components={spell.components}
+            duration={spell.duration}
+            concentration={spell.concentration}
+            dnd_class={spell.dnd_class}
+          />
           <div>
             <h3 className="font-cinzel font-bold text-ink mb-2">Descrição</h3>
             <p className="text-sm text-ink/80 leading-relaxed whitespace-pre-wrap">{spell.desc}</p>
@@ -269,9 +274,7 @@ export default function SlugPage({ params }: PageProps) {
         </Link>
         <Card variant="parchment" className="p-6 space-y-4">
           <SectionHeader title={monster.name} />
-          <p className="text-sm italic text-ink/60">
-            {monster.size} {monster.type}
-          </p>
+          <MonsterMetaRows type={monster.type} size={monster.size} />
           <div className="space-y-2">
             <DetailRow label="Classe de Armadura" value={monster.armor_class} />
             <DetailRow label="Pontos de Vida" value={monster.hit_points} />
@@ -321,11 +324,11 @@ export default function SlugPage({ params }: PageProps) {
         </Link>
         <Card variant="parchment" className="p-6 space-y-4">
           <SectionHeader title={item.name} />
-          <div className="space-y-2">
-            <DetailRow label="Tipo" value={item.type} />
-            <DetailRow label="Raridade" value={item.rarity} />
-            <DetailRow label="Requer Sintonia" value={item.requires_attunement || "Não"} />
-          </div>
+          <ItemMetaRows
+            type={item.type}
+            rarity={item.rarity}
+            requires_attunement={item.requires_attunement || ""}
+          />
           <div>
             <h3 className="font-cinzel font-bold text-ink mb-2">Descrição</h3>
             <p className="text-sm text-ink/80 leading-relaxed whitespace-pre-wrap">{item.desc}</p>

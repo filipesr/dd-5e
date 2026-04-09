@@ -50,7 +50,13 @@ export default function CategoryPage({ params }: PageProps) {
   const cat = category as Category;
   const label = CATEGORY_LABELS[cat];
 
-  type ListItem = { slug: string; name: string; description: string; meta?: Record<string, string> };
+  type ListItem = {
+    slug: string;
+    name: string;
+    description: string;
+    meta?: Record<string, string>;
+    category?: "spell" | "monster" | "item" | "other";
+  };
   let items: ListItem[] = [];
 
   switch (cat) {
@@ -97,6 +103,7 @@ export default function CategoryPage({ params }: PageProps) {
           school: s.school,
           class: s.dnd_class,
         },
+        category: "spell" as const,
       }));
       break;
     }
@@ -114,6 +121,7 @@ export default function CategoryPage({ params }: PageProps) {
           type: m.type,
           size: m.size,
         },
+        category: "monster" as const,
       }));
       break;
     }
@@ -128,6 +136,7 @@ export default function CategoryPage({ params }: PageProps) {
           rarity: i.rarity,
           type: i.type,
         },
+        category: "item" as const,
       }));
       break;
     }

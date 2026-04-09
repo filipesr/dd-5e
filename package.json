@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "fetch-data": "npx tsx scripts/fetch-open5e.ts"
+    "fetch-data": "npx tsx scripts/fetch-open5e.ts",
+    "translate-data": "npx tsx scripts/translate-open5e.ts"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.4.0",
