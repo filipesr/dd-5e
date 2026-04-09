@@ -259,6 +259,8 @@ function monsterFields(entry: Record<string, unknown>): Record<string, string | 
   const fields: Record<string, string | object> = {};
   if (entry.desc && typeof entry.desc === "string" && entry.desc.length > 0)
     fields.desc = entry.desc;
+  if (entry.legendary_desc && typeof entry.legendary_desc === "string" && entry.legendary_desc.length > 0)
+    fields.legendary_desc = entry.legendary_desc;
   if (Array.isArray(entry.actions) && entry.actions.length > 0)
     fields.actions = entry.actions;
   if (Array.isArray(entry.special_abilities) && entry.special_abilities.length > 0)
@@ -274,6 +276,26 @@ function itemFields(entry: Record<string, unknown>): Record<string, string | obj
   const fields: Record<string, string | object> = {};
   if (entry.desc && typeof entry.desc === "string" && entry.desc.length > 0)
     fields.desc = entry.desc;
+  return fields;
+}
+
+function weaponFields(entry: Record<string, unknown>): Record<string, string | object> {
+  const fields: Record<string, string | object> = {};
+  if (entry.damage_type && typeof entry.damage_type === "string" && entry.damage_type.length > 0)
+    fields.damage_type = entry.damage_type;
+  if (entry.category && typeof entry.category === "string" && entry.category.length > 0)
+    fields.category = entry.category;
+  if (Array.isArray(entry.properties) && entry.properties.length > 0)
+    fields.properties = entry.properties;
+  return fields;
+}
+
+function armorFields(entry: Record<string, unknown>): Record<string, string | object> {
+  const fields: Record<string, string | object> = {};
+  if (entry.category && typeof entry.category === "string" && entry.category.length > 0)
+    fields.category = entry.category;
+  if (entry.ac_string && typeof entry.ac_string === "string" && entry.ac_string.length > 0)
+    fields.ac_string = entry.ac_string;
   return fields;
 }
 
@@ -298,10 +320,16 @@ async function main() {
     await processFile(`spells-${sfx}.json`, spellFields, "spell descriptions");
   }
   if (dataType === "monsters" || dataType === "all") {
-    await processFile(`monsters-${sfx}.json`, monsterFields, "monster descriptions and abilities");
+    await processFile(`monsters-${sfx}.json`, monsterFields, "monster descriptions, legendary actions, special abilities, and reactions");
   }
   if (dataType === "items" || dataType === "all") {
     await processFile(`items-${sfx}.json`, itemFields, "magic item descriptions");
+  }
+  if (dataType === "weapons" || dataType === "all") {
+    await processFile(`weapons-${sfx}.json`, weaponFields, "weapon properties (damage type, category, properties)");
+  }
+  if (dataType === "armor" || dataType === "all") {
+    await processFile(`armor-${sfx}.json`, armorFields, "armor properties (category, AC description)");
   }
 
   console.log("All done!\n");
