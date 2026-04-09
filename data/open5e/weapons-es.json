@@ -1,0 +1,1157 @@
+[
+  {
+    "name": "Axespear",
+    "slug": "axespear",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "25 gp",
+    "damage_dice": "1d8",
+    "damage_type": "cortante",
+    "weight": "8 lb.",
+    "properties": [
+      "doble cabeza (1d4)",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Barge Pole",
+    "slug": "barge-pole",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "1 sp",
+    "damage_dice": "1d6",
+    "damage_type": "contundente",
+    "weight": "5 lb.",
+    "properties": [
+      "alcance",
+      "special",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Battleaxe",
+    "slug": "battleaxe",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "10 gp",
+    "damage_dice": "1d8",
+    "damage_type": "cortante",
+    "weight": "4 lb.",
+    "properties": [
+      "versátil (1d10)"
+    ]
+  },
+  {
+    "name": "Bladed Scarf",
+    "slug": "bladed-scarf",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "100 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "sutil",
+      "alcance",
+      "special"
+    ]
+  },
+  {
+    "name": "Blowgun",
+    "slug": "blowgun",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "10 gp",
+    "damage_dice": "1",
+    "damage_type": "perforante",
+    "weight": "1 lb.",
+    "properties": [
+      "munición (range 25/100)",
+      "loading"
+    ]
+  },
+  {
+    "name": "Blunderbuss",
+    "slug": "blunderbuss",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "75 gp",
+    "damage_dice": "2d4",
+    "damage_type": "perforante",
+    "weight": "12 lb.",
+    "properties": [
+      "munición",
+      "gunpowder",
+      "loading",
+      "special",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Bolas",
+    "slug": "bolas",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "5 gp",
+    "damage_dice": "",
+    "damage_type": "",
+    "weight": "2 lb.",
+    "properties": [
+      "special",
+      "arrojadiza (range 5/15)"
+    ]
+  },
+  {
+    "name": "Chain Hook",
+    "slug": "chain-hook",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "15 gp",
+    "damage_dice": "1d6",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "alcance",
+      "special",
+      "arrojadiza (range 10/20)"
+    ]
+  },
+  {
+    "name": "Chakram",
+    "slug": "chakram",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "15 gp",
+    "damage_dice": "1d6",
+    "damage_type": "cortante",
+    "weight": "1 lb.",
+    "properties": [
+      "arrojadiza (range 20/60)"
+    ]
+  },
+  {
+    "name": "Climbing Adze",
+    "slug": "climbing-adze",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "6 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "ligera"
+    ]
+  },
+  {
+    "name": "Clockwork Crossbow",
+    "slug": "clockwork-crossbow",
+    "category": "Armas Simples a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "100 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "8 lb.",
+    "properties": [
+      "munición (60/240)",
+      "magazine (6)",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Club",
+    "slug": "club",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "1 sp",
+    "damage_dice": "1d4",
+    "damage_type": "contundente",
+    "weight": "2 lb.",
+    "properties": [
+      "ligera"
+    ]
+  },
+  {
+    "name": "Club Shield",
+    "slug": "club-shield",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "25 gp",
+    "damage_dice": "1d4",
+    "damage_type": "contundente",
+    "weight": "2 lb.",
+    "properties": [
+      "ligera",
+      "special"
+    ]
+  },
+  {
+    "name": "Crossbow, hand",
+    "slug": "crossbow-hand",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "75 gp",
+    "damage_dice": "1d6",
+    "damage_type": "perforante",
+    "weight": "3 lb.",
+    "properties": [
+      "munición (range 30/120)",
+      "ligera",
+      "loading"
+    ]
+  },
+  {
+    "name": "Crossbow, heavy",
+    "slug": "crossbow-heavy",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "50 gp",
+    "damage_dice": "1d10",
+    "damage_type": "perforante",
+    "weight": "18 lb.",
+    "properties": [
+      "munición (range 100/400)",
+      "pesada",
+      "loading",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Crossbow, light",
+    "slug": "crossbow-light",
+    "category": "Armas Simples a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "25 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "5 lb.",
+    "properties": [
+      "munición (range 80/320)",
+      "loading",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Dagger",
+    "slug": "dagger",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "2 gp",
+    "damage_dice": "1d4",
+    "damage_type": "perforante",
+    "weight": "1 lb.",
+    "properties": [
+      "sutil",
+      "ligera",
+      "arrojadiza (range 20/60)"
+    ]
+  },
+  {
+    "name": "Dart",
+    "slug": "dart",
+    "category": "Armas Simples a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "5 cp",
+    "damage_dice": "1d4",
+    "damage_type": "perforante",
+    "weight": "1/4 lb.",
+    "properties": [
+      "sutil",
+      "arrojadiza (range 20/60)"
+    ]
+  },
+  {
+    "name": "Double Axe",
+    "slug": "double-axe",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "50 gp",
+    "damage_dice": "1d8",
+    "damage_type": "cortante",
+    "weight": "10 lb.",
+    "properties": [
+      "doble cabeza (1d6)",
+      "pesada",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Dwarven Arquebus",
+    "slug": "dwarven-arquebus",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "100 gp",
+    "damage_dice": "2d6",
+    "damage_type": "perforante",
+    "weight": "20 lb.",
+    "properties": [
+      "munición (range 25/100)",
+      "gunpowder",
+      "pesada",
+      "loading",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Dwarven Axe",
+    "slug": "dwarven-axe",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "15 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "6 lb.",
+    "properties": [
+      "special",
+      "versátil (1d10)"
+    ]
+  },
+  {
+    "name": "Dwarven Revolving Musket",
+    "slug": "dwarven-revolving-musket",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "200 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "12 lb.",
+    "properties": [
+      "munición (range 80/320)",
+      "gunpowder",
+      "magazine (8)",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Elven Dueling Blade",
+    "slug": "elven-dueling-blade",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "50 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "4 lb.",
+    "properties": [
+      "sutil",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Flail",
+    "slug": "flail",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "10 gp",
+    "damage_dice": "1d8",
+    "damage_type": "contundente",
+    "weight": "2 lb.",
+    "properties": []
+  },
+  {
+    "name": "Glaive",
+    "slug": "glaive",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "20 gp",
+    "damage_dice": "1d10",
+    "damage_type": "cortante",
+    "weight": "6 lb.",
+    "properties": [
+      "pesada",
+      "alcance",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Granite Fist",
+    "slug": "granite-fist",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "25 gp",
+    "damage_dice": "1d4",
+    "damage_type": "contundente",
+    "weight": "5 lb.",
+    "properties": [
+      ""
+    ]
+  },
+  {
+    "name": "Greataxe",
+    "slug": "greataxe",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "30 gp",
+    "damage_dice": "1d12",
+    "damage_type": "cortante",
+    "weight": "7 lb.",
+    "properties": [
+      "pesada",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Greatclub",
+    "slug": "greatclub",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "2 sp",
+    "damage_dice": "1d8",
+    "damage_type": "contundente",
+    "weight": "10 lb.",
+    "properties": [
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Greatsword",
+    "slug": "greatsword",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "50 gp",
+    "damage_dice": "2d6",
+    "damage_type": "cortante",
+    "weight": "6 lb.",
+    "properties": [
+      "pesada",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Halberd",
+    "slug": "halberd",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "20 gp",
+    "damage_dice": "1d10",
+    "damage_type": "cortante",
+    "weight": "6 lb.",
+    "properties": [
+      "pesada",
+      "alcance",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Hand Trebuchet",
+    "slug": "hand-trebuchet",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "4 gp",
+    "damage_dice": "",
+    "damage_type": "",
+    "weight": "3 lb.",
+    "properties": [
+      "munición (range 60/240)",
+      "special"
+    ]
+  },
+  {
+    "name": "Handaxe",
+    "slug": "handaxe",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "5 gp",
+    "damage_dice": "1d6",
+    "damage_type": "cortante",
+    "weight": "2 lb.",
+    "properties": [
+      "ligera",
+      "arrojadiza (range 20/60)"
+    ]
+  },
+  {
+    "name": "Javelin",
+    "slug": "javelin",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "5 sp",
+    "damage_dice": "1d6",
+    "damage_type": "perforante",
+    "weight": "2 lb.",
+    "properties": [
+      "arrojadiza (range 30/120)"
+    ]
+  },
+  {
+    "name": "Joining Dirks",
+    "slug": "joining-dirks",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "50 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "2 lb.",
+    "properties": [
+      "sutil",
+      "ligera",
+      "special"
+    ]
+  },
+  {
+    "name": "Khopesh",
+    "slug": "khopesh",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "25 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "4 lb.",
+    "properties": [
+      "versátil (1d8)"
+    ]
+  },
+  {
+    "name": "Lance",
+    "slug": "lance",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "10 gp",
+    "damage_dice": "1d12",
+    "damage_type": "perforante",
+    "weight": "6 lb.",
+    "properties": [
+      "alcance",
+      "special"
+    ]
+  },
+  {
+    "name": "Light hammer",
+    "slug": "light-hammer",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "2 gp",
+    "damage_dice": "1d4",
+    "damage_type": "contundente",
+    "weight": "2 lb.",
+    "properties": [
+      "ligera",
+      "arrojadiza (range 20/60)"
+    ]
+  },
+  {
+    "name": "Light Pick",
+    "slug": "light-pick",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "3 gp",
+    "damage_dice": "1d4",
+    "damage_type": "perforante",
+    "weight": "2 lb.",
+    "properties": [
+      "ligera",
+      "arrojadiza (20/60)",
+      ""
+    ]
+  },
+  {
+    "name": "Longbow",
+    "slug": "longbow",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "50 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "2 lb.",
+    "properties": [
+      "munición (range 150/600)",
+      "pesada",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Longsword",
+    "slug": "longsword",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "15 gp",
+    "damage_dice": "1d8",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "versátil (1d10)"
+    ]
+  },
+  {
+    "name": "Mace",
+    "slug": "mace",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "5 gp",
+    "damage_dice": "1d6",
+    "damage_type": "contundente",
+    "weight": "4 lb.",
+    "properties": []
+  },
+  {
+    "name": "Maul",
+    "slug": "maul",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "10 gp",
+    "damage_dice": "2d6",
+    "damage_type": "contundente",
+    "weight": "10 lb.",
+    "properties": [
+      "pesada",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Morningstar",
+    "slug": "morningstar",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "15 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "4 lb.",
+    "properties": null
+  },
+  {
+    "name": "Musket",
+    "slug": "musket",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "50 gp",
+    "damage_dice": "1d10",
+    "damage_type": "perforante",
+    "weight": "10 lb.",
+    "properties": [
+      "munición (range 80/320)",
+      "gunpowder",
+      "loading",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Net",
+    "slug": "net",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "1 gp",
+    "damage_dice": "0",
+    "damage_type": "",
+    "weight": "3 lb.",
+    "properties": [
+      "special",
+      "arrojadiza (range 5/15)"
+    ]
+  },
+  {
+    "name": "Pike",
+    "slug": "pike",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "5 gp",
+    "damage_dice": "1d10",
+    "damage_type": "perforante",
+    "weight": "18 lb.",
+    "properties": [
+      "pesada",
+      "alcance",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Pistol",
+    "slug": "pistol",
+    "category": "Armas Simples a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "25 gp",
+    "damage_dice": "1d6",
+    "damage_type": "perforante",
+    "weight": "5 lb.",
+    "properties": [
+      "munición (range 30/120)",
+      "gunpowder",
+      "ligera",
+      "loading"
+    ]
+  },
+  {
+    "name": "Pneumatic War Pick",
+    "slug": "pneumatic-war-pick",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "50 gp",
+    "damage_dice": "1d4",
+    "damage_type": "perforante",
+    "weight": "4 lb.",
+    "properties": [
+      "special"
+    ]
+  },
+  {
+    "name": "Quarterstaff",
+    "slug": "quarterstaff",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "2 sp",
+    "damage_dice": "1d6",
+    "damage_type": "contundente",
+    "weight": "4 lb.",
+    "properties": [
+      "versátil (1d8)"
+    ]
+  },
+  {
+    "name": "Rapier",
+    "slug": "rapier",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "25 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "2 lb.",
+    "properties": [
+      "sutil"
+    ]
+  },
+  {
+    "name": "Scimitar",
+    "slug": "scimitar",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "25 gp",
+    "damage_dice": "1d6",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "sutil",
+      "ligera"
+    ]
+  },
+  {
+    "name": "Shashka",
+    "slug": "shashka",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "20 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "4 lb.",
+    "properties": [
+      "special",
+      "versátil (1d10)"
+    ]
+  },
+  {
+    "name": "Shortbow",
+    "slug": "shortbow",
+    "category": "Armas Simples a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "25 gp",
+    "damage_dice": "1d6",
+    "damage_type": "perforante",
+    "weight": "2 lb.",
+    "properties": [
+      "munición (range 80/320)",
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Shortsword",
+    "slug": "shortsword",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "10 gp",
+    "damage_dice": "1d6",
+    "damage_type": "perforante",
+    "weight": "2 lb.",
+    "properties": [
+      "sutil",
+      "ligera"
+    ]
+  },
+  {
+    "name": "Shotel",
+    "slug": "shotel",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "50 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "sutil",
+      "special"
+    ]
+  },
+  {
+    "name": "Sickle",
+    "slug": "sickle",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "1 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "2 lb.",
+    "properties": [
+      "ligera"
+    ]
+  },
+  {
+    "name": "Sling",
+    "slug": "sling",
+    "category": "Armas Simples a Distancia",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "1 sp",
+    "damage_dice": "1d4",
+    "damage_type": "contundente",
+    "weight": "0 lb.",
+    "properties": [
+      "munición (range 30/120)"
+    ]
+  },
+  {
+    "name": "Spear",
+    "slug": "spear",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "1 gp",
+    "damage_dice": "1d6",
+    "damage_type": "perforante",
+    "weight": "3 lb.",
+    "properties": [
+      "arrojadiza (range 20/60)",
+      "versátil (1d8)"
+    ]
+  },
+  {
+    "name": "Stone Rake",
+    "slug": "stone-rake",
+    "category": "Armas Simples Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "5 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "5 lb.",
+    "properties": [
+      "a dos manos"
+    ]
+  },
+  {
+    "name": "Temple Sword",
+    "slug": "temple-sword",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "35 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "sutil",
+      "ligera"
+    ]
+  },
+  {
+    "name": "Trident",
+    "slug": "trident",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "5 gp",
+    "damage_dice": "1d6",
+    "damage_type": "perforante",
+    "weight": "4 lb.",
+    "properties": [
+      "arrojadiza (range 20/60)",
+      "versátil (1d8)"
+    ]
+  },
+  {
+    "name": "War pick",
+    "slug": "war-pick",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "5 gp",
+    "damage_dice": "1d8",
+    "damage_type": "perforante",
+    "weight": "2 lb.",
+    "properties": []
+  },
+  {
+    "name": "Warhammer",
+    "slug": "warhammer",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "15 gp",
+    "damage_dice": "1d8",
+    "damage_type": "contundente",
+    "weight": "2 lb.",
+    "properties": [
+      "versátil (1d10)"
+    ]
+  },
+  {
+    "name": "Whip",
+    "slug": "whip",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "wotc-srd",
+    "document__title": "5e Core Rules",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "http://dnd.wizards.com/articles/features/systems-reference-document-srd",
+    "cost": "2 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "sutil",
+      "alcance"
+    ]
+  },
+  {
+    "name": "Whipsaw",
+    "slug": "whipsaw",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "15 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "2 lb.",
+    "properties": [
+      "sutil"
+    ]
+  },
+  {
+    "name": "Wormsilk Net",
+    "slug": "wormsilk-net",
+    "category": "Armas Marciales a Distancia",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "60 gp",
+    "damage_dice": "",
+    "damage_type": "",
+    "weight": "2 lb.",
+    "properties": [
+      "special",
+      "arrojadiza (range 10/20)"
+    ]
+  },
+  {
+    "name": "Wormsilk Whip",
+    "slug": "wormsilk-whip",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "50 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "3 lb.",
+    "properties": [
+      "sutil",
+      "alcance"
+    ]
+  },
+  {
+    "name": "Wrist Knife",
+    "slug": "wrist-knife",
+    "category": "Armas Marciales Cuerpo a Cuerpo",
+    "document__slug": "toh",
+    "document__title": "Tome of Heroes",
+    "document__license_url": "http://open5e.com/legal",
+    "document__url": "https://koboldpress.com/kpstore/product/tome-of-heroes-for-5th-edition/",
+    "cost": "4 gp",
+    "damage_dice": "1d4",
+    "damage_type": "cortante",
+    "weight": "1 lb.",
+    "properties": [
+      "sutil",
+      "ligera"
+    ]
+  }
+]
