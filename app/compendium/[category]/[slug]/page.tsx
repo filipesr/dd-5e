@@ -20,6 +20,7 @@ import {
   MonsterMetaRows,
   ItemMetaRows,
 } from "./MetaTranslator";
+import { LocaleContent } from "./LocaleContent";
 
 const VALID_CATEGORIES = [
   "races",
@@ -224,6 +225,14 @@ export default function SlugPage({ params }: PageProps) {
     const spell = getSpellBySlug(slug);
     if (!spell) notFound();
 
+    const spellPt = getSpellBySlug(slug, "pt-BR");
+    const spellEs = getSpellBySlug(slug, "es");
+    const localeData = {
+      en: { desc: spell.desc, higher_level: spell.higher_level },
+      "pt-BR": { desc: spellPt?.desc || spell.desc, higher_level: spellPt?.higher_level || spell.higher_level },
+      es: { desc: spellEs?.desc || spell.desc, higher_level: spellEs?.higher_level || spell.higher_level },
+    };
+
     return (
       <div>
         <Link
@@ -244,16 +253,7 @@ export default function SlugPage({ params }: PageProps) {
             concentration={spell.concentration}
             dnd_class={spell.dnd_class}
           />
-          <div>
-            <h3 className="font-cinzel font-bold text-ink mb-2">Descrição</h3>
-            <p className="text-sm text-ink/80 leading-relaxed whitespace-pre-wrap">{spell.desc}</p>
-          </div>
-          {spell.higher_level && (
-            <div>
-              <h3 className="font-cinzel font-bold text-ink mb-2">Em Níveis Superiores</h3>
-              <p className="text-sm text-ink/80 leading-relaxed">{spell.higher_level}</p>
-            </div>
-          )}
+          <LocaleContent localeData={localeData} category="spells" />
         </Card>
       </div>
     );
@@ -263,6 +263,14 @@ export default function SlugPage({ params }: PageProps) {
   if (cat === "monsters") {
     const monster = getMonsterBySlug(slug);
     if (!monster) notFound();
+
+    const monPt = getMonsterBySlug(slug, "pt-BR");
+    const monEs = getMonsterBySlug(slug, "es");
+    const localeData = {
+      en: { desc: monster.desc, actions: monster.actions, special_abilities: monster.special_abilities, reactions: monster.reactions, legendary_actions: monster.legendary_actions },
+      "pt-BR": { desc: monPt?.desc || monster.desc, actions: monPt?.actions || monster.actions, special_abilities: monPt?.special_abilities || monster.special_abilities, reactions: monPt?.reactions || monster.reactions, legendary_actions: monPt?.legendary_actions || monster.legendary_actions },
+      es: { desc: monEs?.desc || monster.desc, actions: monEs?.actions || monster.actions, special_abilities: monEs?.special_abilities || monster.special_abilities, reactions: monEs?.reactions || monster.reactions, legendary_actions: monEs?.legendary_actions || monster.legendary_actions },
+    };
 
     return (
       <div>
@@ -276,9 +284,9 @@ export default function SlugPage({ params }: PageProps) {
           <SectionHeader title={monster.name} />
           <MonsterMetaRows type={monster.type} size={monster.size} />
           <div className="space-y-2">
-            <DetailRow label="Classe de Armadura" value={monster.armor_class} />
-            <DetailRow label="Pontos de Vida" value={monster.hit_points} />
-            <DetailRow label="Índice de Desafio" value={monster.challenge_rating} />
+            <DetailRow label="AC" value={monster.armor_class} />
+            <DetailRow label="HP" value={monster.hit_points} />
+            <DetailRow label="CR" value={monster.challenge_rating} />
           </div>
           <div>
             <h3 className="font-cinzel font-bold text-ink mb-3">Atributos</h3>
@@ -291,19 +299,7 @@ export default function SlugPage({ params }: PageProps) {
               <AbilityScore label="CAR" value={monster.charisma} />
             </div>
           </div>
-          {monster.actions && monster.actions.length > 0 && (
-            <div>
-              <h3 className="font-cinzel font-bold text-ink mb-3">Ações</h3>
-              <div className="space-y-3">
-                {monster.actions.map((action, i) => (
-                  <div key={i} className="border-l-2 border-gold/30 pl-3">
-                    <p className="text-sm font-semibold text-ink">{action.name}</p>
-                    <p className="text-sm text-ink/70 mt-0.5">{action.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <LocaleContent localeData={localeData} category="monsters" />
         </Card>
       </div>
     );
@@ -313,6 +309,14 @@ export default function SlugPage({ params }: PageProps) {
   if (cat === "items") {
     const item = getMagicItemBySlug(slug);
     if (!item) notFound();
+
+    const itemPt = getMagicItemBySlug(slug, "pt-BR");
+    const itemEs = getMagicItemBySlug(slug, "es");
+    const localeData = {
+      en: { desc: item.desc },
+      "pt-BR": { desc: itemPt?.desc || item.desc },
+      es: { desc: itemEs?.desc || item.desc },
+    };
 
     return (
       <div>
@@ -329,10 +333,7 @@ export default function SlugPage({ params }: PageProps) {
             rarity={item.rarity}
             requires_attunement={item.requires_attunement || ""}
           />
-          <div>
-            <h3 className="font-cinzel font-bold text-ink mb-2">Descrição</h3>
-            <p className="text-sm text-ink/80 leading-relaxed whitespace-pre-wrap">{item.desc}</p>
-          </div>
+          <LocaleContent localeData={localeData} category="items" />
         </Card>
       </div>
     );
