@@ -34,6 +34,7 @@ const mockCharacter: Character = {
   deathSaves: { successes: 0, failures: 0 },
   inventory: [],
   coins: { cp: 0, sp: 50, ep: 0, gp: 100, pp: 0 },
+  inspiration: false,
   traits: { personality: "Brave", ideals: "Honor", bonds: "My clan", flaws: "Stubborn" },
   notes: { appearance: "Stocky dwarf", backstory: "Veteran soldier", allies: "", freeNotes: "" },
   createdAt: "2024-01-01T00:00:00.000Z",

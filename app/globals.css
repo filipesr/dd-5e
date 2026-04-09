@@ -23,11 +23,19 @@
 
 @layer components {
   .card-medieval {
-    @apply bg-parchment border border-gold rounded-lg shadow-tome text-ink;
+    @apply bg-parchment border border-gold rounded-lg shadow-tome text-ink transition-all duration-200;
+  }
+
+  .card-medieval:hover {
+    transform: translateY(-1px);
   }
 
   .card-medieval-dark {
-    @apply bg-ink-light border border-gold/30 rounded-lg shadow-tome text-parchment-light;
+    @apply bg-ink-light border border-gold/30 rounded-lg shadow-tome text-parchment-light transition-all duration-200;
+  }
+
+  .card-medieval-dark:hover {
+    transform: translateY(-1px);
   }
 
   .btn-primary {

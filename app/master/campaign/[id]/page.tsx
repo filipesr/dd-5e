@@ -12,7 +12,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import { NpcCard } from "@/components/master/NpcCard";
 import { EncounterPlanner } from "@/components/master/EncounterPlanner";
-import { RichTextEditor } from "@/components/master/RichTextEditor";
+import dynamic from "next/dynamic";
+const RichTextEditor = dynamic(() => import("@/components/master/RichTextEditor").then(m => ({ default: m.RichTextEditor })), { ssr: false, loading: () => <p className="text-parchment-light/30 p-4">Carregando editor...</p> });
 import { TreasureGenerator } from "@/components/master/TreasureGenerator";
 import { TreasureInventory } from "@/components/master/TreasureInventory";
 import { MapUploader } from "@/components/master/MapUploader";
@@ -21,6 +22,7 @@ import { PinEditor } from "@/components/master/PinEditor";
 import { MapExporter } from "@/components/master/MapExporter";
 import { ProgressClockManager } from "@/components/master/ProgressClockManager";
 import { RandomEventGenerator } from "@/components/master/RandomEventGenerator";
+import { SessionTimeline } from "@/components/master/SessionTimeline";
 import { QuickNpcGenerator } from "@/components/master/QuickNpcGenerator";
 import { useCampaignStore } from "@/store/campaignStore";
 import { ALIGNMENTS, RACES } from "@/types/dnd5e";
@@ -71,7 +73,7 @@ const DIFFICULTY_LABELS: Record<string, string> = {
 export default function CampaignDetailPage() {
   const params = useParams();
   const campaignId = params.id as string;
-  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateSession, deleteSession, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin, addClock, updateClock, deleteClock } =
+  const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateSession, deleteSession, addSessionEvent, deleteSessionEvent, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin, addClock, updateClock, deleteClock } =
     useCampaignStore();
 
   const campaign = getCampaign(campaignId);
@@ -184,6 +186,7 @@ export default function CampaignDetailPage() {
         date: new Date().toISOString(),
         tags: [],
         notes: "",
+        events: [],
       });
     }
     setSessionTitle("");
@@ -222,7 +225,7 @@ export default function CampaignDetailPage() {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-6 border-b border-gold/20">
+      <div className="flex gap-1 mb-6 border-b border-gold/20 overflow-x-auto">
         {TABS.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
@@ -345,6 +348,13 @@ export default function CampaignDetailPage() {
                         <Trash2 size={14} />
                       </button>
                     </div>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-gold/10">
+                    <SessionTimeline
+                      events={session.events ?? []}
+                      onAddEvent={(event) => addSessionEvent(campaignId, session.id, event)}
+                      onDeleteEvent={(eventId) => deleteSessionEvent(campaignId, session.id, eventId)}
+                    />
                   </div>
                 </Card>
               ))}

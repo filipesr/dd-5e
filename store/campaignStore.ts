@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import type { Campaign, NPC, Encounter, Session, Condition, TreasureRecord, MapData, MapPin, ProgressClock } from "@/types/dnd5e";
+import type { Campaign, NPC, Encounter, Session, SessionEvent, Condition, TreasureRecord, MapData, MapPin, ProgressClock } from "@/types/dnd5e";
 import { generateId } from "@/lib/utils";
 import { getXpMultiplier, getEncounterDifficulty } from "@/lib/dnd5e";
 
@@ -40,6 +40,8 @@ interface CampaignState {
   addSession: (campaignId: string, session: Omit<Session, "id">) => void;
   updateSession: (campaignId: string, sessionId: string, updates: Partial<Session>) => void;
   deleteSession: (campaignId: string, sessionId: string) => void;
+  addSessionEvent: (campaignId: string, sessionId: string, event: Omit<SessionEvent, "id">) => void;
+  deleteSessionEvent: (campaignId: string, sessionId: string, eventId: string) => void;
 
   // Notes
   updateCampaignNotes: (campaignId: string, notes: string) => void;
@@ -254,6 +256,33 @@ export const useCampaignStore = create<CampaignState>()(
           if (campaign) {
             campaign.sessions = campaign.sessions.filter((s) => s.id !== sessionId);
             campaign.updatedAt = new Date().toISOString();
+          }
+        });
+      },
+
+      addSessionEvent: (campaignId, sessionId, eventData) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            const session = campaign.sessions.find((s) => s.id === sessionId);
+            if (session) {
+              if (!session.events) session.events = [];
+              session.events.push({ ...eventData, id: generateId() });
+              campaign.updatedAt = new Date().toISOString();
+            }
+          }
+        });
+      },
+
+      deleteSessionEvent: (campaignId, sessionId, eventId) => {
+        set((state) => {
+          const campaign = state.campaigns.find((c) => c.id === campaignId);
+          if (campaign) {
+            const session = campaign.sessions.find((s) => s.id === sessionId);
+            if (session) {
+              session.events = (session.events ?? []).filter((e) => e.id !== eventId);
+              campaign.updatedAt = new Date().toISOString();
+            }
           }
         });
       },

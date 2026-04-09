@@ -194,6 +194,14 @@ export interface Encounter {
   currentTurnIndex: number;
 }
 
+export interface SessionEvent {
+  id: string;
+  timestamp: string;
+  type: "combat" | "social" | "exploration" | "plot" | "custom";
+  title: string;
+  description: string;
+}
+
 export interface Session {
   id: string;
   date: string;
@@ -201,6 +209,7 @@ export interface Session {
   summary: string;
   tags: string[];
   notes: string;
+  events: SessionEvent[];
 }
 
 export interface TreasureRecord {
