@@ -88,6 +88,7 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 - [x] UI/UX polish: spinners ocultos, alturas padronizadas, headers em ataques/inventario, tabs wrap, treasure tooltips (`4f4e357`)
 
 - [x] Compendio: cache local Open5e + SSG completo (6300+ paginas estaticas, zero API runtime) (`ab6c462`)
+- [x] i18n: PT-BR, EN, ES com ~450 strings cada, seletor de idioma no Navbar, todos os modulos integrados (`c5ab86d`)
 
 ---
 
