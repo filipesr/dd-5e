@@ -87,6 +87,8 @@ Sumario central do projeto. Cada etapa aponta para seu arquivo de spec e plano d
 - [x] Map pins ainda transparentes — opacidade subida de 30% para 90%, icones brancos, glow 12px (`804fc47`)
 - [x] UI/UX polish: spinners ocultos, alturas padronizadas, headers em ataques/inventario, tabs wrap, treasure tooltips (`4f4e357`)
 
+- [x] Compendio: cache local Open5e + SSG completo (6300+ paginas estaticas, zero API runtime) (`ab6c462`)
+
 ---
 
 ## Fase 2 — Prioridade Alta (completa)
