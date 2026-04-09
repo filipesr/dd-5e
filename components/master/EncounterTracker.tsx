@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import type { Encounter, Condition } from "@/types/dnd5e";
 import { ChevronRight, Swords, SkipForward } from "lucide-react";
 import { rollNotation } from "@/lib/dice";
+import { useI18n } from "@/lib/i18n";
 
 interface TrackerEntry {
   id: string;
@@ -23,6 +24,7 @@ interface EncounterTrackerProps {
 }
 
 export function EncounterTracker({ encounter, onUpdate }: EncounterTrackerProps) {
+  const { t } = useI18n();
   const [damageInput, setDamageInput] = useState<Record<string, string>>({});
 
   const entries: TrackerEntry[] = [
@@ -53,8 +55,8 @@ export function EncounterTracker({ encounter, onUpdate }: EncounterTrackerProps)
   return (
     <div className="space-y-4">
       <div className="flex gap-2">
-        <Button onClick={rollAllInitiatives} variant="secondary" size="sm"><Swords size={14} className="mr-1" /> Rolar Iniciativas</Button>
-        {encounter.status === "active" && <Button onClick={nextTurn} size="sm"><SkipForward size={14} className="mr-1" /> Próximo Turno</Button>}
+        <Button onClick={rollAllInitiatives} variant="secondary" size="sm"><Swords size={14} className="mr-1" /> {t.master.encounter.rollInitiatives}</Button>
+        {encounter.status === "active" && <Button onClick={nextTurn} size="sm"><SkipForward size={14} className="mr-1" /> {t.master.encounter.nextTurn}</Button>}
       </div>
       <div className="space-y-1">
         {entries.map((entry) => {

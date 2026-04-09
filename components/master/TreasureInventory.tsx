@@ -5,14 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import type { TreasureRecord, CoinType } from "@/types/dnd5e";
-
-const COIN_LABELS: Record<CoinType, string> = {
-  cp: "PC",
-  sp: "PP",
-  ep: "PE",
-  gp: "PO",
-  pp: "PL",
-};
+import { useI18n } from "@/lib/i18n";
 
 const RARITY_COLORS: Record<string, "gold" | "green" | "blue" | "purple" | "blood"> = {
   Common: "gold",
@@ -28,19 +21,21 @@ interface TreasureInventoryProps {
 }
 
 export function TreasureInventory({ treasures, onDelete }: TreasureInventoryProps) {
+  const { t } = useI18n();
+
   if (treasures.length === 0) {
     return (
       <p className="text-center text-parchment-light/40 py-12">
-        Nenhum tesouro registrado ainda.
+        {t.master.treasure.none}
       </p>
     );
   }
 
   // Accumulated totals across all records
   const totals: Record<CoinType, number> = { cp: 0, sp: 0, ep: 0, gp: 0, pp: 0 };
-  for (const t of treasures) {
-    for (const coin of Object.keys(t.coins) as CoinType[]) {
-      totals[coin] += t.coins[coin] ?? 0;
+  for (const tr of treasures) {
+    for (const coin of Object.keys(tr.coins) as CoinType[]) {
+      totals[coin] += tr.coins[coin] ?? 0;
     }
   }
 
@@ -50,7 +45,7 @@ export function TreasureInventory({ treasures, onDelete }: TreasureInventoryProp
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Gem size={16} className="text-gold" />
-        <h3 className="font-cinzel text-gold text-sm">Inventário de Tesouros</h3>
+        <h3 className="font-cinzel text-gold text-sm">{t.master.treasure.inventory}</h3>
       </div>
 
       <div className="space-y-3">
@@ -84,7 +79,7 @@ export function TreasureInventory({ treasures, onDelete }: TreasureInventoryProp
                       {coinEntries.map(([coin, amount]) => (
                         <span key={coin} className="text-xs text-parchment-light/70">
                           <span className="text-gold">{amount.toLocaleString("pt-BR")}</span>{" "}
-                          {COIN_LABELS[coin]}
+                          {t.coins[coin]}
                         </span>
                       ))}
                     </div>
@@ -124,14 +119,14 @@ export function TreasureInventory({ treasures, onDelete }: TreasureInventoryProp
 
       {hasTotals && (
         <Card className="p-4">
-          <p className="text-xs text-parchment-light/50 font-cinzel mb-2">Total Acumulado</p>
+          <p className="text-xs text-parchment-light/50 font-cinzel mb-2">{t.master.treasure.totalCoins}</p>
           <div className="flex flex-wrap gap-x-4 gap-y-1">
             {(Object.entries(totals) as [CoinType, number][])
               .filter(([, v]) => v > 0)
               .map(([coin, amount]) => (
                 <span key={coin} className="text-sm text-parchment-light">
                   <span className="text-gold font-cinzel">{amount.toLocaleString("pt-BR")}</span>{" "}
-                  {COIN_LABELS[coin]}
+                  {t.coins[coin]}
                 </span>
               ))}
           </div>

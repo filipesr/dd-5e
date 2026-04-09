@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { generateLootByCR, getRandomMagicItem } from "@/lib/lootTables";
 import type { TreasureRecord, CoinType } from "@/types/dnd5e";
+import { useI18n } from "@/lib/i18n";
 
 const CR_OPTIONS = [
   { value: "0", label: "CR 0–4" },
@@ -32,14 +33,6 @@ const RARITY_COLORS: Record<string, "gold" | "green" | "blue" | "purple" | "bloo
   Legendary: "blood",
 };
 
-const COIN_LABELS: Record<CoinType, string> = {
-  cp: "PC (Cobre)",
-  sp: "PP (Prata)",
-  ep: "PE (Electrum)",
-  gp: "PO (Ouro)",
-  pp: "PL (Platina)",
-};
-
 interface GeneratedLoot {
   coins: Record<CoinType, number>;
   items: { name: string; rarity: string; description: string }[];
@@ -51,6 +44,7 @@ interface TreasureGeneratorProps {
 }
 
 export function TreasureGenerator({ campaignId: _campaignId, onAdd }: TreasureGeneratorProps) {
+  const { t } = useI18n();
   const [crValue, setCrValue] = useState("0");
   const [includeMagicItem, setIncludeMagicItem] = useState(false);
   const [rarity, setRarity] = useState("Common");
@@ -86,18 +80,18 @@ export function TreasureGenerator({ campaignId: _campaignId, onAdd }: TreasureGe
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Coins size={16} className="text-gold" />
-        <h3 className="font-cinzel text-gold text-sm">Gerar Tesouro</h3>
+        <h3 className="font-cinzel text-gold text-sm">{t.master.treasure.generate}</h3>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <Select
-          label="Nível de Desafio (CR)"
+          label={t.master.treasure.crRange}
           options={CR_OPTIONS}
           value={crValue}
           onChange={(e) => setCrValue(e.target.value)}
         />
         <div className="flex flex-col gap-1">
-          <label className="text-sm text-parchment-light/70 font-cinzel">Item Mágico</label>
+          <label className="text-sm text-parchment-light/70 font-cinzel">{t.master.treasure.includeMagic}</label>
           <div className="flex items-center gap-3 pt-2">
             <label className="flex items-center gap-2 text-sm text-parchment-light cursor-pointer">
               <input
@@ -106,7 +100,7 @@ export function TreasureGenerator({ campaignId: _campaignId, onAdd }: TreasureGe
                 onChange={(e) => setIncludeMagicItem(e.target.checked)}
                 className="accent-gold w-4 h-4"
               />
-              Incluir item mágico
+              {t.master.treasure.includeMagic}
             </label>
           </div>
         </div>
@@ -114,7 +108,7 @@ export function TreasureGenerator({ campaignId: _campaignId, onAdd }: TreasureGe
 
       {includeMagicItem && (
         <Select
-          label="Raridade do Item"
+          label={t.master.treasure.rarity}
           options={RARITY_OPTIONS}
           value={rarity}
           onChange={(e) => setRarity(e.target.value)}
@@ -123,7 +117,7 @@ export function TreasureGenerator({ campaignId: _campaignId, onAdd }: TreasureGe
 
       <Button onClick={handleGenerate} size="sm">
         <Sparkles size={14} className="mr-2" />
-        Gerar Tesouro
+        {t.master.treasure.generate}
       </Button>
 
       {loot && (
@@ -139,7 +133,7 @@ export function TreasureGenerator({ campaignId: _campaignId, onAdd }: TreasureGe
                   .map(([coin, amount]) => (
                     <span key={coin} className="text-sm text-parchment-light">
                       <span className="text-gold font-cinzel">{amount.toLocaleString("pt-BR")}</span>{" "}
-                      {COIN_LABELS[coin]}
+                      {t.coins[coin]}
                     </span>
                   ))}
               </div>
@@ -168,19 +162,19 @@ export function TreasureGenerator({ campaignId: _campaignId, onAdd }: TreasureGe
 
           <div className="border-t border-gold/20 pt-4 space-y-3">
             <Input
-              label="Descrição"
+              label={t.common.description}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Ex: Tesouro do dragão vermelho"
             />
             <Input
-              label="Dado para"
+              label={t.master.treasure.givenTo}
               value={givenTo}
               onChange={(e) => setGivenTo(e.target.value)}
               placeholder="Ex: Grupo, Aria, Thorin..."
             />
             <Button size="sm" variant="secondary" onClick={handleAddToInventory}>
-              Adicionar ao Inventário
+              {t.master.treasure.addToInventory}
             </Button>
           </div>
         </Card>

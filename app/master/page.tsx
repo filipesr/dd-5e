@@ -7,8 +7,10 @@ import { Modal } from "@/components/ui/Modal";
 import { Input, Textarea } from "@/components/ui/Input";
 import { CampaignCard } from "@/components/master/CampaignCard";
 import { useCampaignStore } from "@/store/campaignStore";
+import { useI18n } from "@/lib/i18n";
 
 export default function MasterPage() {
+  const { t } = useI18n();
   const { campaigns, createCampaign } = useCampaignStore();
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -27,16 +29,16 @@ export default function MasterPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
-        <SectionHeader title="Área do Mestre" className="flex-1" />
+        <SectionHeader title={t.master.title} className="flex-1" />
         <Button onClick={() => setShowModal(true)} className="ml-4 whitespace-nowrap">
-          Nova Campanha
+          {t.master.newCampaign}
         </Button>
       </div>
 
       {campaigns.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-24 text-parchment-light/40">
-          <p className="font-cinzel text-lg mb-2">Nenhuma campanha ainda</p>
-          <p className="text-sm">Crie sua primeira campanha para começar.</p>
+          <p className="font-cinzel text-lg mb-2">{t.master.noCampaigns}</p>
+          <p className="text-sm">{t.master.noCampaignsDesc}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -46,22 +48,22 @@ export default function MasterPage() {
         </div>
       )}
 
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Nova Campanha">
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)} title={t.master.newCampaign}>
         <div className="space-y-4">
           <Input
-            label="Nome da Campanha"
+            label={t.master.campaignName}
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Ex: A Maldição de Strahd"
           />
           <Input
-            label="Mundo / Cenário"
+            label={t.master.world}
             value={world}
             onChange={(e) => setWorld(e.target.value)}
             placeholder="Ex: Barovia, Forgotten Realms"
           />
           <Textarea
-            label="Descrição"
+            label={t.common.description}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Uma breve descrição da campanha..."
@@ -69,10 +71,10 @@ export default function MasterPage() {
           />
           <div className="flex justify-end gap-2 pt-2">
             <Button variant="ghost" onClick={() => setShowModal(false)}>
-              Cancelar
+              {t.common.cancel}
             </Button>
             <Button onClick={handleCreate} disabled={!name.trim()}>
-              Criar
+              {t.common.create}
             </Button>
           </div>
         </div>

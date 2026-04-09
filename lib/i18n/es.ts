@@ -222,8 +222,8 @@ export const es: Dictionary = {
       spells: { name: "Hechizos", desc: "Hechizos de todas las escuelas de magia" },
       items: { name: "Objetos Magicos", desc: "Armas, armaduras y objetos magicos" },
       monsters: { name: "Bestias y Monstruos", desc: "Criaturas y adversarios del manual" },
-      backgrounds: { name: "Trasfondos", desc: "Trasfondos para el trasfondo del personaje" },
-      feats: { name: "Dotes", desc: "Dotes opcionales para personalizar tu personaje" },
+      conditions: { name: "Condiciones", desc: "Condiciones de estado y sus efectos en el juego" },
+      rules: { name: "Reglas Rapidas", desc: "Referencia rapida de combate y exploracion" },
     },
 
     detail: {

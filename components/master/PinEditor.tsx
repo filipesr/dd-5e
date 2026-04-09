@@ -7,20 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Input, Textarea, Select } from "@/components/ui/Input";
 import { PIN_TYPES } from "@/types/dnd5e";
 import type { MapPin, PinType } from "@/types/dnd5e";
-
-const PIN_TYPE_LABELS: Record<PinType, string> = {
-  city: "Cidade",
-  dungeon: "Masmorra",
-  encounter: "Encontro",
-  treasure: "Tesouro",
-  npc: "NPC",
-  poi: "Ponto de Interesse",
-};
-
-const PIN_TYPE_OPTIONS = PIN_TYPES.map((t) => ({
-  value: t,
-  label: PIN_TYPE_LABELS[t],
-}));
+import { useI18n } from "@/lib/i18n";
 
 interface PinEditorProps {
   isOpen: boolean;
@@ -32,10 +19,16 @@ interface PinEditorProps {
 }
 
 export function PinEditor({ isOpen, onClose, pin, position, onSave, onDelete }: PinEditorProps) {
+  const { t } = useI18n();
   const [name, setName] = useState("");
   const [type, setType] = useState<PinType>("poi");
   const [description, setDescription] = useState("");
   const [revealed, setRevealed] = useState(true);
+
+  const PIN_TYPE_OPTIONS = PIN_TYPES.map((pt) => ({
+    value: pt,
+    label: t.master.map.pinTypes[pt],
+  }));
 
   // Sync form when pin or modal changes
   useEffect(() => {
@@ -77,13 +70,13 @@ export function PinEditor({ isOpen, onClose, pin, position, onSave, onDelete }: 
   };
 
   const isEditing = !!pin;
-  const title = isEditing ? "Editar Pino" : "Novo Pino";
+  const title = isEditing ? t.master.map.editPin : t.master.map.newPin;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title}>
       <div className="space-y-4">
         <Input
-          label="Nome"
+          label={t.common.name}
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Ex: Aldeia de Phandalin, Caverna do Dragão..."
@@ -91,14 +84,14 @@ export function PinEditor({ isOpen, onClose, pin, position, onSave, onDelete }: 
         />
 
         <Select
-          label="Tipo"
+          label={t.common.type}
           options={PIN_TYPE_OPTIONS}
           value={type}
           onChange={(e) => setType(e.target.value as PinType)}
         />
 
         <Textarea
-          label="Descrição"
+          label={t.common.description}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Detalhes sobre este local..."
@@ -113,7 +106,7 @@ export function PinEditor({ isOpen, onClose, pin, position, onSave, onDelete }: 
             className="w-4 h-4 accent-gold cursor-pointer"
           />
           <span className="text-sm text-parchment-light/70 font-cinzel group-hover:text-parchment-light transition-colors">
-            Revelado para jogadores
+            {t.master.map.revealed}
           </span>
         </label>
 
@@ -126,17 +119,17 @@ export function PinEditor({ isOpen, onClose, pin, position, onSave, onDelete }: 
         <div className="flex items-center justify-between pt-2 border-t border-gold/20">
           {isEditing ? (
             <Button variant="danger" size="sm" onClick={handleDelete}>
-              <Trash2 size={14} className="mr-1" /> Excluir
+              <Trash2 size={14} className="mr-1" /> {t.common.delete}
             </Button>
           ) : (
             <div />
           )}
           <div className="flex gap-2">
             <Button variant="ghost" onClick={onClose}>
-              Cancelar
+              {t.common.cancel}
             </Button>
             <Button onClick={handleSave} disabled={!name.trim()}>
-              {isEditing ? "Salvar" : "Adicionar"}
+              {isEditing ? t.common.save : t.common.add}
             </Button>
           </div>
         </div>

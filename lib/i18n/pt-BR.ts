@@ -208,6 +208,8 @@ export const ptBR: Dictionary = {
       spells: { name: "Magias", desc: "Lista completa de magias" },
       monsters: { name: "Monstros", desc: "Bestiario e criaturas" },
       items: { name: "Itens", desc: "Equipamentos e itens magicos" },
+      conditions: { name: "Condicoes", desc: "Condicoes de status e seus efeitos" },
+      rules: { name: "Regras Rapidas", desc: "Referencia rapida de combate e exploracao" },
     },
     detail: {
       speed: "Deslocamento",

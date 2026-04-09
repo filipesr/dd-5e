@@ -4,6 +4,7 @@ import { forwardRef, useRef } from "react";
 import { Building2, Castle, Swords, Gem, User, MapPin, Eye, EyeOff } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import type { MapData, MapPin as MapPinType, PinType } from "@/types/dnd5e";
+import { useI18n } from "@/lib/i18n";
 
 const PIN_ICONS: Record<PinType, React.ElementType> = {
   city: Building2,
@@ -21,15 +22,6 @@ const PIN_COLORS: Record<PinType, string> = {
   treasure: "text-white bg-yellow-600/90 border-yellow-300 shadow-[0_0_12px_rgba(253,224,71,0.7)]",
   npc: "text-white bg-green-600/90 border-green-300 shadow-[0_0_12px_rgba(134,239,172,0.7)]",
   poi: "text-white bg-cyan-600/90 border-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.7)]",
-};
-
-const PIN_TYPE_LABELS: Record<PinType, string> = {
-  city: "Cidade",
-  dungeon: "Masmorra",
-  encounter: "Encontro",
-  treasure: "Tesouro",
-  npc: "NPC",
-  poi: "Ponto de Interesse",
 };
 
 const PIN_BADGE_COLORS: Record<PinType, "blue" | "purple" | "blood" | "gold" | "green"> = {
@@ -50,6 +42,7 @@ interface MapViewerProps {
 
 export const MapViewer = forwardRef<HTMLDivElement, MapViewerProps>(
   ({ map, playerView, onMapClick, onPinClick }, ref) => {
+    const { t } = useI18n();
     const containerRef = useRef<HTMLDivElement>(null);
 
     const visiblePins = playerView
@@ -142,7 +135,7 @@ export const MapViewer = forwardRef<HTMLDivElement, MapViewerProps>(
         <div className="mt-4 border border-gold/20 rounded-lg overflow-hidden">
           <div className="px-3 py-2 bg-ink-light border-b border-gold/10">
             <span className="font-cinzel text-xs text-gold/60 tracking-wider">
-              Pinos ({visiblePins.length})
+              {t.master.map.pins} ({visiblePins.length})
             </span>
           </div>
           <div className="divide-y divide-gold/5 max-h-48 overflow-y-auto">
@@ -156,7 +149,7 @@ export const MapViewer = forwardRef<HTMLDivElement, MapViewerProps>(
                 >
                   <Icon size={14} className={PIN_COLORS[pin.type].split(" ")[0]} />
                   <span className="flex-1 text-sm text-parchment-light truncate">{pin.name}</span>
-                  <Badge label={PIN_TYPE_LABELS[pin.type]} color={PIN_BADGE_COLORS[pin.type]} />
+                  <Badge label={t.master.map.pinTypes[pin.type]} color={PIN_BADGE_COLORS[pin.type]} />
                   {!pin.revealed && <EyeOff size={12} className="text-parchment-light/30" />}
                 </button>
               );

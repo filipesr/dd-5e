@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Input, Select } from "@/components/ui/Input";
 import { ProgressClock } from "@/components/master/ProgressClock";
 import type { ProgressClock as ProgressClockType } from "@/types/dnd5e";
+import { useI18n } from "@/lib/i18n";
 
 interface ProgressClockManagerProps {
   clocks: ProgressClockType[];
@@ -14,16 +15,17 @@ interface ProgressClockManagerProps {
   onDelete: (clockId: string) => void;
 }
 
-const SEGMENT_OPTIONS = [
-  { value: "4", label: "4 segmentos" },
-  { value: "6", label: "6 segmentos" },
-  { value: "8", label: "8 segmentos" },
-];
-
 export function ProgressClockManager({ clocks, onAdd, onUpdate, onDelete }: ProgressClockManagerProps) {
+  const { t } = useI18n();
   const [showForm, setShowForm] = useState(false);
   const [newName, setNewName] = useState("");
   const [newSegments, setNewSegments] = useState("6");
+
+  const SEGMENT_OPTIONS = [
+    { value: "4", label: t.master.clock.seg4 },
+    { value: "6", label: t.master.clock.seg6 },
+    { value: "8", label: t.master.clock.seg8 },
+  ];
 
   const handleCreate = () => {
     if (!newName.trim()) return;
@@ -43,10 +45,10 @@ export function ProgressClockManager({ clocks, onAdd, onUpdate, onDelete }: Prog
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-cinzel text-parchment-light/60 uppercase tracking-wide">
-          Relogios de Progresso
+          {t.master.clock.title}
         </h3>
         <Button variant="ghost" size="sm" onClick={() => setShowForm(!showForm)}>
-          <PlusCircle size={14} className="mr-1" /> Novo Relogio
+          <PlusCircle size={14} className="mr-1" /> {t.master.clock.new_}
         </Button>
       </div>
 
@@ -54,7 +56,7 @@ export function ProgressClockManager({ clocks, onAdd, onUpdate, onDelete }: Prog
         <div className="flex items-end gap-3 p-3 bg-ink border border-gold/20 rounded-lg">
           <div className="flex-1">
             <Input
-              label="Nome"
+              label={t.common.name}
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
               placeholder="Ex: Ritual do inimigo"
@@ -70,10 +72,10 @@ export function ProgressClockManager({ clocks, onAdd, onUpdate, onDelete }: Prog
           </div>
           <div className="flex gap-2 pb-0.5">
             <Button variant="ghost" size="sm" onClick={() => setShowForm(false)}>
-              Cancelar
+              {t.common.cancel}
             </Button>
             <Button size="sm" onClick={handleCreate} disabled={!newName.trim()}>
-              Criar
+              {t.common.create}
             </Button>
           </div>
         </div>
@@ -99,7 +101,7 @@ export function ProgressClockManager({ clocks, onAdd, onUpdate, onDelete }: Prog
                 <button
                   onClick={() => onDelete(clock.id)}
                   className="text-parchment-light/30 hover:text-blood transition-colors"
-                  title="Excluir relogio"
+                  title={t.common.delete}
                 >
                   <Trash2 size={12} />
                 </button>

@@ -28,34 +28,7 @@ import { useCampaignStore } from "@/store/campaignStore";
 import { ALIGNMENTS, RACES } from "@/types/dnd5e";
 import type { NPC, EncounterMonster, MapPin, MapData } from "@/types/dnd5e";
 import type { GeneratedNPC } from "@/lib/npcGenerator";
-
-const TABS = [
-  { key: "npcs", label: "NPCs", icon: Users },
-  { key: "encounters", label: "Encontros", icon: Swords },
-  { key: "sessions", label: "Sessões", icon: ScrollText },
-  { key: "notes", label: "Notas", icon: StickyNote },
-  { key: "treasures", label: "Tesouros", icon: Gem },
-  { key: "maps", label: "Mapas", icon: Map },
-] as const;
-
-type TabKey = (typeof TABS)[number]["key"];
-
-const ALIGNMENT_OPTIONS = ALIGNMENTS.map((a) => ({
-  value: a,
-  label: a.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-}));
-
-const RACE_OPTIONS = RACES.map((r) => ({
-  value: r,
-  label: r.charAt(0).toUpperCase() + r.slice(1).replace("-", " "),
-}));
-
-const ROLE_OPTIONS = [
-  { value: "ally", label: "Aliado" },
-  { value: "neutral", label: "Neutro" },
-  { value: "antagonist", label: "Antagonista" },
-  { value: "unknown", label: "Desconhecido" },
-];
+import { useI18n } from "@/lib/i18n";
 
 const DIFFICULTY_COLORS: Record<string, "green" | "gold" | "blood" | "purple"> = {
   easy: "green",
@@ -63,14 +36,11 @@ const DIFFICULTY_COLORS: Record<string, "green" | "gold" | "blood" | "purple"> =
   hard: "blood",
   deadly: "purple",
 };
-const DIFFICULTY_LABELS: Record<string, string> = {
-  easy: "Fácil",
-  medium: "Médio",
-  hard: "Difícil",
-  deadly: "Mortal",
-};
+
+type TabKey = "npcs" | "encounters" | "sessions" | "notes" | "treasures" | "maps";
 
 export default function CampaignDetailPage() {
+  const { t } = useI18n();
   const params = useParams();
   const campaignId = params.id as string;
   const { getCampaign, addNpc, deleteNpc, addEncounter, addSession, updateSession, deleteSession, addSessionEvent, deleteSessionEvent, updateCampaignNotes, addTreasure, deleteTreasure, addMap, deleteMap, addPin, updatePin, deletePin, addClock, updateClock, deleteClock } =
@@ -112,13 +82,39 @@ export default function CampaignDetailPage() {
   const [sessionSummary, setSessionSummary] = useState("");
   const [editingSessionId, setEditingSessionId] = useState<string | null>(null);
 
+  const TABS = [
+    { key: "npcs" as TabKey, label: t.master.tabs.npcs, icon: Users },
+    { key: "encounters" as TabKey, label: t.master.tabs.encounters, icon: Swords },
+    { key: "sessions" as TabKey, label: t.master.tabs.sessions, icon: ScrollText },
+    { key: "notes" as TabKey, label: t.master.tabs.notes, icon: StickyNote },
+    { key: "treasures" as TabKey, label: t.master.tabs.treasures, icon: Gem },
+    { key: "maps" as TabKey, label: t.master.tabs.maps, icon: Map },
+  ];
+
+  const ALIGNMENT_OPTIONS = ALIGNMENTS.map((a) => ({
+    value: a,
+    label: t.alignments[a] ?? a.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+  }));
+
+  const RACE_OPTIONS = RACES.map((r) => ({
+    value: r,
+    label: t.races[r] ?? r.charAt(0).toUpperCase() + r.slice(1).replace("-", " "),
+  }));
+
+  const ROLE_OPTIONS = [
+    { value: "ally", label: t.master.npc.roles.ally },
+    { value: "neutral", label: t.master.npc.roles.neutral },
+    { value: "antagonist", label: t.master.npc.roles.antagonist },
+    { value: "unknown", label: t.master.npc.roles.unknown },
+  ];
+
   if (!campaign) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-8">
         <p className="text-parchment-light/50">Campanha não encontrada.</p>
         <Link href="/master">
           <Button variant="ghost" className="mt-4">
-            <ArrowLeft size={16} className="mr-2" /> Voltar
+            <ArrowLeft size={16} className="mr-2" /> {t.common.back}
           </Button>
         </Link>
       </div>
@@ -216,7 +212,7 @@ export default function CampaignDetailPage() {
     <div className="max-w-5xl mx-auto px-4 py-8">
       {/* Back link */}
       <Link href="/master" className="inline-flex items-center gap-1 text-sm text-parchment-light/50 hover:text-parchment-light mb-4">
-        <ArrowLeft size={14} /> Voltar
+        <ArrowLeft size={14} /> {t.common.back}
       </Link>
 
       <SectionHeader title={campaign.name} />
@@ -247,11 +243,11 @@ export default function CampaignDetailPage() {
         <div className="space-y-6">
           <div className="flex justify-end mb-4">
             <Button size="sm" onClick={() => setShowNpcModal(true)}>
-              Novo NPC
+              {t.master.npc.newNpc}
             </Button>
           </div>
           {campaign.npcs.length === 0 ? (
-            <p className="text-center text-parchment-light/40 py-12">Nenhum NPC adicionado ainda.</p>
+            <p className="text-center text-parchment-light/40 py-12">{t.master.npc.noNpcs}</p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {campaign.npcs.map((npc) => (
@@ -270,11 +266,11 @@ export default function CampaignDetailPage() {
         <div>
           <div className="flex justify-end mb-4">
             <Button size="sm" onClick={() => setShowEncounterModal(true)}>
-              Novo Encontro
+              {t.master.encounter.new_}
             </Button>
           </div>
           {campaign.encounters.length === 0 ? (
-            <p className="text-center text-parchment-light/40 py-12">Nenhum encontro criado ainda.</p>
+            <p className="text-center text-parchment-light/40 py-12">{t.master.encounter.none}</p>
           ) : (
             <div className="space-y-3">
               {campaign.encounters.map((enc) => (
@@ -286,12 +282,12 @@ export default function CampaignDetailPage() {
                     </p>
                   </div>
                   <Badge
-                    label={DIFFICULTY_LABELS[enc.difficulty] ?? enc.difficulty}
+                    label={t.master.encounter.difficulty[enc.difficulty as keyof typeof t.master.encounter.difficulty] ?? enc.difficulty}
                     color={DIFFICULTY_COLORS[enc.difficulty] ?? "gold"}
                   />
                   <Link href={`/master/encounter/${enc.id}?campaign=${campaignId}`}>
                     <Button size="sm" variant="secondary">
-                      <Swords size={14} className="mr-1" /> Tracker
+                      <Swords size={14} className="mr-1" /> {t.master.encounter.tracker}
                     </Button>
                   </Link>
                 </Card>
@@ -306,11 +302,11 @@ export default function CampaignDetailPage() {
         <div>
           <div className="flex justify-end mb-4">
             <Button size="sm" onClick={() => { setEditingSessionId(null); setSessionTitle(""); setSessionSummary(""); setShowSessionModal(true); }}>
-              Nova Sessão
+              {t.master.session.new_}
             </Button>
           </div>
           {campaign.sessions.length === 0 ? (
-            <p className="text-center text-parchment-light/40 py-12">Nenhuma sessão registrada ainda.</p>
+            <p className="text-center text-parchment-light/40 py-12">{t.master.session.none}</p>
           ) : (
             <div className="space-y-3">
               {campaign.sessions.map((session) => (
@@ -416,7 +412,7 @@ export default function CampaignDetailPage() {
                       size="sm"
                       onClick={() => { setSelectedMapId(null); setPlayerView(false); }}
                     >
-                      <ChevronLeft size={14} className="mr-1" /> Voltar
+                      <ChevronLeft size={14} className="mr-1" /> {t.common.back}
                     </Button>
                     <span className="font-cinzel text-parchment-light text-sm">{selectedMap.name}</span>
                   </div>
@@ -425,10 +421,10 @@ export default function CampaignDetailPage() {
                       variant={playerView ? "primary" : "secondary"}
                       size="sm"
                       onClick={() => setPlayerView(!playerView)}
-                      title={playerView ? "Modo Mestre" : "Visão do Jogador"}
+                      title={playerView ? t.master.map.masterView : t.master.map.playerView}
                     >
                       {playerView ? <EyeOff size={14} className="mr-1" /> : <Eye size={14} className="mr-1" />}
-                      {playerView ? "Modo Mestre" : "Visão do Jogador"}
+                      {playerView ? t.master.map.masterView : t.master.map.playerView}
                     </Button>
                     <MapExporter mapRef={mapViewerRef} mapName={selectedMap.name} />
                     <Button
@@ -465,7 +461,7 @@ export default function CampaignDetailPage() {
 
                 {!playerView && (
                   <p className="text-xs text-center text-parchment-light/30">
-                    Clique no mapa para adicionar um pino
+                    {t.master.map.clickToAdd}
                   </p>
                 )}
               </div>
@@ -474,13 +470,13 @@ export default function CampaignDetailPage() {
             <div>
               <div className="flex justify-end mb-4">
                 <Button size="sm" onClick={() => setShowMapUploader(true)}>
-                  Novo Mapa
+                  {t.master.map.new_}
                 </Button>
               </div>
 
               {(campaign.maps ?? []).length === 0 ? (
                 <p className="text-center text-parchment-light/40 py-12">
-                  Nenhum mapa adicionado ainda.
+                  {t.master.map.none}
                 </p>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -514,7 +510,7 @@ export default function CampaignDetailPage() {
           <Modal
             isOpen={showMapUploader}
             onClose={() => setShowMapUploader(false)}
-            title="Adicionar Mapa"
+            title={t.master.map.add}
             className="max-w-xl"
           >
             <MapUploader
@@ -551,35 +547,35 @@ export default function CampaignDetailPage() {
       )}
 
       {/* New NPC Modal */}
-      <Modal isOpen={showNpcModal} onClose={() => { setShowNpcModal(false); resetNpcForm(); }} title="Novo NPC">
+      <Modal isOpen={showNpcModal} onClose={() => { setShowNpcModal(false); resetNpcForm(); }} title={t.master.npc.newNpc}>
         <div className="space-y-4">
-          <Input label="Nome" value={npcName} onChange={(e) => setNpcName(e.target.value)} />
+          <Input label={t.common.name} value={npcName} onChange={(e) => setNpcName(e.target.value)} />
           <div className="grid grid-cols-2 gap-3">
-            <Select label="Raça" options={RACE_OPTIONS} value={npcRace} onChange={(e) => setNpcRace(e.target.value)} />
-            <Input label="Profissão" value={npcProfession} onChange={(e) => setNpcProfession(e.target.value)} />
+            <Select label={t.character.fields.race} options={RACE_OPTIONS} value={npcRace} onChange={(e) => setNpcRace(e.target.value)} />
+            <Input label={t.master.npc.profession} value={npcProfession} onChange={(e) => setNpcProfession(e.target.value)} />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <Select
-              label="Alinhamento"
+              label={t.character.fields.alignment}
               options={ALIGNMENT_OPTIONS}
               value={npcAlignment}
               onChange={(e) => setNpcAlignment(e.target.value)}
             />
             <Select
-              label="Papel"
+              label={t.master.npc.role}
               options={ROLE_OPTIONS}
               value={npcRole}
               onChange={(e) => setNpcRole(e.target.value as NPC["role"])}
             />
           </div>
-          <Textarea label="Notas" value={npcNotes} onChange={(e) => setNpcNotes(e.target.value)} rows={3} />
-          <Textarea label="Segredos" value={npcSecrets} onChange={(e) => setNpcSecrets(e.target.value)} rows={3} />
+          <Textarea label={t.common.notes} value={npcNotes} onChange={(e) => setNpcNotes(e.target.value)} rows={3} />
+          <Textarea label={t.master.npc.secrets} value={npcSecrets} onChange={(e) => setNpcSecrets(e.target.value)} rows={3} />
           <div className="flex justify-end gap-2 pt-2">
             <Button variant="ghost" onClick={() => { setShowNpcModal(false); resetNpcForm(); }}>
-              Cancelar
+              {t.common.cancel}
             </Button>
             <Button onClick={handleAddNpc} disabled={!npcName.trim()}>
-              Adicionar
+              {t.common.add}
             </Button>
           </div>
         </div>
@@ -591,21 +587,21 @@ export default function CampaignDetailPage() {
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-parchment-light/40 block text-xs font-cinzel">Raça</span>
+                <span className="text-parchment-light/40 block text-xs font-cinzel">{t.character.fields.race}</span>
                 <span className="text-parchment-light">{selectedNpc.race || "—"}</span>
               </div>
               <div>
-                <span className="text-parchment-light/40 block text-xs font-cinzel">Profissão</span>
+                <span className="text-parchment-light/40 block text-xs font-cinzel">{t.master.npc.profession}</span>
                 <span className="text-parchment-light">{selectedNpc.profession || "—"}</span>
               </div>
               <div>
-                <span className="text-parchment-light/40 block text-xs font-cinzel">Alinhamento</span>
+                <span className="text-parchment-light/40 block text-xs font-cinzel">{t.character.fields.alignment}</span>
                 <span className="text-parchment-light">
-                  {selectedNpc.alignment.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                  {t.alignments[selectedNpc.alignment] ?? selectedNpc.alignment.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
                 </span>
               </div>
               <div>
-                <span className="text-parchment-light/40 block text-xs font-cinzel">Papel</span>
+                <span className="text-parchment-light/40 block text-xs font-cinzel">{t.master.npc.role}</span>
                 <span className="text-parchment-light">
                   {ROLE_OPTIONS.find((r) => r.value === selectedNpc.role)?.label ?? selectedNpc.role}
                 </span>
@@ -613,13 +609,13 @@ export default function CampaignDetailPage() {
             </div>
             {selectedNpc.notes && (
               <div>
-                <span className="text-parchment-light/40 block text-xs font-cinzel mb-1">Notas</span>
+                <span className="text-parchment-light/40 block text-xs font-cinzel mb-1">{t.common.notes}</span>
                 <p className="text-sm text-parchment-light/80 whitespace-pre-wrap">{selectedNpc.notes}</p>
               </div>
             )}
             {selectedNpc.secrets && (
               <div>
-                <span className="text-parchment-light/40 block text-xs font-cinzel mb-1">Segredos</span>
+                <span className="text-parchment-light/40 block text-xs font-cinzel mb-1">{t.master.npc.secrets}</span>
                 <p className="text-sm text-parchment-light/80 whitespace-pre-wrap">{selectedNpc.secrets}</p>
               </div>
             )}
@@ -632,10 +628,10 @@ export default function CampaignDetailPage() {
                   setSelectedNpc(null);
                 }}
               >
-                <Trash2 size={14} className="mr-1" /> Excluir
+                <Trash2 size={14} className="mr-1" /> {t.common.delete}
               </Button>
               <Button variant="ghost" onClick={() => setSelectedNpc(null)}>
-                Fechar
+                {t.common.close}
               </Button>
             </div>
           </div>
@@ -646,12 +642,12 @@ export default function CampaignDetailPage() {
       <Modal
         isOpen={showEncounterModal}
         onClose={() => setShowEncounterModal(false)}
-        title="Novo Encontro"
+        title={t.master.encounter.new_}
         className="max-w-2xl"
       >
         <div className="space-y-4">
           <Input
-            label="Nome do Encontro"
+            label={t.master.encounter.encounterName}
             value={encounterName}
             onChange={(e) => setEncounterName(e.target.value)}
           />
@@ -664,26 +660,26 @@ export default function CampaignDetailPage() {
           />
           <div className="flex justify-end gap-2 pt-2">
             <Button variant="ghost" onClick={() => setShowEncounterModal(false)}>
-              Cancelar
+              {t.common.cancel}
             </Button>
             <Button onClick={handleAddEncounter} disabled={!encounterName.trim()}>
-              Criar
+              {t.common.create}
             </Button>
           </div>
         </div>
       </Modal>
 
-      {/* New Session Modal */}
-      <Modal isOpen={showSessionModal} onClose={() => { setShowSessionModal(false); setEditingSessionId(null); setSessionTitle(""); setSessionSummary(""); }} title={editingSessionId ? "Editar Sessão" : "Nova Sessão"}>
+      {/* New/Edit Session Modal */}
+      <Modal isOpen={showSessionModal} onClose={() => { setShowSessionModal(false); setEditingSessionId(null); setSessionTitle(""); setSessionSummary(""); }} title={editingSessionId ? t.master.session.edit : t.master.session.new_}>
         <div className="space-y-4">
           <Input
-            label="Título"
+            label={t.master.session.title}
             value={sessionTitle}
             onChange={(e) => setSessionTitle(e.target.value)}
             placeholder="Ex: A chegada em Neverwinter"
           />
           <Textarea
-            label="Resumo"
+            label={t.master.session.summary}
             value={sessionSummary}
             onChange={(e) => setSessionSummary(e.target.value)}
             placeholder="O que aconteceu nesta sessão..."
@@ -691,10 +687,10 @@ export default function CampaignDetailPage() {
           />
           <div className="flex justify-end gap-2 pt-2">
             <Button variant="ghost" onClick={() => setShowSessionModal(false)}>
-              Cancelar
+              {t.common.cancel}
             </Button>
             <Button onClick={handleSaveSession} disabled={!sessionTitle.trim()}>
-              {editingSessionId ? "Atualizar" : "Salvar"}
+              {editingSessionId ? t.common.update : t.common.save}
             </Button>
           </div>
         </div>

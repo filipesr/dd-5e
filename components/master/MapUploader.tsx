@@ -5,6 +5,7 @@ import { useDropzone } from "react-dropzone";
 import { Upload, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import { useI18n } from "@/lib/i18n";
 
 interface MapUploaderProps {
   onAdd: (name: string, imageBase64: string) => void;
@@ -12,6 +13,7 @@ interface MapUploaderProps {
 }
 
 export function MapUploader({ onAdd, onCancel }: MapUploaderProps) {
+  const { t } = useI18n();
   const [mapName, setMapName] = useState("");
   const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [fileSizeMB, setFileSizeMB] = useState(0);
@@ -65,7 +67,7 @@ export function MapUploader({ onAdd, onCancel }: MapUploaderProps) {
       >
         <input {...getInputProps()} />
         {loading ? (
-          <p className="text-parchment-light/60 text-sm">Carregando imagem...</p>
+          <p className="text-parchment-light/60 text-sm">{t.common.loading}</p>
         ) : imageBase64 ? (
           <div className="space-y-2">
             <img
@@ -82,7 +84,7 @@ export function MapUploader({ onAdd, onCancel }: MapUploaderProps) {
             <Upload className="mx-auto text-gold/60" size={40} />
             <div>
               <p className="text-parchment-light/70 text-sm font-cinzel">
-                {isDragActive ? "Solte a imagem aqui" : "Arraste um mapa ou clique para selecionar"}
+                {isDragActive ? t.master.map.dropImage : t.master.map.dragImage}
               </p>
               <p className="text-parchment-light/40 text-xs mt-1">PNG, JPG, WebP</p>
             </div>
@@ -93,12 +95,12 @@ export function MapUploader({ onAdd, onCancel }: MapUploaderProps) {
       {fileSizeMB > 2 && (
         <div className="flex items-center gap-2 text-yellow-400 text-xs bg-yellow-400/10 border border-yellow-400/30 rounded px-3 py-2">
           <AlertTriangle size={14} />
-          <span>Imagem grande pode impactar performance ({fileSizeMB.toFixed(1)}MB)</span>
+          <span>{t.master.map.imageTooLarge} ({fileSizeMB.toFixed(1)}MB)</span>
         </div>
       )}
 
       <Input
-        label="Nome do Mapa"
+        label={t.master.map.mapName}
         value={mapName}
         onChange={(e) => setMapName(e.target.value)}
         placeholder="Ex: Mapa do Continente, Masmorra do Anel..."
@@ -107,14 +109,14 @@ export function MapUploader({ onAdd, onCancel }: MapUploaderProps) {
       <div className="flex justify-end gap-2 pt-2">
         {onCancel && (
           <Button variant="ghost" onClick={onCancel}>
-            Cancelar
+            {t.common.cancel}
           </Button>
         )}
         <Button
           onClick={handleAdd}
           disabled={!mapName.trim() || !imageBase64}
         >
-          Adicionar Mapa
+          {t.master.map.add}
         </Button>
       </div>
     </div>

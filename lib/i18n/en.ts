@@ -234,6 +234,14 @@ export const en: Dictionary = {
         name: "Magic Items",
         desc: "Discover magic items, their rarity, attunement requirements, and properties.",
       },
+      conditions: {
+        name: "Conditions",
+        desc: "Status conditions and their in-game effects.",
+      },
+      rules: {
+        name: "Quick Rules",
+        desc: "Quick reference for combat, exploration, and core mechanics.",
+      },
     },
 
     detail: {

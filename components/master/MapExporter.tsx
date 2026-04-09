@@ -3,6 +3,7 @@
 import { useState, type RefObject } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useI18n } from "@/lib/i18n";
 
 interface MapExporterProps {
   mapRef: RefObject<HTMLDivElement | null>;
@@ -10,6 +11,7 @@ interface MapExporterProps {
 }
 
 export function MapExporter({ mapRef, mapName }: MapExporterProps) {
+  const { t } = useI18n();
   const [loading, setLoading] = useState(false);
 
   const handleExport = async () => {
@@ -49,7 +51,7 @@ export function MapExporter({ mapRef, mapName }: MapExporterProps) {
       disabled={loading}
     >
       <Download size={14} className="mr-1" />
-      {loading ? "Gerando..." : "Exportar como PNG"}
+      {loading ? t.common.loading : t.master.map.exportPng}
     </Button>
   );
 }

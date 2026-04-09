@@ -8,6 +8,7 @@ import { getXpMultiplier, getEncounterDifficulty } from "@/lib/dnd5e";
 import { generateId } from "@/lib/utils";
 import type { EncounterMonster } from "@/types/dnd5e";
 import { Plus, Trash2 } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 interface EncounterPlannerProps {
   partyLevel: number;
@@ -18,9 +19,9 @@ interface EncounterPlannerProps {
 }
 
 const DIFFICULTY_COLORS: Record<string, "green" | "gold" | "blood" | "purple"> = { easy: "green", medium: "gold", hard: "blood", deadly: "purple" };
-const DIFFICULTY_LABELS: Record<string, string> = { easy: "Fácil", medium: "Médio", hard: "Difícil", deadly: "Mortal" };
 
 export function EncounterPlanner({ partyLevel, partySize, onPartyChange, monsters, onMonstersChange }: EncounterPlannerProps) {
+  const { t } = useI18n();
   const [newName, setNewName] = useState("");
   const [newHp, setNewHp] = useState(10);
   const [newAc, setNewAc] = useState(10);
@@ -40,12 +41,12 @@ export function EncounterPlanner({ partyLevel, partySize, onPartyChange, monster
   return (
     <div className="space-y-4">
       <div className="flex gap-4">
-        <Input label="Nível do Grupo" type="number" value={partyLevel} onChange={(e) => onPartyChange(Math.max(1, Math.min(20, parseInt(e.target.value) || 1)), partySize)} />
-        <Input label="Tamanho do Grupo" type="number" value={partySize} onChange={(e) => onPartyChange(partyLevel, Math.max(1, parseInt(e.target.value) || 1))} />
+        <Input label={t.master.encounter.partyLevel} type="number" value={partyLevel} onChange={(e) => onPartyChange(Math.max(1, Math.min(20, parseInt(e.target.value) || 1)), partySize)} />
+        <Input label={t.master.encounter.partySize} type="number" value={partySize} onChange={(e) => onPartyChange(partyLevel, Math.max(1, parseInt(e.target.value) || 1))} />
       </div>
       {difficulty && (
         <div className="flex items-center gap-3 p-3 bg-ink border border-gold/20 rounded">
-          <Badge label={DIFFICULTY_LABELS[difficulty]} color={DIFFICULTY_COLORS[difficulty]} active />
+          <Badge label={t.master.encounter.difficulty[difficulty as keyof typeof t.master.encounter.difficulty]} color={DIFFICULTY_COLORS[difficulty]} active />
           <span className="text-sm text-parchment-light/60">XP Total: {totalXP} | Ajustado: {adjustedXP} (x{multiplier})</span>
         </div>
       )}
@@ -59,7 +60,7 @@ export function EncounterPlanner({ partyLevel, partySize, onPartyChange, monster
         ))}
       </div>
       <div className="flex gap-2 items-end">
-        <Input label="Nome" value={newName} onChange={(e) => setNewName(e.target.value)} />
+        <Input label={t.common.name} value={newName} onChange={(e) => setNewName(e.target.value)} />
         <Input label="HP" type="number" value={newHp} onChange={(e) => setNewHp(parseInt(e.target.value) || 1)} className="w-20" />
         <Input label="AC" type="number" value={newAc} onChange={(e) => setNewAc(parseInt(e.target.value) || 10)} className="w-20" />
         <Input label="XP" type="number" value={newXp} onChange={(e) => setNewXp(parseInt(e.target.value) || 0)} className="w-20" />
