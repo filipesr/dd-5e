@@ -5,16 +5,19 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Sword, BookOpen, Crown, Scroll } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const NAV_LINKS = [
-  { href: "/character", label: "Personagens", icon: Sword },
-  { href: "/compendium", label: "Compêndio", icon: BookOpen },
-  { href: "/master", label: "Mestre", icon: Crown },
-];
+import { useI18n } from "@/lib/i18n";
+import { LanguageSelector } from "./LanguageSelector";
 
 export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useI18n();
+
+  const NAV_LINKS = [
+    { href: "/character", label: t.nav.characters, icon: Sword },
+    { href: "/compendium", label: t.nav.compendium, icon: BookOpen },
+    { href: "/master", label: t.nav.master, icon: Crown },
+  ];
 
   return (
     <nav className="sticky top-0 z-40 bg-ink/95 backdrop-blur border-b border-gold/20">
@@ -40,14 +43,20 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <div className="ml-2 border-l border-gold/20 pl-2">
+            <LanguageSelector />
+          </div>
         </div>
 
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-parchment-light/60 hover:text-parchment-light"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSelector />
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-parchment-light/60 hover:text-parchment-light"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {mobileOpen && (
