@@ -41,7 +41,6 @@ const hasFlag = (name: string) => args.includes(`--${name}`);
 const locale = getArg("locale", "pt-BR")!;
 const dataType = getArg("type", "spells")!;
 const srdOnly = hasFlag("srd");
-const translateAll = hasFlag("all");
 const dryRun = hasFlag("dry-run");
 const force = hasFlag("force");
 
@@ -162,7 +161,7 @@ async function processFile(
 
   // Filter by scope
   let entries = source;
-  if (srdOnly && !translateAll) {
+  if (srdOnly) {
     entries = entries.filter(e => e.document__slug === "wotc-srd");
   }
 
@@ -175,13 +174,27 @@ async function processFile(
     });
   }
 
+  const beforeFilter = entries.length;
+  const alreadyDone = beforeFilter - entries.length; // after _translated filter below this was set
   const total = entries.length;
   const batches = Math.ceil(total / BATCH_SIZE);
 
+  // Count stats
+  const totalInTarget = target.length;
+  const translatedInTarget = target.filter(t => (t as Record<string, unknown>)._translated).length;
+
   console.log(`\n${"=".repeat(60)}`);
   console.log(`Translating: ${sourceFile} → ${targetFile}`);
-  console.log(`Entries: ${total} | Batches: ${batches} | Fields: ${context}`);
+  console.log(`Source: ${source.length} total${srdOnly ? " (SRD filter active)" : ""}`);
+  console.log(`Target: ${translatedInTarget}/${totalInTarget} already translated`);
+  console.log(`Pending: ${total} entries | ${batches} batches`);
   console.log(`${"=".repeat(60)}\n`);
+
+  if (total === 0) {
+    console.log("  Nothing to translate. All entries already done.");
+    console.log("  Use --force to re-translate.\n");
+    return;
+  }
 
   let translated = 0;
   let errors = 0;
