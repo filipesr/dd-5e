@@ -8,7 +8,10 @@
  *   npx tsx scripts/translate-via-claude.ts --locale pt-BR --type all --srd
  *   npx tsx scripts/translate-via-claude.ts --locale pt-BR --type spells --all
  *   npx tsx scripts/translate-via-claude.ts --locale pt-BR --type spells --srd --dry-run
- *   npx tsx scripts/translate-via-claude.ts --locale pt-BR --type spells --srd --resume
+ *   npx tsx scripts/translate-via-claude.ts --locale pt-BR --type spells --srd --force
+ *
+ * Automatically skips entries already translated (_translated: true).
+ * Use --force to re-translate everything.
  *
  * Requires ANTHROPIC_API_KEY in .env.local or environment.
  */
@@ -40,7 +43,7 @@ const dataType = getArg("type", "spells")!;
 const srdOnly = hasFlag("srd");
 const translateAll = hasFlag("all");
 const dryRun = hasFlag("dry-run");
-const resume = hasFlag("resume");
+const force = hasFlag("force");
 
 const LOCALE_NAMES: Record<string, string> = {
   "pt-BR": "Brazilian Portuguese",
@@ -157,14 +160,14 @@ async function processFile(
   const target = loadJSON(targetFile);
   const targetMap = new Map(target.map((t, i) => [t.slug as string, i]));
 
-  // Filter entries
+  // Filter by scope
   let entries = source;
   if (srdOnly && !translateAll) {
     entries = entries.filter(e => e.document__slug === "wotc-srd");
   }
 
-  // Filter already translated (resume mode)
-  if (resume) {
+  // Skip already translated entries (unless --force)
+  if (!force) {
     entries = entries.filter(e => {
       const idx = targetMap.get(e.slug as string);
       if (idx === undefined) return true;
@@ -280,7 +283,7 @@ async function main() {
   console.log(`  Locale:   ${locale} (${LOCALE_NAMES[locale]})`);
   console.log(`  Type:     ${dataType}`);
   console.log(`  SRD only: ${srdOnly}`);
-  console.log(`  Resume:   ${resume}`);
+  console.log(`  Force:    ${force}`);
   console.log(`  Dry run:  ${dryRun}`);
   console.log(`  Model:    ${MODEL}`);
   console.log(`  Batch:    ${BATCH_SIZE}`);
